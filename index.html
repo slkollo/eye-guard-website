@@ -268,22 +268,28 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
             font-size: 1.75rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo i {
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .nav-right {
@@ -893,8 +899,8 @@
         <div class="nav-container-full">
             <!-- Logo Section -->
             <div class="logo">
-                <i class="fas fa-shield-alt"></i>
-                Eye Guard
+                <img src="images/logo.png" alt="Eye Guard Logo">
+                <span class="logo-text">Eye Guard</span>
             </div>
             
             <!-- Navigation Links - Right Side -->
@@ -1186,8 +1192,8 @@
             <div style="text-align: center; padding-top: 2.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 0.95rem;">
                 <p>&copy; 2026 MJ Solution Co., Ltd. All rights reserved. | Made with ❤️ for children's eye health</p>
                 <p style="margin-top: 0.5rem;">
-                    <a href="/privacy-policy.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; margin: 0 1rem;">Privacy Policy</a> | 
-                    <a href="/terms-of-service.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; margin: 0 1rem;">Terms of Service</a>
+                    <a href="privacy-policy.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; margin: 0 1rem;">Privacy Policy</a> | 
+                    <a href="terms-of-service.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; margin: 0 1rem;">Terms of Service</a>
                 </p>
             </div>
         </div>
