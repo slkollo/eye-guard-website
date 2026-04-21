@@ -275,8 +275,11 @@
 
         .logo img {
             height: 45px;
-            width: auto;
+            width: 45px;
+            object-fit: cover;
+            border-radius: 50%;  /* Perfect circle */
             transition: transform 0.3s ease;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
         }
 
         .logo img:hover {
@@ -1103,7 +1106,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="about" style="background: #1e1b4b; color: #ffffff; padding: 80px 6% 40px;">
+    <footer id="about" style="background: linear-gradient(135deg, #1e1b4b 0%, #2d1b69 50%, #1e1b4b 100%); color: #ffffff; padding: 80px 6% 40px;">
         <div style="max-width: 1400px; margin: 0 auto;">
             <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 5rem; margin-bottom: 3rem;">
                 <!-- Company Info -->
@@ -1155,34 +1158,22 @@
                     </ul>
                 </div>
                 
-                <!-- Company Links -->
+                <!-- Legal Links -->
                 <div data-aos="fade-up" data-aos-delay="300">
                     <h4 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: #c4b5fd; position: relative; display: inline-block; padding-bottom: 0.5rem;">
-                        Company
+                        Legal
                         <span style="position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #ef4444; border-radius: 2px;"></span>
                     </h4>
                     <ul style="list-style: none; margin-top: 1.5rem;">
                         <li style="margin-bottom: 1rem;">
-                            <a href="#about" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s; font-size: 1rem; position: relative; display: inline-block; padding-bottom: 0.25rem;">
-                                About Us
+                            <a href="privacy-policy.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s; font-size: 1rem; position: relative; display: inline-block; padding-bottom: 0.25rem;">
+                                Privacy Policy
                                 <span style="position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #ef4444; transition: width 0.3s;"></span>
                             </a>
                         </li>
                         <li style="margin-bottom: 1rem;">
-                            <a href="#" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s; font-size: 1rem; position: relative; display: inline-block; padding-bottom: 0.25rem;">
-                                Contact
-                                <span style="position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #ef4444; transition: width 0.3s;"></span>
-                            </a>
-                        </li>
-                        <li style="margin-bottom: 1rem;">
-                            <a href="#" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s; font-size: 1rem; position: relative; display: inline-block; padding-bottom: 0.25rem;">
-                                Careers
-                                <span style="position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #ef4444; transition: width 0.3s;"></span>
-                            </a>
-                        </li>
-                        <li style="margin-bottom: 1rem;">
-                            <a href="#" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s; font-size: 1rem; position: relative; display: inline-block; padding-bottom: 0.25rem;">
-                                Blog
+                            <a href="terms-of-service.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s; font-size: 1rem; position: relative; display: inline-block; padding-bottom: 0.25rem;">
+                                Terms of Service
                                 <span style="position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #ef4444; transition: width 0.3s;"></span>
                             </a>
                         </li>
@@ -1193,10 +1184,6 @@
             <!-- Footer Bottom -->
             <div class="footer-bottom" style="text-align: center; padding-top: 2.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 0.95rem;">
                 <p>&copy; 2026 MJ Solution Co., Ltd. All rights reserved. | Made with ❤️ for children's eye health</p>
-                <p style="margin-top: 0.5rem;">
-                    <a href="privacy-policy.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; margin: 0 1rem;">Privacy Policy</a> | 
-                    <a href="terms-of-service.html" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; margin: 0 1rem;">Terms of Service</a>
-                </p>
             </div>
         </div>
         
