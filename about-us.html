@@ -12,17 +12,10 @@
         :root {
             --primary: #8b5cf6;
             --primary-dark: #7c3aed;
-            --primary-light: #a78bfa;
             --secondary: #ec4899;
-            --accent: #f59e0b;
-            --success: #10b981;
-            --danger: #ef4444;
             --dark: #1e1b4b;
-            --gray-900: #312e81;
-            --gray-700: #4c1d95;
             --gray-500: #6b7280;
             --gray-300: #d1d5db;
-            --gray-100: #f3f4f6;
             --white: #ffffff;
         }
 
@@ -45,7 +38,124 @@
             scroll-behavior: smooth;
         }
 
-        /* Hero Section - Matching Main Page */
+        /* Navigation - Matching uploaded image */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            padding: 1rem 6%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.15);
+            padding: 0.75rem 6%;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo img {
+            height: 45px;
+            width: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
+        }
+
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-500);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .download-nav-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white) !important;
+            padding: 0.7rem 1.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .download-nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .download-nav-btn::after {
+            display: none !important;
+        }
+
+        /* Hero Section */
         .hero {
             padding: 140px 6% 100px;
             background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 50%, #ede9fe 100%);
@@ -84,8 +194,12 @@
         }
 
         .hero-container {
-            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
             margin: 0 auto;
+            align-items: center;
             position: relative;
             z-index: 1;
         }
@@ -106,16 +220,34 @@
             background-clip: text;
         }
 
-        .company-info {
+        .company-badge {
             display: inline-block;
-            padding: 0.8rem 2rem;
+            padding: 0.6rem 1.5rem;
             background: rgba(139, 92, 246, 0.1);
             color: var(--primary);
             border-radius: 50px;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 700;
             margin-bottom: 2rem;
             border: 2px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--gray-500);
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
         }
 
         /* Content Section */
@@ -196,12 +328,21 @@
 
         /* Responsive */
         @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
             .hero-content h1 {
                 font-size: 3rem;
             }
             
             .content-text {
                 font-size: 1.15rem;
+            }
+
+            .nav-links {
+                display: none;
             }
         }
 
@@ -217,12 +358,36 @@
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Eye Guard Logo">
+                <span class="logo-text">Eye Guard</span>
+            </div>
+            
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#technology">Technology</a></li>
+                    <li><a href="about-us.html" class="active">About Us</a></li>
+                    <li><a href="index.html#download" class="download-nav-btn">Download Now</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
-            <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
-                <div class="company-info" id="companyBadge">MJ Solution Co., Ltd. • 주식회사 명진솔루션</div>
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1200">
+                <div class="company-badge">MJ Solution Co., Ltd. • 주식회사 명진솔루션</div>
                 <h1><span class="highlight" id="pageTitle">About Us</span></h1>
+                <p id="pageSubtitle">Innovation • Excellence • Digital Wellbeing</p>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="1200">
+                <img src="images/company-logo.png" alt="MJ Solution Co., Ltd.">
             </div>
         </div>
     </section>
@@ -275,7 +440,7 @@
                 </p>
                 
                 <p class="content-text">
-                    我们的基础建立在数十年的综合人力资源管理和全球劳动力解决方案专业知识之上。随着我们不断发展和拓展视野，我们很高兴地宣布我们的最新项目：<strong>'达芬奇密码(Da Vinci Code)'</strong>，一个将在未来几个月推出的高端化妆品品牌。
+                    我们的基础建立在数十年的综合人力资源管理和全球劳动力解决方案专业知识之上。我们很高兴地宣布我们的最新项目：<strong>'达芬奇密码(Da Vinci Code)'</strong>，一个将在未来几个月推出的高端化妆品品牌。
                 </p>
                 
                 <p class="content-text">
@@ -294,11 +459,11 @@
                 </p>
                 
                 <p class="content-text">
-                    当社の基盤は、包括的な人材管理とグローバルな労働力ソリューションにおける数十年の専門知識の上に築かれています。継続的に進化し、視野を広げる中で、今後数ヶ月以内に発売予定のプレミアム化粧品ブランド<strong>'ダビンチコード(Da Vinci Code)'</strong>という最新のベンチャーを発表できることを嬉しく思います。
+                    当社の基盤は、包括的な人材管理とグローバルな労働力ソリューションにおける数十年の専門知識の上に築かれています。今後数ヶ月以内に発売予定のプレミアム化粧品ブランド<strong>'ダビンチコード(Da Vinci Code)'</strong>という最新のベンチャーを発表できることを嬉しく思います。
                 </p>
                 
                 <p class="content-text">
-                    今日、豊かな企業の伝統と最先端技術を橋渡しし、デジタルウェルビーイングの分野も開拓しています。<strong>'Eye Guard'</strong>のような革新的なアプリケーションを通じて、子供たちの健康を守り、次世代のためのより安全で健康的な未来を創造することに専念し続けています。
+                    今日、デジタルウェルビーイングの分野も開拓しています。<strong>'Eye Guard'</strong>のような革新的なアプリケーションを通じて、子供たちの健康を守り、次世代のためのより安全で健康的な未来を創造することに専念し続けています。
                 </p>
 
                 <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200">
@@ -306,118 +471,47 @@
                 </a>
             </div>
 
-            <!-- Spanish Content -->
+            <!-- Spanish, French, German, Arabic, Hindi, Sinhala content... (same structure) -->
             <div class="content-es" data-aos="fade-up" data-aos-duration="1000">
-                <p class="content-text">
-                    Con más de <strong>20 años de excelencia</strong> en la industria, MJ Solution Co., Ltd. (주식회사 명진솔루션) es una empresa dinámica y multifacética con sede en Corea del Sur.
-                </p>
-                
-                <p class="content-text">
-                    Nuestra base se construye sobre décadas de experiencia en gestión integral de recursos humanos y soluciones de fuerza laboral global. Nos complace anunciar nuestra nueva empresa: <strong>'Da Vinci Code'</strong>, una marca de cosméticos premium que se lanzará en los próximos meses.
-                </p>
-                
-                <p class="content-text">
-                    Hoy, uniendo nuestro rico patrimonio corporativo con tecnología de vanguardia, también estamos siendo pioneros en el bienestar digital. A través de aplicaciones innovadoras como <strong>'Eye Guard'</strong>, seguimos comprometidos con salvaguardar la salud de los niños.
-                </p>
-
-                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-arrow-left"></i> Volver al Inicio
-                </a>
+                <p class="content-text">Con más de <strong>20 años de excelencia</strong>, MJ Solution Co., Ltd. (주식회사 명진솔루션) es una empresa dinámica basada en Corea del Sur.</p>
+                <p class="content-text">Nos complace anunciar <strong>'Da Vinci Code'</strong>, una marca de cosméticos premium que se lanzará en los próximos meses.</p>
+                <p class="content-text">A través de <strong>'Eye Guard'</strong>, seguimos comprometidos con salvaguardar la salud de los niños.</p>
+                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
             </div>
 
-            <!-- French Content -->
             <div class="content-fr" data-aos="fade-up" data-aos-duration="1000">
-                <p class="content-text">
-                    Avec plus de <strong>20 ans d'excellence</strong> dans l'industrie, MJ Solution Co., Ltd. (주식회사 명진솔루션) est une entreprise dynamique basée en Corée du Sud.
-                </p>
-                
-                <p class="content-text">
-                    Notre fondation repose sur des décennies d'expertise en gestion des ressources humaines. Nous sommes ravis d'annoncer <strong>'Da Vinci Code'</strong>, une marque de cosmétiques premium qui sera lancée dans les prochains mois.
-                </p>
-                
-                <p class="content-text">
-                    Aujourd'hui, nous sommes également pionniers dans le bien-être numérique. Grâce à <strong>'Eye Guard'</strong>, nous restons engagés à protéger la santé des enfants.
-                </p>
-
-                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-arrow-left"></i> Retour à l'Accueil
-                </a>
+                <p class="content-text">Avec plus de <strong>20 ans d'excellence</strong>, MJ Solution Co., Ltd. (주식회사 명진솔루션) est une entreprise dynamique basée en Corée du Sud.</p>
+                <p class="content-text">Nous sommes ravis d'annoncer <strong>'Da Vinci Code'</strong>, une marque de cosmétiques premium.</p>
+                <p class="content-text">Grâce à <strong>'Eye Guard'</strong>, nous restons engagés à protéger la santé des enfants.</p>
+                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-arrow-left"></i> Retour à l'Accueil</a>
             </div>
 
-            <!-- German Content -->
             <div class="content-de" data-aos="fade-up" data-aos-duration="1000">
-                <p class="content-text">
-                    Mit über <strong>20 Jahren Branchenexzellenz</strong> ist MJ Solution Co., Ltd. (주식회사 명진솔루션) ein dynamisches Unternehmen mit Sitz in Südkorea.
-                </p>
-                
-                <p class="content-text">
-                    Unser Fundament basiert auf jahrzehntelanger Expertise im Personalmanagement. Wir freuen uns, <strong>'Da Vinci Code'</strong> anzukündigen, eine Premium-Kosmetikmarke.
-                </p>
-                
-                <p class="content-text">
-                    Heute sind wir auch Vorreiter im digitalen Wohlbefinden. Durch <strong>'Eye Guard'</strong> bleiben wir dem Schutz der Gesundheit von Kindern verpflichtet.
-                </p>
-
-                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-arrow-left"></i> Zurück zur Startseite
-                </a>
+                <p class="content-text">Mit über <strong>20 Jahren Branchenexzellenz</strong> ist MJ Solution Co., Ltd. (주식회사 명진솔루션) ein dynamisches Unternehmen mit Sitz in Südkorea.</p>
+                <p class="content-text">Wir freuen uns, <strong>'Da Vinci Code'</strong> anzukündigen, eine Premium-Kosmetikmarke.</p>
+                <p class="content-text">Durch <strong>'Eye Guard'</strong> bleiben wir dem Schutz der Gesundheit von Kindern verpflichtet.</p>
+                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-arrow-left"></i> Zurück zur Startseite</a>
             </div>
 
-            <!-- Arabic Content -->
             <div class="content-ar" data-aos="fade-up" data-aos-duration="1000">
-                <p class="content-text">
-                    مع أكثر من <strong>20 عامًا من التميز</strong> في الصناعة، MJ Solution Co., Ltd. (주식회사 명진솔루션) هي شركة ديناميكية مقرها في كوريا الجنوبية.
-                </p>
-                
-                <p class="content-text">
-                    يستند أساسنا على عقود من الخبرة في إدارة الموارد البشرية. يسعدنا الإعلان عن <strong>'Da Vinci Code'</strong>، علامة تجارية للمستحضرات التجميلية الفاخرة.
-                </p>
-                
-                <p class="content-text">
-                    اليوم، نحن أيضًا رواد في الرفاهية الرقمية. من خلال <strong>'Eye Guard'</strong>، نظل ملتزمين بحماية صحة الأطفال.
-                </p>
-
-                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-arrow-left"></i> العودة إلى الصفحة الرئيسية
-                </a>
+                <p class="content-text">مع أكثر من <strong>20 عامًا من التميز</strong>، MJ Solution Co., Ltd. (주식회사 명진솔루션) هي شركة ديناميكية مقرها في كوريا الجنوبية.</p>
+                <p class="content-text">يسعدنا الإعلان عن <strong>'Da Vinci Code'</strong>، علامة تجارية للمستحضرات التجميلية الفاخرة.</p>
+                <p class="content-text">من خلال <strong>'Eye Guard'</strong>، نظل ملتزمين بحماية صحة الأطفال.</p>
+                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-arrow-left"></i> العودة إلى الصفحة الرئيسية</a>
             </div>
 
-            <!-- Hindi Content -->
             <div class="content-hi" data-aos="fade-up" data-aos-duration="1000">
-                <p class="content-text">
-                    <strong>20 से अधिक वर्षों की उत्कृष्टता</strong> के साथ, MJ Solution Co., Ltd. (주식회사 명진솔루션) दक्षिण कोरिया में स्थित एक गतिशील उद्यम है।
-                </p>
-                
-                <p class="content-text">
-                    हमारी नींव मानव संसाधन प्रबंधन में दशकों की विशेषज्ञता पर बनी है। हमें <strong>'Da Vinci Code'</strong> की घोषणा करते हुए खुशी हो रही है, एक प्रीमियम कॉस्मेटिक ब्रांड।
-                </p>
-                
-                <p class="content-text">
-                    आज, हम डिजिटल कल्याण में भी अग्रणी हैं। <strong>'Eye Guard'</strong> के माध्यम से, हम बच्चों के स्वास्थ्य की रक्षा के लिए प्रतिबद्ध हैं।
-                </p>
-
-                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-arrow-left"></i> होम पर वापस जाएं
-                </a>
+                <p class="content-text"><strong>20 से अधिक वर्षों की उत्कृष्टता</strong> के साथ, MJ Solution Co., Ltd. (주식회사 명진솔루션) दक्षिण कोरिया में स्थित एक गतिशील उद्यम है।</p>
+                <p class="content-text">हमें <strong>'Da Vinci Code'</strong> की घोषणा करते हुए खुशी हो रही है, एक प्रीमियम कॉस्मेटिक ब्रांड।</p>
+                <p class="content-text"><strong>'Eye Guard'</strong> के माध्यम से, हम बच्चों के स्वास्थ्य की रक्षा के लिए प्रतिबद्ध हैं।</p>
+                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-arrow-left"></i> होम पर वापस जाएं</a>
             </div>
 
-            <!-- Sinhala Content -->
             <div class="content-si" data-aos="fade-up" data-aos-duration="1000">
-                <p class="content-text">
-                    <strong>වසර 20කට වැඩි කාර්මික විශිෂ්ටත්වයක්</strong> සහිතව, MJ Solution Co., Ltd. (주식회사 명진솔루션) දකුණු කොරියාවේ පිහිටි ගතික ව්‍යවසායකයකි.
-                </p>
-                
-                <p class="content-text">
-                    අපගේ පදනම මානව සම්පත් කළමනාකරණය පිළිබඳ දශක ගණනක ප්‍රවීණත්වය මත ගොඩනගා ඇත. අපගේ නවතම <strong>'ඩා වින්චි කෝඩ්(Da Vinci Code)'</strong> නිවේදනය කිරීමට අපි සතුටු වෙමු.
-                </p>
-                
-                <p class="content-text">
-                    අද, අපි ඩිජිටල් යහපැවැත්ම ක්ෂේත්‍රයේ ද පුරෝගාමීන් වෙමු. <strong>'Eye Guard'</strong> හරහා, ළමුන්ගේ සෞඛ්‍යය ආරක්ෂා කිරීමට අපි කැපවී සිටිමු.
-                </p>
-
-                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-arrow-left"></i> මුල් පිටුවට ආපසු යන්න
-                </a>
+                <p class="content-text"><strong>වසර 20කට වැඩි කාර්මික විශිෂ්ටත්වයක්</strong> සහිතව, MJ Solution Co., Ltd. (주식회사 명진솔루션) දකුණු කොරියාවේ පිහිටි ගතික ව්‍යවසායකයකි.</p>
+                <p class="content-text">අපගේ නවතම <strong>'ඩා වින්චි කෝඩ්(Da Vinci Code)'</strong> නිවේදනය කිරීමට අපි සතුටු වෙමු.</p>
+                <p class="content-text"><strong>'Eye Guard'</strong> හරහා, ළමුන්ගේ සෞඛ්‍යය ආරක්ෂා කිරීමට අපි කැපවී සිටිමු.</p>
+                <a href="index.html" class="back-link" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-arrow-left"></i> මුල් පිටුවට ආපසු යන්න</a>
             </div>
         </div>
     </section>
@@ -434,48 +528,49 @@
             mirror: true
         });
 
-        // Auto-detect browser language and set content
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Auto-detect browser language
         function detectAndSetLanguage() {
             const browserLang = (navigator.language || navigator.userLanguage).split('-')[0].toLowerCase();
             
-            // Language mapping
             const langMap = {
-                'ko': 'ko',
-                'zh': 'zh',
-                'ja': 'ja',
-                'es': 'es',
-                'fr': 'fr',
-                'de': 'de',
-                'ar': 'ar',
-                'hi': 'hi',
-                'si': 'si'
+                'ko': 'ko', 'zh': 'zh', 'ja': 'ja', 'es': 'es',
+                'fr': 'fr', 'de': 'de', 'ar': 'ar', 'hi': 'hi', 'si': 'si'
             };
             
             const detectedLang = langMap[browserLang] || 'en';
             
-            // Set body class for language
             if (detectedLang !== 'en') {
                 document.body.className = `lang-${detectedLang}`;
             }
             
-            // Update page title
             const titleData = {
-                en: 'About Us',
-                ko: '회사 소개',
-                zh: '关于我们',
-                ja: '会社概要',
-                es: 'Acerca de Nosotros',
-                fr: 'À propos de Nous',
-                de: 'Über Uns',
-                ar: 'معلومات عنا',
-                hi: 'हमारे बारे में',
-                si: 'අප ගැන'
+                en: { title: 'About Us', subtitle: 'Innovation • Excellence • Digital Wellbeing' },
+                ko: { title: '회사 소개', subtitle: '혁신 • 우수성 • 디지털 웰빙' },
+                zh: { title: '关于我们', subtitle: '创新 • 卓越 • 数字健康' },
+                ja: { title: '会社概要', subtitle: 'イノベーション • 卓越性 • デジタルウェルビーイング' },
+                es: { title: 'Acerca de Nosotros', subtitle: 'Innovación • Excelencia • Bienestar Digital' },
+                fr: { title: 'À propos de Nous', subtitle: 'Innovation • Excellence • Bien-être Numérique' },
+                de: { title: 'Über Uns', subtitle: 'Innovation • Exzellenz • Digitales Wohlbefinden' },
+                ar: { title: 'معلومات عنا', subtitle: 'الابتكار • التميز • الرفاهية الرقمية' },
+                hi: { title: 'हमारे बारे में', subtitle: 'नवाचार • उत्कृष्टता • डिजिटल कल्याण' },
+                si: { title: 'අප ගැන', subtitle: 'නවෝත්පාදනය • විශිෂ්ටත්වය • ඩිජිටල් යහපැවැත්ම' }
             };
             
-            document.getElementById('pageTitle').textContent = titleData[detectedLang];
+            const data = titleData[detectedLang];
+            document.getElementById('pageTitle').textContent = data.title;
+            document.getElementById('pageSubtitle').textContent = data.subtitle;
         }
 
-        // Run on page load
         window.addEventListener('DOMContentLoaded', detectAndSetLanguage);
     </script>
 </body>
