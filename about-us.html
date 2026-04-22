@@ -549,9 +549,8 @@
             
             const detectedLang = langMap[browserLang] || 'en';
             
-            if (detectedLang !== 'en') {
-                document.body.className = `lang-${detectedLang}`;
-            }
+            // Always set body class (including 'lang-en' for English)
+            document.body.className = `lang-${detectedLang}`;
             
             const titleData = {
                 en: { title: 'About Us', subtitle: 'Innovation • Excellence • Digital Wellbeing' },
