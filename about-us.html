@@ -540,6 +540,8 @@
 
         // Auto-detect browser language
         function detectAndSetLanguage() {
+            // First check if user selected a language on main page
+            const savedLang = localStorage.getItem('selectedLanguage');
             const browserLang = (navigator.language || navigator.userLanguage).split('-')[0].toLowerCase();
             
             const langMap = {
@@ -547,9 +549,12 @@
                 'fr': 'fr', 'de': 'de', 'ar': 'ar', 'hi': 'hi', 'si': 'si'
             };
             
-            const detectedLang = langMap[browserLang] || 'en';
+            // Use saved language first, then browser detection
+            const detectedLang = savedLang || langMap[browserLang] || 'en';
             
-            // Always set body class (including 'lang-en' for English)
+            console.log('🌍 Browser:', browserLang, '| 💾 Saved:', savedLang, '| 🎯 Final:', detectedLang);
+            
+            // Always set body class
             document.body.className = `lang-${detectedLang}`;
             
             const titleData = {
