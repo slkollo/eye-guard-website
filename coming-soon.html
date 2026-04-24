@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Guard - Coming Soon to Play Store & App Store</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Eye Guard is launching soon on Google Play Store and Apple App Store. Get notified when we launch!">
+    <meta property="og:title" content="Eye Guard - Coming Soon">
+    <meta property="og:description" content="AI Vision Protection for Children - Launching Soon!">
+    <meta property="og:image" content="https://mjsolution.app/images/og-image.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #ec4899;
+            --dark: #1e1b4b;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+            animation: float 20s infinite ease-in-out;
+            filter: blur(60px);
+        }
+
+        .circle1 {
+            width: 500px;
+            height: 500px;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .circle2 {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 4s;
+        }
+
+        .circle3 {
+            width: 350px;
+            height: 350px;
+            top: 40%;
+            right: 10%;
+            animation-delay: 8s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo */
+        .logo {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.5);
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 20px 60px rgba(139, 92, 246, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 25px 80px rgba(236, 72, 153, 0.6);
+            }
+        }
+
+        /* Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.3));
+            border: 2px solid var(--success);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--success);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 2rem;
+            animation: glow 2s infinite ease-in-out;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(16, 185, 129, 0.6);
+            }
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        /* Store Badges */
+        .store-badges {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .store-badge {
+            position: relative;
+            opacity: 0.4;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .store-badge img {
+            height: 60px;
+            border-radius: 8px;
+        }
+
+        .store-badge::after {
+            content: 'COMING SOON';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            border: 2px solid var(--primary);
+        }
+
+        /* Launch Timeline */
+        .launch-timeline {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .timeline-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            text-align: center;
+        }
+
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.75rem;
+        }
+
+        .timeline-item.active .timeline-icon {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .timeline-label {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-status {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .timeline-item.active .timeline-status {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .timeline-item.completed .timeline-icon {
+            background: var(--success);
+        }
+
+        /* Notify Button */
+        .notify-section {
+            margin-top: 3rem;
+        }
+
+        .notify-btn {
+            display: inline-block;
+            padding: 1.25rem 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .notify-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Back Button */
+        .back-btn {
+            margin-top: 2rem;
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.75rem;
+            }
+
+            .subtitle {
+                font-size: 1.25rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+
+            .timeline-items {
+                grid-template-columns: 1fr;
+            }
+
+            .store-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">👁️</div>
+
+        <!-- Status Badge -->
+        <div class="status-badge">🚀 In Testing Phase</div>
+
+        <!-- Title -->
+        <h1>Coming Soon!</h1>
+
+        <!-- Subtitle -->
+        <p class="subtitle">Eye Guard is launching on Play Store & App Store</p>
+
+        <!-- Description -->
+        <p class="description">
+            We're in the final testing phase! Our AI-powered vision protection app for children will be available for download very soon. Get ready to protect your child's eyesight in the digital age.
+        </p>
+
+        <!-- Store Badges (Grayed Out) -->
+        <div class="store-badges">
+            <div class="store-badge">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+            </div>
+            <div class="store-badge">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+            </div>
+        </div>
+
+        <!-- Launch Timeline -->
+        <div class="launch-timeline">
+            <h3 class="timeline-title">Launch Timeline</h3>
+            <div class="timeline-items">
+                <div class="timeline-item completed">
+                    <div class="timeline-icon">✓</div>
+                    <div class="timeline-label">Development</div>
+                    <div class="timeline-status">Completed</div>
+                </div>
+                <div class="timeline-item active">
+                    <div class="timeline-icon">🧪</div>
+                    <div class="timeline-label">Testing</div>
+                    <div class="timeline-status">In Progress</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">📱</div>
+                    <div class="timeline-label">App Store Review</div>
+                    <div class="timeline-status">Coming Soon</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎉</div>
+                    <div class="timeline-label">Public Launch</div>
+                    <div class="timeline-status">Very Soon!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notify Me Section -->
+        <div class="notify-section">
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1.5rem; font-size: 1.1rem;">
+                Want to be notified when we launch?
+            </p>
+            <a href="mailto:mjosc@mjosc.co.kr?subject=Notify me about Eye Guard Launch&body=Hi! I'm interested in Eye Guard. Please notify me when it's available on the app stores." class="notify-btn">
+                📧 Get Notified
+            </a>
+        </div>
+
+        <!-- Back to Homepage -->
+        <a href="index.html" class="back-btn">← Back to Homepage</a>
+    </div>
+
+    <script>
+        // Add smooth entrance animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(40px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 1s ease-out';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
