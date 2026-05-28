@@ -8,7 +8,7 @@
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://your-username.github.io/eye-guard-website)
 [![License](https://img.shields.io/badge/license-Proprietary-blue?style=for-the-badge)](LICENSE)
-[![Languages](https://img.shields.io/badge/languages-10-green?style=for-the-badge)](README.md)
+[![Languages](https://img.shields.io/badge/languages-18-green?style=for-the-badge)](README.md)
 [![Made in Korea](https://img.shields.io/badge/made%20in-South%20Korea-red?style=for-the-badge)](https://www.mjosc.co.kr)
 
 [📱 Live Demo](https://your-username.github.io/eye-guard-website) • [📥 Download App](#download) • [🐛 Report Bug](https://github.com/your-username/eye-guard-website/issues) • [✨ Request Feature](https://github.com/your-username/eye-guard-website/issues)
