@@ -1,8 +1,8 @@
-# 👁️ Eye Guard - Protect Your Child's Eyesight in the Digital Age
+# 👁️ Eye Care - Protect Your Child's Eyesight in the Digital Age
 
 <div align="center">
 
-![Eye Guard Logo](images/logo.png)
+![Eye Care Logo](images/logo.png)
 
 **The Ultimate AI-Powered Vision Protection for Children**
 
@@ -17,9 +17,9 @@
 
 ---
 
-## 🌟 About Eye Guard
+## 🌟 About Eye Care
 
-Eye Guard is a revolutionary mobile application designed to **protect children's vision** in the digital age. Using advanced **AI technology** and **Google ML Kit**, the app monitors screen distance in real-time and provides intelligent alerts to prevent eye strain and childhood myopia.
+Eye Care is a revolutionary mobile application designed to **protect children's vision** in the digital age. Using advanced **AI technology** and **Google ML Kit**, the app monitors screen distance in real-time and provides intelligent alerts to prevent eye strain and childhood myopia.
 
 ### 📊 The Problem We Solve
 
@@ -35,7 +35,7 @@ Eye Guard is a revolutionary mobile application designed to **protect children's
 
 ### 💡 Our Solution
 
-Eye Guard uses **on-device AI** to:
+Eye Care uses **on-device AI** to:
 - 🛡️ Monitor face-to-screen distance 24/7
 - ⚡ Provide instant alerts when too close
 - 🔒 Protect privacy (100% on-device processing)
