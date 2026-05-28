@@ -220,8 +220,16 @@ npm run build
 | 🇪🇸 Español | `es` | ✅ Active |
 | 🇫🇷 Français | `fr` | ✅ Active |
 | 🇩🇪 Deutsch | `de` | ✅ Active |
+| 🇵🇹 Português | `pt` | ✅ Active |
+| 🇷🇺 Русский | `ru` | ✅ Active |
 | 🇸🇦 العربية | `ar` | ✅ Active |
+| 🇻🇳 Tiếng Việt | `vi` | ✅ Active |
+| 🇹🇭 ไทย | `th` | ✅ Active |
+| 🇮🇩 Bahasa Indonesia | `id` | ✅ Active |
 | 🇮🇳 हिन्दी | `hi` | ✅ Active |
+| 🇳🇵 नेपाली | `ne` | ✅ Active |
+| 🇺🇿 Oʻzbek | `uz` | ✅ Active |
+| 🇲🇳 Монгол | `mn` | ✅ Active |
 | 🇱🇰 සිංහල | `si` | ✅ Active |
 
 </div>
