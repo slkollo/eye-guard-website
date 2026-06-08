@@ -1342,6 +1342,7 @@ function toggleMiniDD(e){
     document.getElementById('miniDD').classList.toggle('open');
 }
 function changeLangTo(code){
+    document.body.style.overflow="";
     setLang(code);
     var url=new URL(window.location.href);
     url.searchParams.set('lang',code);
