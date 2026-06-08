@@ -348,15 +348,47 @@
         section h2{ font-size:21px; }
         ul.clean li{ padding:12px 0 12px 22px; font-size:14.5px; }
     }
+
+    /* ===== hero character gif ===== */
+    .hero{
+        display:flex; align-items:flex-end; gap:0; padding-bottom:0;
+    }
+    .hero-content{
+        flex:1; padding-bottom:56px; min-width:0;
+    }
+    .hero-char{
+        flex:none; width:155px; align-self:stretch;
+        display:flex; align-items:flex-end; justify-content:center;
+        overflow:hidden; position:relative;
+    }
+    .hero-char img{
+        width:155px; height:auto; display:block;
+        object-fit:contain; object-position:bottom center;
+    }
+    @media(max-width:560px){
+        .hero-char{ width:110px; }
+        .hero-char img{ width:110px; }
+        .hero-content{ padding-bottom:34px; }
+    }
+    @media(max-width:400px){
+        .hero-char{ width:90px; }
+        .hero-char img{ width:90px; }
+    }
+
 </style>
 </head>
 <body>
 
 <div id="landing">
     <div class="hero">
-        <div class="eyebrow" id="heroEyebrow">Official User Manual</div>
-        <h1>Eye Care</h1>
-        <p id="heroDesc"><span class="brand">Eye Care</span> is a smart vision-protection utility by Myungjin Solution. Using on-device face detection, it monitors the viewing distance between your child's eyes and the screen in real time — gently guiding your family toward healthier, more comfortable screen habits.</p>
+        <div class="hero-content">
+            <div class="eyebrow" id="heroEyebrow">Official User Manual</div>
+            <h1>Eye Care</h1>
+            <p id="heroDesc">Eye Care is a smart vision-protection utility by Myungjin Solution. Using on-device face detection, it monitors the viewing distance between your child's eyes and the screen in real time — gently guiding your family toward healthier, more comfortable screen habits.</p>
+        </div>
+        <div class="hero-char">
+            <img id="heroChar" src="" alt="" style="opacity:0;transition:opacity 0.4s ease;">
+        </div>
     </div>
 
     <div class="panel">
@@ -409,7 +441,7 @@
 <script>
 const DATA = {
 en:{ name:"English", flag:"ic_flag_us.png", dir:"ltr",
-  ui:{ contents:"Contents", change:"← Change", reading:"Android Manual", soonT:"iOS Manual Coming Soon", soonP:"The Apple / iOS version of this guide is being prepared. For now, please use the Android manual.", overviewTitle:"Eye Care User Manual", overviewSub:"Everything you need to set up and run Eye Care, step by step.", quickNav:"Browse by section", guideEyebrow:"Getting Started", guideHeading:"Using Eye Care — from A to Z", guideIntro:"[Replace this with your uploaded intro paragraph.] Eye Care walks you through everything from your very first launch to advanced settings. Follow the steps below in order, or tap any section above to jump straight to it." , heroEyebrow:"Official User Manual", heroDesc:"Eye Care is a smart vision-protection utility by Myungjin Solution. Using on-device face detection, it monitors the viewing distance between your child's eyes and the screen in real time — gently guiding your family toward healthier, more comfortable screen habits.", selectLangLabel:"Select your language", chooseDeviceLabel:"Choose your device", getManualBtn:"Get Manual"},
+  ui:{ contents:"Contents", change:"← Change", reading:"Android Manual", soonT:"iOS Manual Coming Soon", soonP:"The Apple / iOS version of this guide is being prepared. For now, please use the Android manual.", overviewTitle:"Eye Care User Manual", overviewSub:"Everything you need to set up and run Eye Care, step by step.", quickNav:"Browse by section", guideEyebrow:"Getting Started", guideHeading:"Using Eye Care — from A to Z", guideIntro:"Eye Care is an advanced, privacy-first smart utility designed specifically to protect your child's vision from digital strain and unsafe viewing habits. By blending seamless real-time distance tracking with fully parent-controlled custom alerts, the app ensures a balanced and healthy screen time experience. This comprehensive manual walks you through everything from your very first launch to advanced background troubleshooting. Follow the steps below in order, or tap any section above to jump straight to it." , heroEyebrow:"Official User Manual", heroDesc:"Eye Care is a smart vision-protection utility by Myungjin Solution. Using on-device face detection, it monitors the viewing distance between your child's eyes and the screen in real time — gently guiding your family toward healthier, more comfortable screen habits.", selectLangLabel:"Select your language", chooseDeviceLabel:"Choose your device", getManualBtn:"Get Manual"},
   secs:[
     {n:"01",image:"welcome.gif",title:"Welcome & First Launch",lead:"When you open the app for the first time, you'll see the Welcome Screen.",items:[
       {label:"Select Language",text:"Choose from 18 global languages so the app, settings and warnings are clear for you and your child."},
@@ -449,7 +481,7 @@ en:{ name:"English", flag:"ic_flag_us.png", dir:"ltr",
   ]},
 
 ko:{ name:"한국어", flag:"ic_flag_korea.png", dir:"ltr",
-  ui:{ contents:"목차", change:"← 변경", reading:"Android 설명서", soonT:"iOS 설명서 준비 중", soonP:"Apple / iOS 버전 설명서를 준비하고 있습니다. 지금은 Android 설명서를 이용해 주세요.", overviewTitle:"Eye Care 사용 설명서", overviewSub:"Eye Care 설정부터 실행까지, 단계별로 안내합니다.", quickNav:"섹션 둘러보기", guideEyebrow:"시작하기", guideHeading:"Eye Care 사용법 — 처음부터 끝까지", guideIntro:"[여기에 업로드하신 소개 문단을 넣어 주세요.] Eye Care는 첫 실행부터 고급 설정까지 모든 과정을 안내합니다. 아래 단계를 순서대로 따라가거나, 위의 섹션을 눌러 바로 이동하세요." , heroEyebrow:"공식 사용 설명서", heroDesc:"Eye Care는 Myungjin Solution의 스마트 시력 보호 앱입니다. 기기 내 얼굴 인식을 사용하여 자녀의 눈과 화면 사이의 시청 거리를 실시간으로 모니터링하여 가족이 더 건강하고 편안한 화면 사용 습관을 갖도록 부드럽게 안내합니다.", selectLangLabel:"언어를 선택하세요", chooseDeviceLabel:"기기를 선택하세요", getManualBtn:"설명서 보기"},
+  ui:{ contents:"목차", change:"← 변경", reading:"Android 설명서", soonT:"iOS 설명서 준비 중", soonP:"Apple / iOS 버전 설명서를 준비하고 있습니다. 지금은 Android 설명서를 이용해 주세요.", overviewTitle:"Eye Care 사용 설명서", overviewSub:"Eye Care 설정부터 실행까지, 단계별로 안내합니다.", quickNav:"섹션 둘러보기", guideEyebrow:"시작하기", guideHeading:"Eye Care 사용법 — 처음부터 끝까지", guideIntro:"Eye Care는 자녀의 시력을 디지털 피로와 안전하지 않은 시청 습관으로부터 보호하기 위해 특별히 설계된 고급 프라이버시 우선 스마트 앱입니다. 실시간 거리 추적과 부모가 완전히 제어하는 맞춤 알림을 결합하여 균형 잡히고 건강한 화면 사용 경험을 보장합니다. 이 종합 설명서는 처음 실행부터 고급 백그라운드 문제 해결까지 모든 과정을 안내합니다. 아래 단계를 순서대로 따라가거나 위의 섹션을 탭하여 바로 이동하세요." , heroEyebrow:"공식 사용 설명서", heroDesc:"Eye Care는 Myungjin Solution의 스마트 시력 보호 앱입니다. 기기 내 얼굴 인식을 사용하여 자녀의 눈과 화면 사이의 시청 거리를 실시간으로 모니터링하여 가족이 더 건강하고 편안한 화면 사용 습관을 갖도록 부드럽게 안내합니다.", selectLangLabel:"언어를 선택하세요", chooseDeviceLabel:"기기를 선택하세요", getManualBtn:"설명서 보기"},
   secs:[
     {n:"01",title:"환영 및 첫 실행",lead:"앱을 처음 실행하면 환영 화면이 나타납니다.",items:[
       {label:"언어 선택",text:"전 세계 18개 언어 중에서 선택할 수 있어 앱, 설정, 경고가 부모와 자녀 모두에게 명확합니다."},
@@ -486,7 +518,7 @@ ko:{ name:"한국어", flag:"ic_flag_korea.png", dir:"ltr",
   ]},
 
 zh:{ name:"简体中文", flag:"ic_flag_china.png", dir:"ltr",
-  ui:{ contents:"目录", change:"← 更改", reading:"Android 手册", soonT:"iOS 手册即将推出", soonP:"本指南的 Apple / iOS 版本正在准备中。目前请使用 Android 手册。" , heroEyebrow:"官方用户手册", heroDesc:"Eye Care 是 Myungjin Solution 的一款智能视力保护应用。利用设备内人脸检测技术，它能实时监测您孩子的眼睛与屏幕之间的观看距离，轻柔地引导您的家人养成更健康、更舒适的用屏习惯。", selectLangLabel:"选择您的语言", chooseDeviceLabel:"选择您的设备", getManualBtn:"获取手册"},
+  ui:{ contents:"目录", change:"← 更改", reading:"Android 手册", soonT:"iOS 手册即将推出", soonP:"本指南的 Apple / iOS 版本正在准备中。目前请使用 Android 手册。" , heroEyebrow:"官方用户手册", heroDesc:"Eye Care 是 Myungjin Solution 的一款智能视力保护应用。利用设备内人脸检测技术，它能实时监测您孩子的眼睛与屏幕之间的观看距离，轻柔地引导您的家人养成更健康、更舒适的用屏习惯。", selectLangLabel:"选择您的语言", chooseDeviceLabel:"选择您的设备", getManualBtn:"获取手册", guideIntro:"Eye Care 是一款专为保护您孩子视力免受数字疲劳和不安全观看习惯影响而设计的先进隐私优先智能应用。通过将无缝实时距离追踪与完全由家长控制的自定义警报相结合，确保平衡健康的屏幕使用体验。本综合手册将指导您从首次启动到高级后台故障排除的全过程。按顺序按照以下步骤操作，或点击上方任意章节直接跳转。"},
   secs:[
     {n:"01",title:"欢迎与首次启动",lead:"首次打开应用时，您将看到欢迎界面。",items:[
       {label:"选择语言",text:"可从 18 种全球语言中选择，让应用、设置和警告对您和孩子都清晰易懂。"},
@@ -523,7 +555,7 @@ zh:{ name:"简体中文", flag:"ic_flag_china.png", dir:"ltr",
   ]},
 
 ja:{ name:"日本語", flag:"ic_flag_japan.png", dir:"ltr",
-  ui:{ contents:"目次", change:"← 変更", reading:"Android マニュアル", soonT:"iOS マニュアルは近日公開", soonP:"本ガイドの Apple / iOS 版を準備中です。現在は Android マニュアルをご利用ください。" , heroEyebrow:"公式ユーザーマニュアル", heroDesc:"Eye Care は Myungjin Solution のスマートな視力保護アプリです。端末内の顔認識を使用して、お子さまの目と画面の間の視聴距離をリアルタイムで監視し、ご家族がより健康的で快適な画面習慣を身につけられるよう優しくサポートします。", selectLangLabel:"言語を選択してください", chooseDeviceLabel:"デバイスを選択してください", getManualBtn:"マニュアルを入手"},
+  ui:{ contents:"目次", change:"← 変更", reading:"Android マニュアル", soonT:"iOS マニュアルは近日公開", soonP:"本ガイドの Apple / iOS 版を準備中です。現在は Android マニュアルをご利用ください。" , heroEyebrow:"公式ユーザーマニュアル", heroDesc:"Eye Care は Myungjin Solution のスマートな視力保護アプリです。端末内の顔認識を使用して、お子さまの目と画面の間の視聴距離をリアルタイムで監視し、ご家族がより健康的で快適な画面習慣を身につけられるよう優しくサポートします。", selectLangLabel:"言語を選択してください", chooseDeviceLabel:"デバイスを選択してください", getManualBtn:"マニュアルを入手", guideIntro:"Eye Care は、デジタル疲労や安全でない視聴習慣からお子さまの視力を守るために特別に設計された、高度なプライバシー優先スマートアプリです。シームレスなリアルタイム距離追跡と保護者が完全に制御できるカスタムアラートを組み合わせ、バランスの取れた健康的な画面時間を保証します。この総合マニュアルでは、初回起動から高度なバックグラウンドのトラブルシューティングまで全手順を説明します。以下の手順を順番に実行するか、上部のセクションをタップして直接ジャンプしてください。"},
   secs:[
     {n:"01",title:"ようこそ／初回起動",lead:"アプリを初めて開くと、ようこそ画面が表示されます。",items:[
       {label:"言語を選択",text:"18 の言語から選べるため、アプリ・設定・警告が保護者とお子さま双方に分かりやすくなります。"},
@@ -560,7 +592,7 @@ ja:{ name:"日本語", flag:"ic_flag_japan.png", dir:"ltr",
   ]},
 
 fr:{ name:"Français", flag:"ic_flag_france.png", dir:"ltr",
-  ui:{ contents:"Sommaire", change:"← Modifier", reading:"Manuel Android", soonT:"Manuel iOS bientôt disponible", soonP:"La version Apple / iOS de ce guide est en préparation. Pour l'instant, veuillez utiliser le manuel Android." , heroEyebrow:"Manuel utilisateur officiel", heroDesc:"Eye Care est un utilitaire intelligent de protection de la vue développé par Myungjin Solution. Grâce à la détection de visage sur l'appareil, il surveille en temps réel la distance entre les yeux de votre enfant et l'écran, guidant doucement votre famille vers de meilleures habitudes d'écran.", selectLangLabel:"Sélectionnez votre langue", chooseDeviceLabel:"Choisissez votre appareil", getManualBtn:"Obtenir le manuel"},
+  ui:{ contents:"Sommaire", change:"← Modifier", reading:"Manuel Android", soonT:"Manuel iOS bientôt disponible", soonP:"La version Apple / iOS de ce guide est en préparation. Pour l'instant, veuillez utiliser le manuel Android." , heroEyebrow:"Manuel utilisateur officiel", heroDesc:"Eye Care est un utilitaire intelligent de protection de la vue développé par Myungjin Solution. Grâce à la détection de visage sur l'appareil, il surveille en temps réel la distance entre les yeux de votre enfant et l'écran, guidant doucement votre famille vers de meilleures habitudes d'écran.", selectLangLabel:"Sélectionnez votre langue", chooseDeviceLabel:"Choisissez votre appareil", getManualBtn:"Obtenir le manuel", guideIntro:"Eye Care est un utilitaire intelligent avancé axé sur la confidentialité, spécialement conçu pour protéger la vision de votre enfant contre la fatigue numérique et les mauvaises habitudes de visionnage. En combinant un suivi de distance en temps réel avec des alertes personnalisées entièrement contrôlées par les parents, l'application garantit une expérience d'écran équilibrée et saine. Ce manuel complet vous guide du premier lancement jusqu'à la résolution avancée des problèmes en arrière-plan. Suivez les étapes ci-dessous dans l'ordre, ou appuyez sur n'importe quelle section ci-dessus pour y accéder directement."},
   secs:[
     {n:"01",title:"Bienvenue et premier lancement",lead:"Au premier lancement, l'écran de bienvenue s'affiche.",items:[
       {label:"Choisir la langue",text:"Choisissez parmi 18 langues pour que l'app, les réglages et les alertes soient clairs pour vous et votre enfant."},
@@ -597,7 +629,7 @@ fr:{ name:"Français", flag:"ic_flag_france.png", dir:"ltr",
   ]},
 
 de:{ name:"Deutsch", flag:"ic_flag_germany.png", dir:"ltr",
-  ui:{ contents:"Inhalt", change:"← Ändern", reading:"Android-Handbuch", soonT:"iOS-Handbuch folgt bald", soonP:"Die Apple-/iOS-Version dieser Anleitung wird vorbereitet. Bitte nutzen Sie vorerst das Android-Handbuch." , heroEyebrow:"Offizielles Benutzerhandbuch", heroDesc:"Eye Care ist ein intelligentes Sehschutz-Tool von Myungjin Solution. Mithilfe der geräteeigenen Gesichtserkennung überwacht es in Echtzeit den Betrachtungsabstand zwischen den Augen Ihres Kindes und dem Bildschirm — und führt Ihre Familie sanft zu gesünderen Bildschirmgewohnheiten.", selectLangLabel:"Sprache auswählen", chooseDeviceLabel:"Gerät auswählen", getManualBtn:"Handbuch abrufen"},
+  ui:{ contents:"Inhalt", change:"← Ändern", reading:"Android-Handbuch", soonT:"iOS-Handbuch folgt bald", soonP:"Die Apple-/iOS-Version dieser Anleitung wird vorbereitet. Bitte nutzen Sie vorerst das Android-Handbuch." , heroEyebrow:"Offizielles Benutzerhandbuch", heroDesc:"Eye Care ist ein intelligentes Sehschutz-Tool von Myungjin Solution. Mithilfe der geräteeigenen Gesichtserkennung überwacht es in Echtzeit den Betrachtungsabstand zwischen den Augen Ihres Kindes und dem Bildschirm — und führt Ihre Familie sanft zu gesünderen Bildschirmgewohnheiten.", selectLangLabel:"Sprache auswählen", chooseDeviceLabel:"Gerät auswählen", getManualBtn:"Handbuch abrufen", guideIntro:"Eye Care ist ein fortschrittliches, datenschutzorientiertes Smart-Tool, das speziell zum Schutz der Sehkraft Ihres Kindes vor digitaler Belastung und unsicheren Sehgewohnheiten entwickelt wurde. Durch die Kombination nahtloser Echtzeit-Abstandsverfolgung mit vollständig elternkontrollierten Warnmeldungen gewährleistet die App eine ausgewogene und gesunde Bildschirmzeiterfahrung. Dieses umfassende Handbuch führt Sie vom ersten Start bis zur erweiterten Hintergrundfehlerbehebung. Folgen Sie den Schritten in der angegebenen Reihenfolge oder tippen Sie auf einen Abschnitt oben, um direkt dorthin zu gelangen."},
   secs:[
     {n:"01",title:"Willkommen & Erststart",lead:"Beim ersten Öffnen der App sehen Sie den Willkommensbildschirm.",items:[
       {label:"Sprache wählen",text:"Wählen Sie aus 18 Sprachen, damit App, Einstellungen und Warnungen für Sie und Ihr Kind verständlich sind."},
@@ -634,7 +666,7 @@ de:{ name:"Deutsch", flag:"ic_flag_germany.png", dir:"ltr",
   ]},
 
 es:{ name:"Español", flag:"ic_flag_spain.png", dir:"ltr",
-  ui:{ contents:"Contenido", change:"← Cambiar", reading:"Manual de Android", soonT:"Manual de iOS muy pronto", soonP:"La versión para Apple / iOS de esta guía está en preparación. Por ahora, utilice el manual de Android." , heroEyebrow:"Manual de usuario oficial", heroDesc:"Eye Care es una utilidad de protección visual inteligente de Myungjin Solution. Usando detección facial en el dispositivo, monitorea en tiempo real la distancia de visualización entre los ojos de su hijo y la pantalla, guiando suavemente a su familia hacia hábitos de pantalla más saludables.", selectLangLabel:"Selecciona tu idioma", chooseDeviceLabel:"Elige tu dispositivo", getManualBtn:"Obtener manual"},
+  ui:{ contents:"Contenido", change:"← Cambiar", reading:"Manual de Android", soonT:"Manual de iOS muy pronto", soonP:"La versión para Apple / iOS de esta guía está en preparación. Por ahora, utilice el manual de Android." , heroEyebrow:"Manual de usuario oficial", heroDesc:"Eye Care es una utilidad de protección visual inteligente de Myungjin Solution. Usando detección facial en el dispositivo, monitorea en tiempo real la distancia de visualización entre los ojos de su hijo y la pantalla, guiando suavemente a su familia hacia hábitos de pantalla más saludables.", selectLangLabel:"Selecciona tu idioma", chooseDeviceLabel:"Elige tu dispositivo", getManualBtn:"Obtener manual", guideIntro:"Eye Care es una utilidad inteligente avanzada y orientada a la privacidad, diseñada específicamente para proteger la visión de su hijo del estrés digital y los hábitos de visualización no seguros. Al combinar el seguimiento de distancia en tiempo real con alertas personalizadas completamente controladas por los padres, la aplicación garantiza una experiencia de tiempo de pantalla equilibrada y saludable. Este manual completo lo guía desde el primer inicio hasta la solución avanzada de problemas en segundo plano. Siga los pasos a continuación en orden, o toque cualquier sección anterior para ir directamente a ella."},
   secs:[
     {n:"01",title:"Bienvenida y primer inicio",lead:"Al abrir la app por primera vez, verá la pantalla de bienvenida.",items:[
       {label:"Seleccionar idioma",text:"Elija entre 18 idiomas para que la app, los ajustes y las alertas sean claros para usted y su hijo."},
@@ -671,7 +703,7 @@ es:{ name:"Español", flag:"ic_flag_spain.png", dir:"ltr",
   ]},
 
 pt:{ name:"Português", flag:"ic_flag_portugal.png", dir:"ltr",
-  ui:{ contents:"Conteúdo", change:"← Alterar", reading:"Manual do Android", soonT:"Manual do iOS em breve", soonP:"A versão Apple / iOS deste guia está em preparação. Por agora, use o manual do Android." , heroEyebrow:"Manual do usuário oficial", heroDesc:"Eye Care é um utilitário inteligente de proteção visual da Myungjin Solution. Usando detecção facial no dispositivo, monitora em tempo real a distância de visualização entre os olhos do seu filho e a tela, guiando suavemente sua família a hábitos de tela mais saudáveis.", selectLangLabel:"Selecione seu idioma", chooseDeviceLabel:"Escolha seu dispositivo", getManualBtn:"Obter manual"},
+  ui:{ contents:"Conteúdo", change:"← Alterar", reading:"Manual do Android", soonT:"Manual do iOS em breve", soonP:"A versão Apple / iOS deste guia está em preparação. Por agora, use o manual do Android." , heroEyebrow:"Manual do usuário oficial", heroDesc:"Eye Care é um utilitário inteligente de proteção visual da Myungjin Solution. Usando detecção facial no dispositivo, monitora em tempo real a distância de visualização entre os olhos do seu filho e a tela, guiando suavemente sua família a hábitos de tela mais saudáveis.", selectLangLabel:"Selecione seu idioma", chooseDeviceLabel:"Escolha seu dispositivo", getManualBtn:"Obter manual", guideIntro:"Eye Care é um utilitário inteligente avançado com foco em privacidade, projetado especificamente para proteger a visão do seu filho do cansaço digital e hábitos de visualização inseguros. Combinando rastreamento de distância em tempo real com alertas personalizados totalmente controlados pelos pais, o aplicativo garante uma experiência equilibrada e saudável de tempo de tela. Este manual abrangente o guia desde o primeiro lançamento até a solução avançada de problemas em segundo plano. Siga as etapas abaixo em ordem, ou toque em qualquer seção acima para ir diretamente a ela."},
   secs:[
     {n:"01",title:"Bem-vindo e primeiro acesso",lead:"Ao abrir o app pela primeira vez, verá a tela de boas-vindas.",items:[
       {label:"Selecionar idioma",text:"Escolha entre 18 idiomas para que o app, as configurações e os avisos fiquem claros para você e seu filho."},
@@ -708,7 +740,7 @@ pt:{ name:"Português", flag:"ic_flag_portugal.png", dir:"ltr",
   ]},
 
 ru:{ name:"Русский", flag:"ic_flag_russia.png", dir:"ltr",
-  ui:{ contents:"Содержание", change:"← Изменить", reading:"Руководство Android", soonT:"Руководство iOS скоро", soonP:"Версия этого руководства для Apple / iOS готовится. Пока используйте руководство для Android." , heroEyebrow:"Официальное руководство пользователя", heroDesc:"Eye Care — умная утилита защиты зрения от Myungjin Solution. Используя встроенное распознавание лиц, она в реальном времени отслеживает расстояние между глазами вашего ребёнка и экраном, мягко направляя вашу семью к более здоровым привычкам работы с экраном.", selectLangLabel:"Выберите язык", chooseDeviceLabel:"Выберите устройство", getManualBtn:"Получить руководство"},
+  ui:{ contents:"Содержание", change:"← Изменить", reading:"Руководство Android", soonT:"Руководство iOS скоро", soonP:"Версия этого руководства для Apple / iOS готовится. Пока используйте руководство для Android." , heroEyebrow:"Официальное руководство пользователя", heroDesc:"Eye Care — умная утилита защиты зрения от Myungjin Solution. Используя встроенное распознавание лиц, она в реальном времени отслеживает расстояние между глазами вашего ребёнка и экраном, мягко направляя вашу семью к более здоровым привычкам работы с экраном.", selectLangLabel:"Выберите язык", chooseDeviceLabel:"Выберите устройство", getManualBtn:"Получить руководство", guideIntro:"Eye Care — передовая умная утилита с приоритетом конфиденциальности, разработанная специально для защиты зрения вашего ребёнка от цифрового напряжения и небезопасных привычек просмотра. Сочетая бесшовное отслеживание расстояния в реальном времени с полностью контролируемыми родителями пользовательскими оповещениями, приложение обеспечивает сбалансированный и здоровый опыт использования экрана. Это полное руководство проведёт вас от первого запуска до расширенного устранения фоновых неполадок. Следуйте шагам ниже по порядку или нажмите на любой раздел выше для перехода."},
   secs:[
     {n:"01",title:"Добро пожаловать и первый запуск",lead:"При первом открытии приложения появится экран приветствия.",items:[
       {label:"Выбор языка",text:"Выберите один из 18 языков, чтобы приложение, настройки и предупреждения были понятны вам и вашему ребёнку."},
@@ -745,7 +777,7 @@ ru:{ name:"Русский", flag:"ic_flag_russia.png", dir:"ltr",
   ]},
 
 ar:{ name:"العربية", flag:"ic_flag_saudi.png", dir:"rtl",
-  ui:{ contents:"المحتويات", change:"← تغيير", reading:"دليل أندرويد", soonT:"دليل iOS قريبًا", soonP:"يجري إعداد نسخة Apple / iOS من هذا الدليل. يُرجى استخدام دليل أندرويد حاليًا." , heroEyebrow:"دليل المستخدم الرسمي", heroDesc:"Eye Care هو تطبيق ذكي لحماية البصر من Myungjin Solution. باستخدام اكتشاف الوجه على الجهاز، يراقب في الوقت الفعلي مسافة المشاهدة بين عيني طفلك والشاشة، مما يرشد عائلتك بلطف نحو عادات شاشة أكثر صحة وراحة.", selectLangLabel:"اختر لغتك", chooseDeviceLabel:"اختر جهازك", getManualBtn:"احصل على الدليل"},
+  ui:{ contents:"المحتويات", change:"← تغيير", reading:"دليل أندرويد", soonT:"دليل iOS قريبًا", soonP:"يجري إعداد نسخة Apple / iOS من هذا الدليل. يُرجى استخدام دليل أندرويد حاليًا." , heroEyebrow:"دليل المستخدم الرسمي", heroDesc:"Eye Care هو تطبيق ذكي لحماية البصر من Myungjin Solution. باستخدام اكتشاف الوجه على الجهاز، يراقب في الوقت الفعلي مسافة المشاهدة بين عيني طفلك والشاشة، مما يرشد عائلتك بلطف نحو عادات شاشة أكثر صحة وراحة.", selectLangLabel:"اختر لغتك", chooseDeviceLabel:"اختر جهازك", getManualBtn:"احصل على الدليل", guideIntro:"Eye Care هو أداة ذكية متقدمة تُولي الخصوصية الأولوية، مصممة خصيصًا لحماية بصر طفلك من الإجهاد الرقمي وعادات المشاهدة غير الآمنة. من خلال الجمع بين تتبع المسافة الفوري في الوقت الفعلي وتنبيهات مخصصة تحت سيطرة الوالدين بالكامل، يضمن التطبيق تجربة استخدام شاشة متوازنة وصحية. يرشدك هذا الدليل الشامل من أول تشغيل حتى استكشاف أخطاء الخلفية المتقدمة. اتبع الخطوات أدناه بالترتيب، أو اضغط على أي قسم أعلاه للانتقال إليه مباشرةً."},
   secs:[
     {n:"01",title:"الترحيب والتشغيل الأول",lead:"عند فتح التطبيق لأول مرة ستظهر شاشة الترحيب.",items:[
       {label:"اختر اللغة",text:"اختر من بين 18 لغة عالمية لتكون التطبيق والإعدادات والتنبيهات واضحة لك ولطفلك."},
@@ -782,7 +814,7 @@ ar:{ name:"العربية", flag:"ic_flag_saudi.png", dir:"rtl",
   ]},
 
 vi:{ name:"Tiếng Việt", flag:"vi.png", dir:"ltr",
-  ui:{ contents:"Mục lục", change:"← Đổi", reading:"Hướng dẫn Android", soonT:"Hướng dẫn iOS sắp ra mắt", soonP:"Phiên bản Apple / iOS của hướng dẫn này đang được chuẩn bị. Hiện tại vui lòng dùng hướng dẫn Android." , heroEyebrow:"Hướng dẫn sử dụng chính thức", heroDesc:"Eye Care là tiện ích bảo vệ thị lực thông minh của Myungjin Solution. Sử dụng nhận diện khuôn mặt trên thiết bị, ứng dụng theo dõi khoảng cách xem giữa mắt con bạn và màn hình theo thời gian thực — nhẹ nhàng hướng dẫn gia đình bạn hướng tới thói quen sử dụng màn hình lành mạnh hơn.", selectLangLabel:"Chọn ngôn ngữ của bạn", chooseDeviceLabel:"Chọn thiết bị của bạn", getManualBtn:"Lấy hướng dẫn"},
+  ui:{ contents:"Mục lục", change:"← Đổi", reading:"Hướng dẫn Android", soonT:"Hướng dẫn iOS sắp ra mắt", soonP:"Phiên bản Apple / iOS của hướng dẫn này đang được chuẩn bị. Hiện tại vui lòng dùng hướng dẫn Android." , heroEyebrow:"Hướng dẫn sử dụng chính thức", heroDesc:"Eye Care là tiện ích bảo vệ thị lực thông minh của Myungjin Solution. Sử dụng nhận diện khuôn mặt trên thiết bị, ứng dụng theo dõi khoảng cách xem giữa mắt con bạn và màn hình theo thời gian thực — nhẹ nhàng hướng dẫn gia đình bạn hướng tới thói quen sử dụng màn hình lành mạnh hơn.", selectLangLabel:"Chọn ngôn ngữ của bạn", chooseDeviceLabel:"Chọn thiết bị của bạn", getManualBtn:"Lấy hướng dẫn", guideIntro:"Eye Care là một tiện ích thông minh tiên tiến ưu tiên quyền riêng tư, được thiết kế đặc biệt để bảo vệ thị lực của con bạn khỏi mệt mỏi kỹ thuật số và thói quen xem không an toàn. Bằng cách kết hợp theo dõi khoảng cách theo thời gian thực với các cảnh báo tùy chỉnh do phụ huynh kiểm soát hoàn toàn, ứng dụng đảm bảo trải nghiệm thời gian màn hình cân bằng và lành mạnh. Hướng dẫn toàn diện này đưa bạn từ lần khởi động đầu tiên đến xử lý sự cố nền nâng cao. Làm theo các bước bên dưới theo thứ tự hoặc nhấn vào bất kỳ phần nào ở trên để chuyển thẳng đến đó."},
   secs:[
     {n:"01",title:"Chào mừng & Khởi chạy lần đầu",lead:"Khi mở ứng dụng lần đầu, bạn sẽ thấy màn hình chào mừng.",items:[
       {label:"Chọn ngôn ngữ",text:"Chọn trong 18 ngôn ngữ để ứng dụng, cài đặt và cảnh báo rõ ràng với bạn và con."},
@@ -819,7 +851,7 @@ vi:{ name:"Tiếng Việt", flag:"vi.png", dir:"ltr",
   ]},
 
 th:{ name:"ไทย", flag:"th.png", dir:"ltr",
-  ui:{ contents:"สารบัญ", change:"← เปลี่ยน", reading:"คู่มือ Android", soonT:"คู่มือ iOS เร็วๆ นี้", soonP:"กำลังเตรียมคู่มือเวอร์ชัน Apple / iOS อยู่ ขณะนี้โปรดใช้คู่มือ Android ไปก่อน" , heroEyebrow:"คู่มือผู้ใช้อย่างเป็นทางการ", heroDesc:"Eye Care เป็นยูทิลิตีป้องกันสายตาอัจฉริยะจาก Myungjin Solution โดยใช้การตรวจจับใบหน้าบนอุปกรณ์ ติดตามระยะการมองระหว่างดวงตาของลูกคุณกับหน้าจอแบบเรียลไทม์ แนะนำครอบครัวของคุณอย่างนุ่มนวลไปสู่นิสัยการใช้หน้าจอที่ดีต่อสุขภาพมากขึ้น", selectLangLabel:"เลือกภาษาของคุณ", chooseDeviceLabel:"เลือกอุปกรณ์ของคุณ", getManualBtn:"รับคู่มือ"},
+  ui:{ contents:"สารบัญ", change:"← เปลี่ยน", reading:"คู่มือ Android", soonT:"คู่มือ iOS เร็วๆ นี้", soonP:"กำลังเตรียมคู่มือเวอร์ชัน Apple / iOS อยู่ ขณะนี้โปรดใช้คู่มือ Android ไปก่อน" , heroEyebrow:"คู่มือผู้ใช้อย่างเป็นทางการ", heroDesc:"Eye Care เป็นยูทิลิตีป้องกันสายตาอัจฉริยะจาก Myungjin Solution โดยใช้การตรวจจับใบหน้าบนอุปกรณ์ ติดตามระยะการมองระหว่างดวงตาของลูกคุณกับหน้าจอแบบเรียลไทม์ แนะนำครอบครัวของคุณอย่างนุ่มนวลไปสู่นิสัยการใช้หน้าจอที่ดีต่อสุขภาพมากขึ้น", selectLangLabel:"เลือกภาษาของคุณ", chooseDeviceLabel:"เลือกอุปกรณ์ของคุณ", getManualBtn:"รับคู่มือ", guideIntro:"Eye Care เป็นยูทิลิตีอัจฉริยะขั้นสูงที่ให้ความสำคัญกับความเป็นส่วนตัว ออกแบบมาเพื่อปกป้องสายตาบุตรหลานจากความล้าจากดิจิทัลและนิสัยการมองที่ไม่ปลอดภัยโดยเฉพาะ ด้วยการผสานการติดตามระยะทางแบบเรียลไทม์เข้ากับการแจ้งเตือนที่กำหนดเองซึ่งผู้ปกครองควบคุมได้อย่างสมบูรณ์ แอปนี้รับประกันประสบการณ์การใช้หน้าจอที่สมดุลและดีต่อสุขภาพ คู่มือฉบับสมบูรณ์นี้จะนำคุณผ่านทุกขั้นตอนตั้งแต่การเปิดใช้งานครั้งแรกจนถึงการแก้ไขปัญหาขั้นสูง ทำตามขั้นตอนด้านล่างตามลำดับ หรือแตะที่ส่วนใดด้านบนเพื่อไปยังส่วนนั้นโดยตรง"},
   secs:[
     {n:"01",title:"ยินดีต้อนรับและการเปิดครั้งแรก",lead:"เมื่อเปิดแอปครั้งแรก คุณจะเห็นหน้าจอต้อนรับ",items:[
       {label:"เลือกภาษา",text:"เลือกได้จาก 18 ภาษา เพื่อให้แอป การตั้งค่า และคำเตือนชัดเจนสำหรับคุณและบุตรหลาน"},
@@ -856,7 +888,7 @@ th:{ name:"ไทย", flag:"th.png", dir:"ltr",
   ]},
 
 id:{ name:"Bahasa Indonesia", flag:"id.png", dir:"ltr",
-  ui:{ contents:"Daftar Isi", change:"← Ubah", reading:"Manual Android", soonT:"Manual iOS segera hadir", soonP:"Versi Apple / iOS dari panduan ini sedang disiapkan. Untuk saat ini, gunakan manual Android." , heroEyebrow:"Manual Pengguna Resmi", heroDesc:"Eye Care adalah utilitas perlindungan penglihatan cerdas dari Myungjin Solution. Menggunakan deteksi wajah di perangkat, aplikasi ini memantau jarak penglihatan antara mata anak Anda dan layar secara real-time — dengan lembut membimbing keluarga Anda menuju kebiasaan layar yang lebih sehat.", selectLangLabel:"Pilih bahasa Anda", chooseDeviceLabel:"Pilih perangkat Anda", getManualBtn:"Dapatkan Manual"},
+  ui:{ contents:"Daftar Isi", change:"← Ubah", reading:"Manual Android", soonT:"Manual iOS segera hadir", soonP:"Versi Apple / iOS dari panduan ini sedang disiapkan. Untuk saat ini, gunakan manual Android." , heroEyebrow:"Manual Pengguna Resmi", heroDesc:"Eye Care adalah utilitas perlindungan penglihatan cerdas dari Myungjin Solution. Menggunakan deteksi wajah di perangkat, aplikasi ini memantau jarak penglihatan antara mata anak Anda dan layar secara real-time — dengan lembut membimbing keluarga Anda menuju kebiasaan layar yang lebih sehat.", selectLangLabel:"Pilih bahasa Anda", chooseDeviceLabel:"Pilih perangkat Anda", getManualBtn:"Dapatkan Manual", guideIntro:"Eye Care adalah utilitas cerdas canggih yang mengutamakan privasi, dirancang khusus untuk melindungi penglihatan anak Anda dari ketegangan digital dan kebiasaan menonton yang tidak aman. Dengan memadukan pelacakan jarak real-time yang mulus dengan peringatan kustom yang sepenuhnya dikendalikan orang tua, aplikasi ini memastikan pengalaman waktu layar yang seimbang dan sehat. Manual komprehensif ini memandu Anda mulai dari peluncuran pertama hingga pemecahan masalah latar belakang tingkat lanjut. Ikuti langkah-langkah di bawah secara berurutan, atau ketuk bagian mana pun di atas untuk langsung menuju ke sana."},
   secs:[
     {n:"01",title:"Selamat Datang & Peluncuran Pertama",lead:"Saat pertama membuka aplikasi, Anda akan melihat layar selamat datang.",items:[
       {label:"Pilih Bahasa",text:"Pilih dari 18 bahasa global agar aplikasi, pengaturan, dan peringatan jelas bagi Anda dan anak."},
@@ -893,7 +925,7 @@ id:{ name:"Bahasa Indonesia", flag:"id.png", dir:"ltr",
   ]},
 
 hi:{ name:"हिन्दी", flag:"in.png", dir:"ltr",
-  ui:{ contents:"विषय-सूची", change:"← बदलें", reading:"Android मैनुअल", soonT:"iOS मैनुअल जल्द आ रहा है", soonP:"इस गाइड का Apple / iOS संस्करण तैयार किया जा रहा है। फ़िलहाल कृपया Android मैनुअल का उपयोग करें।" , heroEyebrow:"आधिकारिक उपयोगकर्ता पुस्तिका", heroDesc:"Eye Care, Myungjin Solution की एक स्मार्ट दृष्टि-सुरक्षा उपयोगिता है। ऑन-डिवाइस फेस डिटेक्शन का उपयोग करते हुए, यह रियल टाइम में आपके बच्चे की आँखों और स्क्रीन के बीच देखने की दूरी की निगरानी करता है — आपके परिवार को स्वस्थ स्क्रीन आदतों की ओर धीरे-धीरे मार्गदर्शन करता है।", selectLangLabel:"अपनी भाषा चुनें", chooseDeviceLabel:"अपना डिवाइस चुनें", getManualBtn:"मैनुअल प्राप्त करें"},
+  ui:{ contents:"विषय-सूची", change:"← बदलें", reading:"Android मैनुअल", soonT:"iOS मैनुअल जल्द आ रहा है", soonP:"इस गाइड का Apple / iOS संस्करण तैयार किया जा रहा है। फ़िलहाल कृपया Android मैनुअल का उपयोग करें।" , heroEyebrow:"आधिकारिक उपयोगकर्ता पुस्तिका", heroDesc:"Eye Care, Myungjin Solution की एक स्मार्ट दृष्टि-सुरक्षा उपयोगिता है। ऑन-डिवाइस फेस डिटेक्शन का उपयोग करते हुए, यह रियल टाइम में आपके बच्चे की आँखों और स्क्रीन के बीच देखने की दूरी की निगरानी करता है — आपके परिवार को स्वस्थ स्क्रीन आदतों की ओर धीरे-धीरे मार्गदर्शन करता है।", selectLangLabel:"अपनी भाषा चुनें", chooseDeviceLabel:"अपना डिवाइस चुनें", getManualBtn:"मैनुअल प्राप्त करें", guideIntro:"Eye Care एक उन्नत, गोपनीयता-प्राथमिकता वाली स्मार्ट उपयोगिता है जो विशेष रूप से आपके बच्चे की दृष्टि को डिजिटल तनाव और असुरक्षित देखने की आदतों से बचाने के लिए डिज़ाइन की गई है। रियल-टाइम दूरी ट्रैकिंग को पूरी तरह माता-पिता द्वारा नियंत्रित कस्टम अलर्ट के साथ मिलाकर, यह ऐप एक संतुलित और स्वस्थ स्क्रीन समय अनुभव सुनिश्चित करता है। यह व्यापक मैनुअल पहले लॉन्च से लेकर उन्नत बैकग्राउंड समस्या निवारण तक हर चीज़ में मार्गदर्शन करता है। नीचे दिए गए चरणों का क्रम में पालन करें, या सीधे जाने के लिए ऊपर किसी भी अनुभाग पर टैप करें।"},
   secs:[
     {n:"01",title:"स्वागत और पहला लॉन्च",lead:"ऐप को पहली बार खोलने पर आपको स्वागत स्क्रीन दिखेगी।",items:[
       {label:"भाषा चुनें",text:"18 वैश्विक भाषाओं में से चुनें ताकि ऐप, सेटिंग्स और चेतावनियाँ आपके और आपके बच्चे के लिए स्पष्ट हों।"},
@@ -931,7 +963,7 @@ hi:{ name:"हिन्दी", flag:"in.png", dir:"ltr",
 
 ne:{ name:"नेपाली", flag:"ne.png", dir:"ltr",
   ui:{ contents:"विषयसूची", change:"← परिवर्तन", reading:"Android म्यानुअल", soonT:"iOS म्यानुअल चाँडै आउँदैछ", soonP:"यस गाइडको Apple / iOS संस्करण तयारी भइरहेको छ। अहिलेलाई कृपया Android म्यानुअल प्रयोग गर्नुहोस्।",
-       overviewTitle:"Eye Care प्रयोगकर्ता म्यानुअल", overviewSub:"Eye Care सेटअप र सञ्चालनका लागि आवश्यक सबै कुरा, चरणबद्ध रूपमा।", quickNav:"खण्डद्वारा ब्राउज गर्नुहोस्", guideEyebrow:"सुरु गर्नुहोस्", guideHeading:"Eye Care प्रयोग गर्ने तरिका — A देखि Z सम्म", guideIntro:"Eye Care ले तपाईंलाई पहिलो लन्चदेखि उन्नत सेटिङसम्म सबैमा मार्गदर्शन गर्छ। तलका चरणहरू क्रमैसँग पालना गर्नुहोस्, वा माथिको खण्ड ट्याप गरी सिधै जानुहोस्।" , heroEyebrow:"आधिकारिक प्रयोगकर्ता म्यानुअल", heroDesc:"Eye Care, Myungjin Solution को एक स्मार्ट दृष्टि-सुरक्षा उपयोगिता हो। ऑन-डिवाइस फेस डिटेक्सन प्रयोग गरेर, यसले तपाईंको बच्चाको आँखा र स्क्रिनबीचको हेर्ने दूरी वास्तविक समयमा अनुगमन गर्छ — तपाईंको परिवारलाई स्वस्थ स्क्रिन बानीहरूतर्फ मृदुसँग मार्गदर्शन गर्दछ।", selectLangLabel:"आफ्नो भाषा छान्नुहोस्", chooseDeviceLabel:"आफ्नो उपकरण छान्नुहोस्", getManualBtn:"म्यानुअल प्राप्त गर्नुहोस्"},
+       overviewTitle:"Eye Care प्रयोगकर्ता म्यानुअल", overviewSub:"Eye Care सेटअप र सञ्चालनका लागि आवश्यक सबै कुरा, चरणबद्ध रूपमा।", quickNav:"खण्डद्वारा ब्राउज गर्नुहोस्", guideEyebrow:"सुरु गर्नुहोस्", guideHeading:"Eye Care प्रयोग गर्ने तरिका — A देखि Z सम्म", guideIntro:"Eye Care एक उन्नत, गोपनीयता-प्राथमिकतायुक्त स्मार्ट उपयोगिता हो जुन तपाईंको बच्चाको दृष्टिलाई डिजिटल तनाव र असुरक्षित हेर्ने बानीहरूबाट जोगाउन विशेष रूपमा डिजाइन गरिएको छ। निर्बाध रियल-टाइम दूरी ट्र्याकिङलाई पूर्णतः अभिभावक-नियन्त्रित कस्टम अलर्टसँग मिलाएर, एपले सन्तुलित र स्वस्थ स्क्रिन समय अनुभव सुनिश्चित गर्छ। यो व्यापक म्यानुअलले पहिलो लन्चदेखि उन्नत पृष्ठभूमि समस्या निवारणसम्म मार्गदर्शन गर्छ। तलका चरणहरू क्रमैसँग पालना गर्नुहोस्, वा सिधै जान माथिको कुनै खण्ड ट्याप गर्नुहोस्।" , heroEyebrow:"आधिकारिक प्रयोगकर्ता म्यानुअल", heroDesc:"Eye Care, Myungjin Solution को एक स्मार्ट दृष्टि-सुरक्षा उपयोगिता हो। ऑन-डिवाइस फेस डिटेक्सन प्रयोग गरेर, यसले तपाईंको बच्चाको आँखा र स्क्रिनबीचको हेर्ने दूरी वास्तविक समयमा अनुगमन गर्छ — तपाईंको परिवारलाई स्वस्थ स्क्रिन बानीहरूतर्फ मृदुसँग मार्गदर्शन गर्दछ।", selectLangLabel:"आफ्नो भाषा छान्नुहोस्", chooseDeviceLabel:"आफ्नो उपकरण छान्नुहोस्", getManualBtn:"म्यानुअल प्राप्त गर्नुहोस्"},
   secs:[
     {n:"01",image:"welcome.gif",title:"स्वागत र पहिलो लन्च",lead:"एप पहिलोपटक खोल्दा, तपाईंले स्वागत स्क्रिन देख्नुहुनेछ।",items:[
       {label:"भाषा चयन",text:"१८ वैश्विक भाषाहरूबाट छान्नुहोस् ताकि एप, सेटिङ र चेतावनीहरू तपाईं र तपाईंको बच्चाका लागि स्पष्ट होस्।"},
@@ -971,7 +1003,7 @@ ne:{ name:"नेपाली", flag:"ne.png", dir:"ltr",
 
 uz:{ name:"O'zbek", flag:"uz.png", dir:"ltr",
   ui:{ contents:"Mundarija", change:"← O'zgartirish", reading:"Android Qo'llanma", soonT:"iOS Qo'llanma tez kunda", soonP:"Bu qo'llanmaning Apple / iOS versiyasi tayyorlanmoqda. Hozircha Android qo'llanmasidan foydalaning.",
-       overviewTitle:"Eye Care Foydalanuvchi Qo'llanmasi", overviewSub:"Eye Care-ni sozlash va ishga tushirish uchun zarur hamma narsa, qadam-baqadam.", quickNav:"Bo'lim bo'yicha ko'rish", guideEyebrow:"Boshlash", guideHeading:"Eye Care-dan foydalanish — A dan Z gacha", guideIntro:"Eye Care sizni birinchi ishga tushirishdan tortib ilg'or sozlamalargacha hamma narsada yo'llaydi. Quyidagi bosqichlarni ketma-ket bajaring yoki yuqoridagi istalgan bo'limga o'ting." , heroEyebrow:"Rasmiy foydalanuvchi qo'llanmasi", heroDesc:"Eye Care — Myungjin Solution tomonidan ishlab chiqilgan aqlli ko'rish qobiliyatini himoya qiluvchi ilova. Qurilmadagi yuz aniqlash texnologiyasidan foydalanib, farzandingizning ko'zlari va ekran orasidagi ko'rish masofasini real vaqtda kuzatadi — oilangizni yanada sog'lom ekran odatlariga ega bo'lishga yo'llaydi.", selectLangLabel:"Tilingizni tanlang", chooseDeviceLabel:"Qurilmangizni tanlang", getManualBtn:"Qo'llanmani olish"},
+       overviewTitle:"Eye Care Foydalanuvchi Qo'llanmasi", overviewSub:"Eye Care-ni sozlash va ishga tushirish uchun zarur hamma narsa, qadam-baqadam.", quickNav:"Bo'lim bo'yicha ko'rish", guideEyebrow:"Boshlash", guideHeading:"Eye Care-dan foydalanish — A dan Z gacha", guideIntro:"Eye Care — maxsus ravishda farzandingizning ko'rish qobiliyatini raqamli zo'riqish va xavfli tomosha qilish odatlaridan himoya qilish uchun mo'ljallangan, ilg'or, maxfiylikni ustuvor qo'yuvchi aqlli ilova. Muammosiz real vaqtli masofa kuzatuvini ota-ona tomonidan to'liq boshqariladigan maxsus ogohlantirishlar bilan uyg'unlashtirgan holda, ilova muvozanatli va sog'lom ekran vaqti tajribasini ta'minlaydi. Ushbu keng qamrovli qo'llanma sizni birinchi ishga tushirishdan ilg'or fon muammolarini bartaraf etishgacha yo'llaydi. Quyidagi bosqichlarni ketma-ket bajaring yoki to'g'ridan-to'g'ri o'tish uchun yuqoridagi istalgan bo'limga bosing." , heroEyebrow:"Rasmiy foydalanuvchi qo'llanmasi", heroDesc:"Eye Care — Myungjin Solution tomonidan ishlab chiqilgan aqlli ko'rish qobiliyatini himoya qiluvchi ilova. Qurilmadagi yuz aniqlash texnologiyasidan foydalanib, farzandingizning ko'zlari va ekran orasidagi ko'rish masofasini real vaqtda kuzatadi — oilangizni yanada sog'lom ekran odatlariga ega bo'lishga yo'llaydi.", selectLangLabel:"Tilingizni tanlang", chooseDeviceLabel:"Qurilmangizni tanlang", getManualBtn:"Qo'llanmani olish"},
   secs:[
     {n:"01",image:"welcome.gif",title:"Xush kelibsiz va birinchi ishga tushirish",lead:"Ilovani birinchi marta ochganingizda, Xush kelibsiz ekranini ko'rasiz.",items:[
       {label:"Til tanlash",text:"Ilova, sozlamalar va ogohlantirishlar siz va farzandingiz uchun aniq bo'lishi uchun 18 ta jahon tilidan birini tanlang."},
@@ -1011,7 +1043,7 @@ uz:{ name:"O'zbek", flag:"uz.png", dir:"ltr",
 
 mn:{ name:"Монгол", flag:"mn.png", dir:"ltr",
   ui:{ contents:"Агуулга", change:"← Өөрчлөх", reading:"Android гарын авлага", soonT:"iOS гарын авлага удахгүй", soonP:"Энэхүү гарын авлагын Apple / iOS хувилбарыг бэлтгэж байна. Одоохондоо Android гарын авлагыг ашиглана уу.",
-       overviewTitle:"Eye Care хэрэглэгчийн гарын авлага", overviewSub:"Eye Care-г тохируулах, ажиллуулахад хэрэгтэй бүх зүйл, алхам алхмаар.", quickNav:"Хэсгээр харах", guideEyebrow:"Эхлэх", guideHeading:"Eye Care ашиглах заавар — эхнээс эцэс хүртэл", guideIntro:"Eye Care таныг анхны ажиллуулалтаас эхлэн дэвшилтэт тохиргоо хүртэл бүх зүйлд чиглүүлнэ. Доорх алхмуудыг дарааллаар дага, эсвэл дурын хэсэгт шилжихийн тулд дээрхийг дар." , heroEyebrow:"Албан ёсны хэрэглэгчийн гарын авлага", heroDesc:"Eye Care нь Myungjin Solution-ийн ухаалаг харааны хамгаалалтын апп юм. Төхөөрөмж дээрх нүүр илрүүлэлтийг ашиглан, хүүхдийнхээ нүд ба дэлгэцийн хоорондох харах зайг бодит цаг хугацаанд хянадаг — гэр бүлийнхнийг илүү эрүүл дэлгэц ашиглах дадалд эелдгээр чиглүүлдэг.", selectLangLabel:"Хэлээ сонгоно уу", chooseDeviceLabel:"Төхөөрөмжөө сонгоно уу", getManualBtn:"Гарын авлага авах"},
+       overviewTitle:"Eye Care хэрэглэгчийн гарын авлага", overviewSub:"Eye Care-г тохируулах, ажиллуулахад хэрэгтэй бүх зүйл, алхам алхмаар.", quickNav:"Хэсгээр харах", guideEyebrow:"Эхлэх", guideHeading:"Eye Care ашиглах заавар — эхнээс эцэс хүртэл", guideIntro:"Eye Care нь хүүхдийн харааг дижитал ачааллаас болон аюулгүй бус үзэх зуршлаас хамгаалахын тулд тусгайлан бүтээгдсэн, нууцлалыг тэргүүлэгч дэвшилтэт ухаалаг апп юм. Саадгүй бодит цагийн зайн хяналтыг эцэг эхийн бүрэн удирддаг захиалгат мэдэгдэлтэй хослуулснаар, апп нь тэнцвэртэй, эрүүл дэлгэцийн цагийн туршлагыг баталгаажуулдаг. Энэхүү иж бүрэн гарын авлага нь анхны ажиллуулалтаас дэвшилтэт ар тал дахь алдааг засах хүртэл бүгдийг чиглүүлнэ. Доорх алхмуудыг дарааллаар дагана уу, эсвэл шууд очихын тулд дээрх дурын хэсгийг дарна уу." , heroEyebrow:"Албан ёсны хэрэглэгчийн гарын авлага", heroDesc:"Eye Care нь Myungjin Solution-ийн ухаалаг харааны хамгаалалтын апп юм. Төхөөрөмж дээрх нүүр илрүүлэлтийг ашиглан, хүүхдийнхээ нүд ба дэлгэцийн хоорондох харах зайг бодит цаг хугацаанд хянадаг — гэр бүлийнхнийг илүү эрүүл дэлгэц ашиглах дадалд эелдгээр чиглүүлдэг.", selectLangLabel:"Хэлээ сонгоно уу", chooseDeviceLabel:"Төхөөрөмжөө сонгоно уу", getManualBtn:"Гарын авлага авах"},
   secs:[
     {n:"01",image:"welcome.gif",title:"Тавтай морилно уу ба анхны ажиллуулалт",lead:"Аппыг анх удаа нээхэд Тавтай морилно уу дэлгэц харагдана.",items:[
       {label:"Хэл сонгох",text:"Аппликейшн, тохиргоо болон анхааруулга нь тан болон хүүхдэд тодорхой байхын тулд 18 дэлхийн хэлнээс сонгоно уу."},
@@ -1050,7 +1082,7 @@ mn:{ name:"Монгол", flag:"mn.png", dir:"ltr",
   ]},
 
 si:{ name:"සිංහල", flag:"lk.png", dir:"ltr",
-  ui:{ contents:"පටුන", change:"← වෙනස් කරන්න", reading:"Android අත්පොත", soonT:"iOS අත්පොත ළඟදීම", soonP:"මෙම මාර්ගෝපදේශයේ Apple / iOS අනුවාදය සකස් වෙමින් පවතී. දැනට කරුණාකර Android අත්පොත භාවිතා කරන්න." , heroEyebrow:"නිල පරිශීලක අත්පොත", heroDesc:"Eye Care යනු Myungjin Solution හි ස්මාර්ට් දෘෂ්ටි ආරක්ෂාව උපකාරකයයි. ඔන්-ඩිවායිස් මුහුණු හඳුනාගැනීම භාවිතා කරමින්, ඔබේ දරුවාගේ ඇස් සහ තිරය අතර නැරඹීමේ දුර තත්පරයෙන් නිරීක්ෂණය කරයි — ඔබේ පවුලට සෞඛ්‍ය සම්පන්න, සුව පහසු තිර පුරුදු දෙසට මෘදුව මඟ පෙන්වයි.", selectLangLabel:"ඔබේ භාෂාව තෝරන්න", chooseDeviceLabel:"ඔබේ උපාංගය තෝරන්න", getManualBtn:"අත්පොත ලබාගන්න"},
+  ui:{ contents:"පටුන", change:"← වෙනස් කරන්න", reading:"Android අත්පොත", soonT:"iOS අත්පොත ළඟදීම", soonP:"මෙම මාර්ගෝපදේශයේ Apple / iOS අනුවාදය සකස් වෙමින් පවතී. දැනට කරුණාකර Android අත්පොත භාවිතා කරන්න." , heroEyebrow:"නිල පරිශීලක අත්පොත", heroDesc:"Eye Care යනු Myungjin Solution හි ස්මාර්ට් දෘෂ්ටි ආරක්ෂාව උපකාරකයයි. ඔන්-ඩිවායිස් මුහුණු හඳුනාගැනීම භාවිතා කරමින්, ඔබේ දරුවාගේ ඇස් සහ තිරය අතර නැරඹීමේ දුර තත්පරයෙන් නිරීක්ෂණය කරයි — ඔබේ පවුලට සෞඛ්‍ය සම්පන්න, සුව පහසු තිර පුරුදු දෙසට මෘදුව මඟ පෙන්වයි.", selectLangLabel:"ඔබේ භාෂාව තෝරන්න", chooseDeviceLabel:"ඔබේ උපාංගය තෝරන්න", getManualBtn:"අත්පොත ලබාගන්න", guideIntro:"Eye Care යනු ඔබේ දරුවාගේ දෘෂ්ටිය ඩිජිටල් ආතතිය සහ අසාමාන්‍ය නැරඹීමේ පුරුදු වලින් ආරක්ෂා කිරීම සඳහා විශේෂයෙන් නිර්මාණ කරන ලද, ගෝපනීයතාව ප්‍රථමතාවයෙන් ගන්නා, උසස් ස්මාර්ට් උපකාරකයයි. නිරවද්‍ය තත්‍ය කාල දුර නිරීක්ෂණය සහ මව්පිය-පාලිත අභිරුචි අනතුරු ඇඟවීම් ඒකාබද්ධ කිරීමෙන්, ඇප් එක සමතුලිත සහ සෞඛ්‍ය සම්පන්න තිරය-කාල අත්දැකීමක් සහතික කරයි. මෙම සවිස්තරාත්මක අත්පොත ඔබව පළමු ආරම්භයේ සිට දියුණු පසුබිම් දෝෂ නිරාකරණය දක්වා සෑම දෙයකම මඟ පෙන්වයි. පහත පියවර අනුක්‍රමිකව අනුගමනය කරන්න, හෝ ඒ වෙත ඍජුවම ලීම සඳහා ඉහළ ඕනෑම කොටසක් ටැප් කරන්න."},
   secs:[
     {n:"01",title:"සාදරයෙන් පිළිගනිමු සහ පළමු ආරම්භය",lead:"ඇප් එක මුල්වරට විවෘත කරන විට, ඔබට පිළිගැනීමේ තිරය පෙනේ.",items:[
       {label:"භාෂාව තෝරන්න",text:"ගෝලීය භාෂා 18න් තෝරාගත හැක. එමඟින් ඇප් එක, සැකසුම් සහ අනතුරු ඇඟවීම් ඔබට සහ ඔබේ දරුවාට පැහැදිලිව තේරුම් යයි."},
@@ -1222,6 +1254,43 @@ function goOverview(){
     window.location.href = 'overview.html?lang=' + encodeURIComponent(currentLang)
                          + '&plat=' + encodeURIComponent(currentPlat);
 }
+
+/* ===== hero character gif cycle ===== */
+(function(){
+    var GIF_SRC      = '../images/Cute_Boy_Winks_and_Thumbs_Up_1.gif';
+    var GIF_PLAY_MS  = 7320;
+    var PAUSE_MS     = 10000;
+
+    var img = document.getElementById('heroChar');
+    if(!img) return;
+
+    var playing = false;
+
+    function play(){
+        if(playing) return;
+        playing = true;
+        // Force reload from start by cache-busting the URL
+        img.src = '';
+        setTimeout(function(){
+            img.src = GIF_SRC + '?t=' + Date.now();
+            img.style.opacity = '1';
+            // After one full cycle, pause
+            setTimeout(function(){
+                img.style.transition = 'opacity 0.4s ease';
+                img.style.opacity = '0';
+                playing = false;
+                // After pause, replay
+                setTimeout(function(){
+                    play();
+                }, PAUSE_MS);
+            }, GIF_PLAY_MS);
+        }, 50);
+    }
+
+    // Start on load (small delay so page renders first)
+    setTimeout(play, 300);
+})();
+
 </script>
 
 </body>
