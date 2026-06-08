@@ -1221,7 +1221,7 @@ function appendFooter(host){
 }
 
 function renderPage(){
-
+document.body.style.overflow="";
 var d = DATA[getLang()] || DATA.en;
 var plat = getPlatform();
 var isAndroid = (plat === 'android');
@@ -1363,6 +1363,7 @@ function toggleMiniDD(e){
     document.getElementById('miniDD').classList.toggle('open');
 }
 function changeLangTo(code){
+    document.body.style.overflow="";
     setLang(code);
     var url=new URL(window.location.href);
     url.searchParams.set('lang',code);
