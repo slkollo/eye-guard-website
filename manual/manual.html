@@ -1205,6 +1205,7 @@ function selectLang(code){
         o.classList.toggle('sel', o.getAttribute('data-code')===code);
     });
     document.getElementById('langDD').classList.remove('open');
+    renderLanding(code);
 }
 document.addEventListener('click', function(){
     document.getElementById('langDD').classList.remove('open');
