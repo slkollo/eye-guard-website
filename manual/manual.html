@@ -375,6 +375,27 @@
         .hero-char img{ width:115px; }
     }
 
+
+    /* ===== hero char glitch animation ===== */
+    @keyframes heroGlitch{
+        0%  { transform:none; filter:none; opacity:1; }
+        8%  { transform:translateX(-6px) skewX(-3deg); filter:hue-rotate(70deg) brightness(2); }
+        16% { transform:translateX(6px) skewX(2deg); filter:hue-rotate(-70deg); opacity:.9; }
+        24% { transform:none; filter:brightness(4); opacity:1; }
+        32% { transform:translateX(-4px) scaleX(1.02); filter:none; }
+        40% { transform:translateX(5px); filter:hue-rotate(130deg) brightness(1.6); opacity:.7; }
+        48% { transform:none; filter:none; opacity:1; }
+        58% { transform:translateX(-8px) skewX(-4deg); filter:hue-rotate(230deg) brightness(2.5); opacity:.8; }
+        66% { transform:translateX(7px); filter:none; opacity:.5; }
+        74% { transform:none; filter:brightness(5); opacity:.9; }
+        82% { transform:translateX(-5px) scaleX(.97); filter:hue-rotate(100deg); opacity:.4; }
+        90% { transform:translateX(4px); filter:none; opacity:.2; }
+        100%{ transform:none; filter:none; opacity:0; }
+    }
+    .hero-char-glitch{
+        animation:heroGlitch .65s steps(1,start) forwards;
+    }
+
 </style>
 </head>
 <body>
@@ -475,10 +496,10 @@ en:{ name:"English", flag:"ic_flag_us.png", dir:"ltr",
       {label:"💳 Payment Plan",text:"Shows status (Free / Active / Expired). Upgrade to Premium — 1-Month, 6-Month, 1-Year, Lifetime — or restore purchases."},
       {label:"✉️ Contact (Support)",text:"Opens your email app with a message to Mjosc.app@mjosc.co.kr for bugs, billing, or suggestions."},
       {label:"⭐ Rate Us",text:"Opens the store so you can leave a 5-star review."}]},
-    {n:"06",title:"Privacy & Security Guarantee",privacy:true,lead:"At Myungjin Solution, your family's safety is our highest priority.",items:[
+    {n:"06",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"07",title:"Privacy & Security Guarantee",privacy:true,lead:"At Myungjin Solution, your family's safety is our highest priority.",items:[
       {label:"100% On-Device Processing",text:"All face-detection algorithms run locally on the phone."},
-      {label:"No Data Logging",text:"We never collect, transmit, or store biometric data, camera feeds, or usage history."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"No Data Logging",text:"We never collect, transmit, or store biometric data, camera feeds, or usage history."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 ko:{ name:"한국어", flag:"ic_flag_korea.png", dir:"ltr",
@@ -513,10 +534,10 @@ ko:{ name:"한국어", flag:"ic_flag_korea.png", dir:"ltr",
       {label:"💳 결제 플랜",text:"상태(무료/활성/만료)를 표시합니다. 프리미엄(1개월, 6개월, 1년, 평생)으로 업그레이드하거나 구매를 복원합니다."},
       {label:"✉️ 문의 (지원)",text:"버그, 결제, 제안을 위해 Mjosc.app@mjosc.co.kr로 메일을 보냅니다."},
       {label:"⭐ 평가하기",text:"스토어를 열어 별 5개 리뷰를 남길 수 있습니다."}]},
-    {n:"07",title:"개인정보 및 보안 보장",privacy:true,lead:"Myungjin Solution은 가족의 안전을 최우선으로 합니다.",items:[
+    {n:"07",title:"서비스 중지 및 앱 삭제",lead:"Eye Care 모니터링 서비스를 중지하거나 기기에서 앱을 완전히 제거하는 방법입니다.",items:[{label:"1. 백그라운드 서비스 중지",text:"앱을 제거하지 않고 모니터링을 비활성화하는 방법:",sub:[{label:"앱 열기",text:"홈 화면의 Eye Care 아이콘을 탭하여 앱을 전경으로 가져옵니다."},{label:"PIN 입력",text:"초기 설정 시 만든 4자리 PIN을 입력합니다."},{label:"서비스 중지",text:"대시보드 하단의 빨간색 '보호 중지' 버튼을 탭하여 백그라운드 모니터링을 비활성화합니다."}]},{label:"2. 앱 삭제",text:"두 단계가 필요합니다 — 먼저 삭제 차단 해제, 그 다음 앱 제거.",sub:[{label:"1단계 — 차단 해제",text:"Eye Care 열기 → 설정(상단 오른쪽) → '삭제 차단 해제' 버튼(3번째) → PIN 입력하여 승인."},{label:"2단계 — 앱 제거",text:"홈 화면에서 Eye Care 아이콘 길게 누르기 → '삭제' 선택 → 확인."}]}]},
+    {n:"08",title:"개인정보 및 보안 보장",privacy:true,lead:"Myungjin Solution은 가족의 안전을 최우선으로 합니다.",items:[
       {label:"100% 기기 내 처리",text:"모든 얼굴 인식 알고리즘이 휴대폰에서 로컬로 실행됩니다."},
-      {label:"데이터 기록 없음",text:"생체 데이터, 카메라 영상, 사용 기록을 수집·전송·저장하지 않습니다."}]},
-    {n:"08",title:"서비스 중지 및 앱 삭제",lead:"Eye Care 모니터링 서비스를 중지하거나 기기에서 앱을 완전히 제거하는 방법입니다.",items:[{label:"1. 백그라운드 서비스 중지",text:"앱을 제거하지 않고 모니터링을 비활성화하려면:",sub:[{label:"앱 열기",text:"홈 화면의 Eye Care 아이콘을 탭하여 앱을 전경으로 가져옵니다."},{label:"PIN 입력",text:"초기 설정 시 만든 4자리 PIN을 입력합니다."},{label:"서비스 중지",text:"대시보드 하단의 빨간색 \'보호 중지\' 버튼을 탭하여 백그라운드 모니터링을 비활성화합니다."}]},{label:"2. 앱 삭제",text:"두 단계가 필요합니다 — 먼저 삭제 차단 해제, 그 다음 앱 제거.",sub:[{label:"1단계 — 차단 해제",text:"Eye Care 열기 → 설정(대시보드 상단 오른쪽) → \'삭제 차단 해제\' 버튼(목록 3번째) → PIN 입력하여 승인."},{label:"2단계 — 앱 제거",text:"홈 화면에서 Eye Care 아이콘 길게 누르기 → \'삭제\' 선택 → 확인."}]}]}
+      {label:"데이터 기록 없음",text:"생체 데이터, 카메라 영상, 사용 기록을 수집·전송·저장하지 않습니다."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 zh:{ name:"简体中文", flag:"ic_flag_china.png", dir:"ltr",
@@ -551,10 +572,10 @@ zh:{ name:"简体中文", flag:"ic_flag_china.png", dir:"ltr",
       {label:"💳 付费计划",text:"显示状态（免费/有效/已过期）。可升级至高级版（1 个月、6 个月、1 年、终身）或恢复购买。"},
       {label:"✉️ 联系（支持）",text:"打开邮件应用，向 Mjosc.app@mjosc.co.kr 反馈错误、账单或建议。"},
       {label:"⭐ 评价我们",text:"打开商店，留下五星好评。"}]},
-    {n:"07",title:"隐私与安全保证",privacy:true,lead:"在 Myungjin Solution，您家人的安全是我们的最高优先。",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"隐私与安全保证",privacy:true,lead:"在 Myungjin Solution，您家人的安全是我们的最高优先。",items:[
       {label:"100% 本机处理",text:"所有人脸检测算法都在手机本地运行。"},
-      {label:"不记录数据",text:"我们绝不收集、传输或存储任何生物特征数据、相机画面或使用记录。"}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"不记录数据",text:"我们绝不收集、传输或存储任何生物特征数据、相机画面或使用记录。"}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 ja:{ name:"日本語", flag:"ic_flag_japan.png", dir:"ltr",
@@ -589,10 +610,10 @@ ja:{ name:"日本語", flag:"ic_flag_japan.png", dir:"ltr",
       {label:"💳 料金プラン",text:"状態（無料／有効／期限切れ）を表示。プレミアム（1か月・6か月・1年・買い切り）へのアップグレードや購入の復元ができます。"},
       {label:"✉️ お問い合わせ（サポート）",text:"不具合・請求・ご提案について Mjosc.app@mjosc.co.kr へメールします。"},
       {label:"⭐ 評価する",text:"ストアを開き、星 5 のレビューを残せます。"}]},
-    {n:"07",title:"プライバシーとセキュリティの保証",privacy:true,lead:"Myungjin Solution では、ご家族の安全を最優先しています。",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"プライバシーとセキュリティの保証",privacy:true,lead:"Myungjin Solution では、ご家族の安全を最優先しています。",items:[
       {label:"100% 端末内処理",text:"すべての顔検出アルゴリズムは端末内でローカルに動作します。"},
-      {label:"データ記録なし",text:"生体データ、カメラ映像、利用履歴を収集・送信・保存することはありません。"}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"データ記録なし",text:"生体データ、カメラ映像、利用履歴を収集・送信・保存することはありません。"}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 fr:{ name:"Français", flag:"ic_flag_france.png", dir:"ltr",
@@ -627,10 +648,10 @@ fr:{ name:"Français", flag:"ic_flag_france.png", dir:"ltr",
       {label:"💳 Forfait",text:"Affiche le statut (Gratuit / Actif / Expiré). Passez à Premium (1 mois, 6 mois, 1 an, à vie) ou restaurez vos achats."},
       {label:"✉️ Contact (Assistance)",text:"Ouvre votre messagerie pour écrire à Mjosc.app@mjosc.co.kr (bugs, facturation, suggestions)."},
       {label:"⭐ Évaluez-nous",text:"Ouvre la boutique pour laisser un avis 5 étoiles."}]},
-    {n:"07",title:"Garantie de confidentialité et de sécurité",privacy:true,lead:"Chez Myungjin Solution, la sécurité de votre famille est notre priorité absolue.",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"Garantie de confidentialité et de sécurité",privacy:true,lead:"Chez Myungjin Solution, la sécurité de votre famille est notre priorité absolue.",items:[
       {label:"Traitement 100 % sur l'appareil",text:"Tous les algorithmes de détection de visage s'exécutent localement sur le téléphone."},
-      {label:"Aucune journalisation de données",text:"Nous ne collectons, ne transmettons ni ne stockons aucune donnée biométrique, flux caméra ou historique d'utilisation."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"Aucune journalisation de données",text:"Nous ne collectons, ne transmettons ni ne stockons aucune donnée biométrique, flux caméra ou historique d'utilisation."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 de:{ name:"Deutsch", flag:"ic_flag_germany.png", dir:"ltr",
@@ -665,10 +686,10 @@ de:{ name:"Deutsch", flag:"ic_flag_germany.png", dir:"ltr",
       {label:"💳 Zahlungsplan",text:"Zeigt den Status (Gratis / Aktiv / Abgelaufen). Upgrade auf Premium (1 Monat, 6 Monate, 1 Jahr, lebenslang) oder Käufe wiederherstellen."},
       {label:"✉️ Kontakt (Support)",text:"Öffnet Ihre E-Mail an Mjosc.app@mjosc.co.kr für Fehler, Abrechnung oder Vorschläge."},
       {label:"⭐ Bewerten Sie uns",text:"Öffnet den Store für eine 5-Sterne-Bewertung."}]},
-    {n:"07",title:"Datenschutz- & Sicherheitsgarantie",privacy:true,lead:"Bei Myungjin Solution hat die Sicherheit Ihrer Familie höchste Priorität.",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"Datenschutz- & Sicherheitsgarantie",privacy:true,lead:"Bei Myungjin Solution hat die Sicherheit Ihrer Familie höchste Priorität.",items:[
       {label:"100 % Verarbeitung auf dem Gerät",text:"Alle Gesichtserkennungs-Algorithmen laufen lokal auf dem Telefon."},
-      {label:"Keine Datenprotokollierung",text:"Wir erfassen, übertragen oder speichern keine biometrischen Daten, Kamerabilder oder Nutzungsverläufe."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"Keine Datenprotokollierung",text:"Wir erfassen, übertragen oder speichern keine biometrischen Daten, Kamerabilder oder Nutzungsverläufe."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 es:{ name:"Español", flag:"ic_flag_spain.png", dir:"ltr",
@@ -703,10 +724,10 @@ es:{ name:"Español", flag:"ic_flag_spain.png", dir:"ltr",
       {label:"💳 Plan de pago",text:"Muestra el estado (Gratis / Activo / Vencido). Mejore a Premium (1 mes, 6 meses, 1 año, de por vida) o restaure compras."},
       {label:"✉️ Contacto (Soporte)",text:"Abre su correo para escribir a Mjosc.app@mjosc.co.kr por errores, facturación o sugerencias."},
       {label:"⭐ Califícanos",text:"Abre la tienda para dejar una reseña de 5 estrellas."}]},
-    {n:"07",title:"Garantía de privacidad y seguridad",privacy:true,lead:"En Myungjin Solution, la seguridad de su familia es nuestra máxima prioridad.",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"Garantía de privacidad y seguridad",privacy:true,lead:"En Myungjin Solution, la seguridad de su familia es nuestra máxima prioridad.",items:[
       {label:"Procesamiento 100% en el dispositivo",text:"Todos los algoritmos de detección facial se ejecutan localmente en el teléfono."},
-      {label:"Sin registro de datos",text:"Nunca recopilamos, transmitimos ni almacenamos datos biométricos, imágenes de cámara ni historial de uso."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"Sin registro de datos",text:"Nunca recopilamos, transmitimos ni almacenamos datos biométricos, imágenes de cámara ni historial de uso."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 pt:{ name:"Português", flag:"ic_flag_portugal.png", dir:"ltr",
@@ -741,10 +762,10 @@ pt:{ name:"Português", flag:"ic_flag_portugal.png", dir:"ltr",
       {label:"💳 Plano de pagamento",text:"Mostra o status (Grátis / Ativo / Expirado). Faça upgrade para Premium (1 mês, 6 meses, 1 ano, vitalício) ou restaure compras."},
       {label:"✉️ Contato (Suporte)",text:"Abre seu e-mail para escrever a Mjosc.app@mjosc.co.kr sobre erros, cobrança ou sugestões."},
       {label:"⭐ Avalie-nos",text:"Abre a loja para deixar uma avaliação de 5 estrelas."}]},
-    {n:"07",title:"Garantia de privacidade e segurança",privacy:true,lead:"Na Myungjin Solution, a segurança da sua família é nossa maior prioridade.",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"Garantia de privacidade e segurança",privacy:true,lead:"Na Myungjin Solution, a segurança da sua família é nossa maior prioridade.",items:[
       {label:"Processamento 100% no dispositivo",text:"Todos os algoritmos de detecção facial são executados localmente no telefone."},
-      {label:"Sem registro de dados",text:"Nunca coletamos, transmitimos ou armazenamos dados biométricos, imagens da câmera ou histórico de uso."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"Sem registro de dados",text:"Nunca coletamos, transmitimos ou armazenamos dados biométricos, imagens da câmera ou histórico de uso."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 ru:{ name:"Русский", flag:"ic_flag_russia.png", dir:"ltr",
@@ -779,10 +800,10 @@ ru:{ name:"Русский", flag:"ic_flag_russia.png", dir:"ltr",
       {label:"💳 Тарифный план",text:"Показывает статус (Бесплатно / Активно / Истёк). Перейдите на Premium (1 мес., 6 мес., 1 год, навсегда) или восстановите покупки."},
       {label:"✉️ Контакт (Поддержка)",text:"Открывает почту для письма на Mjosc.app@mjosc.co.kr об ошибках, оплате или предложениях."},
       {label:"⭐ Оцените нас",text:"Открывает магазин, чтобы оставить отзыв на 5 звёзд."}]},
-    {n:"07",title:"Гарантия конфиденциальности и безопасности",privacy:true,lead:"В Myungjin Solution безопасность вашей семьи — наш главный приоритет.",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"Гарантия конфиденциальности и безопасности",privacy:true,lead:"В Myungjin Solution безопасность вашей семьи — наш главный приоритет.",items:[
       {label:"100% обработка на устройстве",text:"Все алгоритмы распознавания лица работают локально на телефоне."},
-      {label:"Нет журналирования данных",text:"Мы не собираем, не передаём и не храним биометрические данные, видео с камеры или историю использования."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"Нет журналирования данных",text:"Мы не собираем, не передаём и не храним биометрические данные, видео с камеры или историю использования."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 ar:{ name:"العربية", flag:"ic_flag_saudi.png", dir:"rtl",
@@ -817,10 +838,10 @@ ar:{ name:"العربية", flag:"ic_flag_saudi.png", dir:"rtl",
       {label:"💳 خطة الدفع",text:"تعرض الحالة (مجاني / نشط / منتهٍ). الترقية إلى Premium (شهر، 6 أشهر، سنة، مدى الحياة) أو استعادة المشتريات."},
       {label:"✉️ تواصل (الدعم)",text:"يفتح بريدك للكتابة إلى Mjosc.app@mjosc.co.kr للأخطاء أو الفوترة أو الاقتراحات."},
       {label:"⭐ قيّمنا",text:"يفتح المتجر لترك تقييم بخمس نجوم."}]},
-    {n:"07",title:"ضمان الخصوصية والأمان",privacy:true,lead:"في Myungjin Solution، سلامة عائلتك أولويتنا القصوى.",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"ضمان الخصوصية والأمان",privacy:true,lead:"في Myungjin Solution، سلامة عائلتك أولويتنا القصوى.",items:[
       {label:"معالجة 100% على الجهاز",text:"تعمل جميع خوارزميات اكتشاف الوجه محليًا على الهاتف."},
-      {label:"لا تسجيل للبيانات",text:"لا نجمع أو ننقل أو نخزّن أي بيانات حيوية أو لقطات كاميرا أو سجل استخدام."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"لا تسجيل للبيانات",text:"لا نجمع أو ننقل أو نخزّن أي بيانات حيوية أو لقطات كاميرا أو سجل استخدام."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 vi:{ name:"Tiếng Việt", flag:"vi.png", dir:"ltr",
@@ -855,10 +876,10 @@ vi:{ name:"Tiếng Việt", flag:"vi.png", dir:"ltr",
       {label:"💳 Gói thanh toán",text:"Hiển thị trạng thái (Miễn phí / Hoạt động / Hết hạn). Nâng cấp Premium (1 tháng, 6 tháng, 1 năm, trọn đời) hoặc khôi phục mua hàng."},
       {label:"✉️ Liên hệ (Hỗ trợ)",text:"Mở email gửi tới Mjosc.app@mjosc.co.kr về lỗi, thanh toán hoặc góp ý."},
       {label:"⭐ Đánh giá",text:"Mở cửa hàng để để lại đánh giá 5 sao."}]},
-    {n:"07",title:"Cam kết Quyền riêng tư & Bảo mật",privacy:true,lead:"Tại Myungjin Solution, an toàn của gia đình bạn là ưu tiên cao nhất.",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"Cam kết Quyền riêng tư & Bảo mật",privacy:true,lead:"Tại Myungjin Solution, an toàn của gia đình bạn là ưu tiên cao nhất.",items:[
       {label:"Xử lý 100% trên thiết bị",text:"Mọi thuật toán nhận diện khuôn mặt chạy cục bộ trên điện thoại."},
-      {label:"Không ghi nhật ký dữ liệu",text:"Chúng tôi không thu thập, truyền hay lưu dữ liệu sinh trắc, hình ảnh camera hoặc lịch sử sử dụng."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"Không ghi nhật ký dữ liệu",text:"Chúng tôi không thu thập, truyền hay lưu dữ liệu sinh trắc, hình ảnh camera hoặc lịch sử sử dụng."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 th:{ name:"ไทย", flag:"th.png", dir:"ltr",
@@ -893,10 +914,10 @@ th:{ name:"ไทย", flag:"th.png", dir:"ltr",
       {label:"💳 แผนการชำระเงิน",text:"แสดงสถานะ (ฟรี / ใช้งาน / หมดอายุ) อัปเกรดเป็น Premium (1 เดือน, 6 เดือน, 1 ปี, ตลอดชีพ) หรือกู้คืนการซื้อ"},
       {label:"✉️ ติดต่อ (ฝ่ายสนับสนุน)",text:"เปิดอีเมลเพื่อส่งถึง Mjosc.app@mjosc.co.kr สำหรับข้อผิดพลาด การเรียกเก็บเงิน หรือข้อเสนอแนะ"},
       {label:"⭐ ให้คะแนนเรา",text:"เปิดสโตร์เพื่อรีวิว 5 ดาว"}]},
-    {n:"07",title:"การรับประกันความเป็นส่วนตัวและความปลอดภัย",privacy:true,lead:"ที่ Myungjin Solution ความปลอดภัยของครอบครัวคุณคือสิ่งสำคัญที่สุดของเรา",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"การรับประกันความเป็นส่วนตัวและความปลอดภัย",privacy:true,lead:"ที่ Myungjin Solution ความปลอดภัยของครอบครัวคุณคือสิ่งสำคัญที่สุดของเรา",items:[
       {label:"ประมวลผลในเครื่อง 100%",text:"อัลกอริทึมตรวจจับใบหน้าทั้งหมดทำงานในเครื่องโทรศัพท์"},
-      {label:"ไม่มีการบันทึกข้อมูล",text:"เราไม่เก็บ ส่ง หรือจัดเก็บข้อมูลชีวมาตร ภาพจากกล้อง หรือประวัติการใช้งานใดๆ"}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"ไม่มีการบันทึกข้อมูล",text:"เราไม่เก็บ ส่ง หรือจัดเก็บข้อมูลชีวมาตร ภาพจากกล้อง หรือประวัติการใช้งานใดๆ"}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 id:{ name:"Bahasa Indonesia", flag:"id.png", dir:"ltr",
@@ -931,10 +952,10 @@ id:{ name:"Bahasa Indonesia", flag:"id.png", dir:"ltr",
       {label:"💳 Paket Pembayaran",text:"Menampilkan status (Gratis / Aktif / Kedaluwarsa). Tingkatkan ke Premium (1 Bulan, 6 Bulan, 1 Tahun, Seumur Hidup) atau pulihkan pembelian."},
       {label:"✉️ Kontak (Dukungan)",text:"Membuka email ke Mjosc.app@mjosc.co.kr untuk bug, tagihan, atau saran."},
       {label:"⭐ Beri Nilai",text:"Membuka toko untuk memberi ulasan 5 bintang."}]},
-    {n:"07",title:"Jaminan Privasi & Keamanan",privacy:true,lead:"Di Myungjin Solution, keselamatan keluarga Anda adalah prioritas tertinggi kami.",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"Jaminan Privasi & Keamanan",privacy:true,lead:"Di Myungjin Solution, keselamatan keluarga Anda adalah prioritas tertinggi kami.",items:[
       {label:"Pemrosesan 100% di Perangkat",text:"Semua algoritma deteksi wajah berjalan secara lokal di ponsel."},
-      {label:"Tanpa Pencatatan Data",text:"Kami tidak pernah mengumpulkan, mengirim, atau menyimpan data biometrik, umpan kamera, atau riwayat penggunaan."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"Tanpa Pencatatan Data",text:"Kami tidak pernah mengumpulkan, mengirim, atau menyimpan data biometrik, umpan kamera, atau riwayat penggunaan."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 hi:{ name:"हिन्दी", flag:"in.png", dir:"ltr",
@@ -969,10 +990,10 @@ hi:{ name:"हिन्दी", flag:"in.png", dir:"ltr",
       {label:"💳 भुगतान योजना",text:"स्थिति (मुफ़्त / सक्रिय / समाप्त) दिखाता है। Premium (1-माह, 6-माह, 1-वर्ष, आजीवन) में अपग्रेड करें या खरीद बहाल करें।"},
       {label:"✉️ संपर्क (सहायता)",text:"बग, बिलिंग या सुझाव के लिए Mjosc.app@mjosc.co.kr पर ईमेल भेजता है।"},
       {label:"⭐ हमें रेट करें",text:"5-स्टार समीक्षा देने के लिए स्टोर खोलता है।"}]},
-    {n:"07",title:"गोपनीयता और सुरक्षा गारंटी",privacy:true,lead:"Myungjin Solution में, आपके परिवार की सुरक्षा हमारी सर्वोच्च प्राथमिकता है।",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"गोपनीयता और सुरक्षा गारंटी",privacy:true,lead:"Myungjin Solution में, आपके परिवार की सुरक्षा हमारी सर्वोच्च प्राथमिकता है।",items:[
       {label:"100% डिवाइस पर प्रोसेसिंग",text:"सभी चेहरा-पहचान एल्गोरिदम फ़ोन पर ही चलते हैं।"},
-      {label:"कोई डेटा लॉगिंग नहीं",text:"हम बायोमेट्रिक डेटा, कैमरा फ़ीड या उपयोग इतिहास न तो एकत्र करते हैं, न भेजते हैं, न संग्रहीत करते हैं।"}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"कोई डेटा लॉगिंग नहीं",text:"हम बायोमेट्रिक डेटा, कैमरा फ़ीड या उपयोग इतिहास न तो एकत्र करते हैं, न भेजते हैं, न संग्रहीत करते हैं।"}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 ne:{ name:"नेपाली", flag:"ne.png", dir:"ltr",
@@ -1010,9 +1031,10 @@ ne:{ name:"नेपाली", flag:"ne.png", dir:"ltr",
       {label:"💳 भुक्तानी योजना",text:"स्थिति देखाउँछ (नि:शुल्क / सक्रिय / म्याद सकिएको)। Premium मा अपग्रेड — १ महिना, ६ महिना, १ वर्ष, आजीवन।"},
       {label:"✉️ सम्पर्क (सहायता)",text:"बग, बिलिङ वा सुझावका लागि Mjosc.app@mjosc.co.kr मा इमेल खोल्छ।"},
       {label:"⭐ हामीलाई मूल्याङ्कन",text:"५-स्टार समीक्षा छोड्न स्टोर खोल्छ।"}]},
-    {n:"06",title:"गोपनीयता र सुरक्षा ग्यारेन्टी",privacy:true,lead:"Myungjin Solution मा, तपाईंको परिवारको सुरक्षा हाम्रो सर्वोच्च प्राथमिकता हो।",items:[
+    {n:"06",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"07",title:"गोपनीयता र सुरक्षा ग्यारेन्टी",privacy:true,lead:"Myungjin Solution मा, तपाईंको परिवारको सुरक्षा हाम्रो सर्वोच्च प्राथमिकता हो।",items:[
       {label:"१००% उपकरणमा प्रशोधन",text:"सबै अनुहार-पहिचान एल्गोरिदमहरू फोनमा स्थानीय रूपमा चल्छन्।"},
-      {label:"कुनै डेटा लगिङ छैन",text:"हामी कहिल्यै बायोमेट्रिक डेटा, क्यामेरा फिड वा प्रयोग इतिहास संकलन, प्रसारण वा भण्डारण गर्दैनौँ।"}]}
+      {label:"कुनै डेटा लगिङ छैन",text:"हामी कहिल्यै बायोमेट्रिक डेटा, क्यामेरा फिड वा प्रयोग इतिहास संकलन, प्रसारण वा भण्डारण गर्दैनौँ।"}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 uz:{ name:"O'zbek", flag:"uz.png", dir:"ltr",
@@ -1050,9 +1072,10 @@ uz:{ name:"O'zbek", flag:"uz.png", dir:"ltr",
       {label:"💳 To'lov rejasi",text:"Holat ko'rsatiladi (Bepul / Faol / Muddati o'tgan). Premium ga yangilang — 1 oy, 6 oy, 1 yil, umrbod."},
       {label:"✉️ Murojaat (Yordam)",text:"Xatolar, hisob-kitob yoki takliflar uchun Mjosc.app@mjosc.co.kr ga xat ochadi."},
       {label:"⭐ Bizni baholang",text:"5 yulduz sharh qoldirish uchun do'konni ochadi."}]},
-    {n:"06",title:"Maxfiylik va xavfsizlik kafolati",privacy:true,lead:"Myungjin Solution da, oilangizning xavfsizligi bizning eng yuqori ustuvorligimizdir.",items:[
+    {n:"06",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"07",title:"Maxfiylik va xavfsizlik kafolati",privacy:true,lead:"Myungjin Solution da, oilangizning xavfsizligi bizning eng yuqori ustuvorligimizdir.",items:[
       {label:"100% qurilmada qayta ishlash",text:"Barcha yuz aniqlash algoritmlari telefonning o'zida mahalliy ravishda ishlaydi."},
-      {label:"Ma'lumotlarni qayd etmaslik",text:"Biz hech qachon biometrik ma'lumotlar, kamera oqimlari yoki foydalanish tarixini to'plamaymiz, uzatmaymiz yoki saqlamaymiz."}]}
+      {label:"Ma'lumotlarni qayd etmaslik",text:"Biz hech qachon biometrik ma'lumotlar, kamera oqimlari yoki foydalanish tarixini to'plamaymiz, uzatmaymiz yoki saqlamaymiz."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 mn:{ name:"Монгол", flag:"mn.png", dir:"ltr",
@@ -1090,9 +1113,10 @@ mn:{ name:"Монгол", flag:"mn.png", dir:"ltr",
       {label:"💳 Төлбөрийн төлөвлөгөө",text:"Статусыг харуулдаг (Үнэгүй / Идэвхтэй / Хугацаа дууссан). Premium-д шинэчлэгдэнэ — 1 сар, 6 сар, 1 жил, мөнхийн."},
       {label:"✉️ Холбоо барих (Дэмжлэг)",text:"Алдаа, тооцоо эсвэл санал хүсэлтийн тулд Mjosc.app@mjosc.co.kr рүү имэйл нээдэг."},
       {label:"⭐ Биднийг үнэлэх",text:"5 одтой үнэлгээ үлдээхийн тулд дэлгүүрийг нээдэг."}]},
-    {n:"06",title:"Нууцлал ба аюулгүй байдлын баталгаа",privacy:true,lead:"Myungjin Solution-д таны гэр бүлийн аюулгүй байдал бидний хамгийн дээд тэргүүлэх чиглэл юм.",items:[
+    {n:"06",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"07",title:"Нууцлал ба аюулгүй байдлын баталгаа",privacy:true,lead:"Myungjin Solution-д таны гэр бүлийн аюулгүй байдал бидний хамгийн дээд тэргүүлэх чиглэл юм.",items:[
       {label:"100% төхөөрөмж дээрх боловсруулалт",text:"Бүх нүүр илрүүлэлтийн алгоритм нь утасан дээр локалаар ажилладаг."},
-      {label:"Өгөгдөл бүртгэл байхгүй",text:"Бид биометрийн өгөгдөл, камерын дамжуулалт эсвэл хэрэглээний түүхийг хэзээ ч цуглуулдаггүй, дамжуулдаггүй, хадгалдаггүй."}]}
+      {label:"Өгөгдөл бүртгэл байхгүй",text:"Бид биометрийн өгөгдөл, камерын дамжуулалт эсвэл хэрэглээний түүхийг хэзээ ч цуглуулдаггүй, дамжуулдаггүй, хадгалдаггүй."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]},
 
 si:{ name:"සිංහල", flag:"lk.png", dir:"ltr",
@@ -1127,10 +1151,10 @@ si:{ name:"සිංහල", flag:"lk.png", dir:"ltr",
       {label:"💳 ගෙවීම් සැලැස්ම",text:"තත්ත්වය (නොමිලේ / ක්‍රියාත්මක / කල් ඉකුත්) පෙන්වයි. Premium (මාස 1, මාස 6, වසර 1, ජීවිත කාලය) වෙත උත්ශ්‍රේණි කරන්න හෝ මිලදී ගැනීම් යළි ලබාගන්න."},
       {label:"✉️ සම්බන්ධ වන්න (සහාය)",text:"දෝෂ, බිල්පත් හෝ යෝජනා සඳහා Mjosc.app@mjosc.co.kr වෙත ඊමේල් යවයි."},
       {label:"⭐ අපව ශ්‍රේණිගත කරන්න",text:"තරු 5 සමාලෝචනයක් තැබීමට Store එක විවෘත කරයි."}]},
-    {n:"07",title:"පෞද්ගලිකත්වය සහ ආරක්ෂාව සහතිකය",privacy:true,lead:"Myungjin Solution හිදී, ඔබේ පවුලේ ආරක්ෂාව අපගේ ඉහළම ප්‍රමුඛතාවයයි.",items:[
+    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care's background monitoring or completely remove the app.",items:[{label:"1. Stop Background Service",text:"Follow these steps to stop monitoring without uninstalling the app.",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red 'Stop Protection' button at the bottom of the dashboard to deactivate background monitoring."}]},{label:"2. Uninstall the App",text:"Two steps required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner) → press 'Release Uninstall Block' (3rd button) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on Home Screen or App Drawer → select 'Uninstall' → confirm your choice."}]}]},
+    {n:"08",title:"පෞද්ගලිකත්වය සහ ආරක්ෂාව සහතිකය",privacy:true,lead:"Myungjin Solution හිදී, ඔබේ පවුලේ ආරක්ෂාව අපගේ ඉහළම ප්‍රමුඛතාවයයි.",items:[
       {label:"100% උපකරණය තුළම සැකසීම",text:"සියලුම මුහුණු හඳුනාගැනීමේ ඇල්ගොරිතම දුරකථනය තුළම ක්‍රියාත්මක වේ."},
-      {label:"දත්ත සටහන් කිරීමක් නැත",text:"ජෛවමිතික දත්ත, කැමරා දර්ශන හෝ භාවිත ඉතිහාසය එකතු, යැවීම හෝ ගබඩා නොකරයි."}]},
-    {n:"07",title:"Stop Service & Uninstall",lead:"How to stop Eye Care\'s background monitoring or completely remove the app from your device.",items:[{label:"1. Stop Background Service",text:"Follow these steps to deactivate monitoring without uninstalling:",sub:[{label:"Open app",text:"Tap the Eye Care icon on your home screen to bring the app to the foreground."},{label:"Enter PIN",text:"Enter the 4-digit PIN you created during the initial setup."},{label:"Stop service",text:"Tap the red \'Stop Protection\' button at the bottom of the dashboard to deactivate the service."}]},{label:"2. Uninstall the App",text:"Two steps are required — first release the uninstall block, then remove the app.",sub:[{label:"Step 1 — Release block",text:"Open Eye Care → Settings (top-right corner of dashboard) → press \'Release Uninstall Block\' (3rd button in the list) → enter your PIN to authorize."},{label:"Step 2 — Remove app",text:"Long-press the Eye Care icon on your Home Screen or App Drawer → select \'Uninstall\' → confirm your choice."}]}]}
+      {label:"දත්ත සටහන් කිරීමක් නැත",text:"ජෛවමිතික දත්ත, කැමරා දර්ශන හෝ භාවිත ඉතිහාසය එකතු, යැවීම හෝ ගබඩා නොකරයි."}],policyUrl:"https://mjsolution.app/privacy-policy.html"}
   ]}
 }
 
@@ -1270,48 +1294,54 @@ function goOverview(){
                          + '&plat=' + encodeURIComponent(currentPlat);
 }
 
-/* ===== hero character gif cycle ===════════════════════════════════════
+/* ===== hero character gif cycle =====
    Sequence (loops forever):
-     [play 7.32s] → [hold visible 15s] → [fade out 5s] → [pause 5s] → repeat
-════════════════════════════════════════════════════════════════════════ */
+     [play 2×7.32s] → [glitch .65s] → [gone] → [restart]
+================================================================= */
 (function(){
-    var GIF_SRC     = '../images/Cute_Boy_Winks_and_Thumbs_Up_1.gif';
-    var PLAY_MS     = 7320;   // one full GIF cycle
-    var HOLD_MS     = 0;      // no extra hold — straight to fade
-    var FADEOUT_MS  = 4000;   // fade to invisible
-    var PAUSE_MS    = 4000;   // stay invisible before next play
-    var PLAYS       = 2;      // play this many times before fading
+    var GIF_SRC   = '../images/Cute_Boy_Winks_and_Thumbs_Up_1.gif';
+    var PLAY_MS   = 7320;   // one full GIF cycle
+    var PLAYS     = 2;      // play this many times before glitch
+    var GLITCH_MS = 650;    // glitch animation duration (matches CSS)
+    var GAP_MS    = 250;    // brief gap after glitch before restart
 
     var img = document.getElementById('heroChar');
     if(!img) return;
 
     function cycle(){
-        // ① Force GIF to restart from frame 1
+        // Reset to clean state
+        img.classList.remove('hero-char-glitch');
         img.style.transition = 'none';
+        img.style.animation  = 'none';
+        img.style.opacity    = '1';
         img.src = '';
+
         setTimeout(function(){
             img.src = GIF_SRC + '?t=' + Date.now();
-            // Fade in quickly on first show (already visible on replays)
-            img.style.opacity = '1';
 
-            // ② After play + hold, begin fade-out
+            // After PLAYS full cycles, trigger glitch then vanish
             setTimeout(function(){
-                img.style.transition = 'opacity ' + (FADEOUT_MS/1000) + 's ease';
-                img.style.opacity = '0';
+                img.style.transition = 'none';
+                img.classList.add('hero-char-glitch');
 
-                // ③ After fade completes, wait pause then restart
                 setTimeout(function(){
-                    cycle();
-                }, FADEOUT_MS + PAUSE_MS);
+                    // Glitch done — instantly gone
+                    img.classList.remove('hero-char-glitch');
+                    img.style.opacity = '0';
+                    img.src = '';
 
-            }, PLAY_MS * PLAYS + HOLD_MS);
+                    // Brief pause then restart
+                    setTimeout(cycle, GAP_MS);
+                }, GLITCH_MS);
 
+            }, PLAY_MS * PLAYS);
         }, 60);
     }
 
-    // Start after short page-load delay
+    // Kick off after page load
     setTimeout(cycle, 400);
 })();
+
 
 </script>
 
