@@ -357,22 +357,22 @@
         flex:1; padding-bottom:56px; min-width:0;
     }
     .hero-char{
-        flex:none; width:155px; align-self:stretch;
+        flex:none; width:200px; align-self:stretch;
         display:flex; align-items:flex-end; justify-content:center;
         overflow:hidden; position:relative;
     }
     .hero-char img{
-        width:155px; height:auto; display:block;
+        width:200px; height:auto; display:block;
         object-fit:contain; object-position:bottom center;
     }
     @media(max-width:560px){
-        .hero-char{ width:110px; }
-        .hero-char img{ width:110px; }
+        .hero-char{ width:145px; }
+        .hero-char img{ width:145px; }
         .hero-content{ padding-bottom:34px; }
     }
     @media(max-width:400px){
-        .hero-char{ width:90px; }
-        .hero-char img{ width:90px; }
+        .hero-char{ width:115px; }
+        .hero-char img{ width:115px; }
     }
 
 </style>
@@ -1255,40 +1255,46 @@ function goOverview(){
                          + '&plat=' + encodeURIComponent(currentPlat);
 }
 
-/* ===== hero character gif cycle ===== */
+/* ===== hero character gif cycle ===════════════════════════════════════
+   Sequence (loops forever):
+     [play 7.32s] → [hold visible 15s] → [fade out 5s] → [pause 5s] → repeat
+════════════════════════════════════════════════════════════════════════ */
 (function(){
-    var GIF_SRC      = '../images/Cute_Boy_Winks_and_Thumbs_Up_1.gif';
-    var GIF_PLAY_MS  = 7320;
-    var PAUSE_MS     = 10000;
+    var GIF_SRC     = '../images/Cute_Boy_Winks_and_Thumbs_Up_1.gif';
+    var PLAY_MS     = 7320;   // one full GIF cycle
+    var HOLD_MS     = 15000;  // stay visible after play ends
+    var FADEOUT_MS  = 5000;   // fade to invisible
+    var PAUSE_MS    = 5000;   // stay invisible before next play
 
     var img = document.getElementById('heroChar');
     if(!img) return;
 
-    var playing = false;
-
-    function play(){
-        if(playing) return;
-        playing = true;
-        // Force reload from start by cache-busting the URL
+    function cycle(){
+        // ① Force GIF to restart from frame 1
+        img.style.transition = 'none';
         img.src = '';
         setTimeout(function(){
             img.src = GIF_SRC + '?t=' + Date.now();
+            // Fade in quickly on first show (already visible on replays)
             img.style.opacity = '1';
-            // After one full cycle, pause
+
+            // ② After play + hold, begin fade-out
             setTimeout(function(){
-                img.style.transition = 'opacity 0.4s ease';
+                img.style.transition = 'opacity ' + (FADEOUT_MS/1000) + 's ease';
                 img.style.opacity = '0';
-                playing = false;
-                // After pause, replay
+
+                // ③ After fade completes, wait pause then restart
                 setTimeout(function(){
-                    play();
-                }, PAUSE_MS);
-            }, GIF_PLAY_MS);
-        }, 50);
+                    cycle();
+                }, FADEOUT_MS + PAUSE_MS);
+
+            }, PLAY_MS + HOLD_MS);
+
+        }, 60);
     }
 
-    // Start on load (small delay so page renders first)
-    setTimeout(play, 300);
+    // Start after short page-load delay
+    setTimeout(cycle, 400);
 })();
 
 </script>
