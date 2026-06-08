@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eye Care — User Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+        --ink:#2b1840;
+        --plum:#5A2D81;
+        --plum-deep:#3d1c5c;
+        --lilac:#9C8EFF;
+        --lilac-soft:#F3E5FF;
+        --paper:#FBF8FF;
+        --rose:#FF2A70;
+        --line:#E1D3FF;
+        --muted:#6b5d7d;
+        --card:#ffffff;
+        --android:#3DDC84;
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+        margin:0;
+        font-family:'Outfit',sans-serif;
+        color:var(--ink);
+        background:
+            radial-gradient(1200px 600px at 100% -10%, rgba(156,142,255,.18), transparent 60%),
+            radial-gradient(900px 500px at -10% 20%, rgba(255,42,112,.07), transparent 55%),
+            var(--paper);
+        line-height:1.7;
+        -webkit-font-smoothing:antialiased;
+        min-height:100vh;
+    }
+
+    /* ============ LANDING ============ */
+    #landing{
+        max-width:760px;
+        margin:0 auto;
+        padding:48px 24px 80px;
+        animation:fade .5s ease;
+    }
+    .hero{
+        position:relative;
+        overflow:hidden;
+        border-radius:28px;
+        padding:56px 48px;
+        color:#fff;
+        background:
+            radial-gradient(600px 300px at 85% 10%, rgba(255,255,255,.16), transparent 60%),
+            linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 55%, #2a1147 100%);
+        box-shadow:0 30px 60px -30px rgba(58,28,92,.55);
+        margin-bottom:36px;
+    }
+    .hero::after{
+        content:"";
+        position:absolute; right:-80px; top:-80px;
+        width:340px; height:340px; border-radius:50%;
+        border:1px solid rgba(255,255,255,.18);
+        box-shadow:0 0 0 28px rgba(255,255,255,.05), 0 0 0 70px rgba(255,255,255,.03);
+    }
+    .eyebrow{
+        font-size:13px; letter-spacing:.28em; text-transform:uppercase;
+        color:var(--lilac); font-weight:600; margin-bottom:16px;
+    }
+    .hero h1{
+        font-family:'Fraunces',serif; font-weight:900;
+        font-size:clamp(40px,8vw,64px); line-height:1; margin:0 0 18px; letter-spacing:-.02em;
+    }
+    .hero p{ max-width:520px; font-size:16.5px; color:rgba(255,255,255,.85); margin:0; }
+    .hero .brand{ font-weight:600; color:#fff; }
+
+    .panel{
+        background:var(--card);
+        border:1px solid var(--line);
+        border-radius:22px;
+        padding:30px 28px;
+        box-shadow:0 18px 50px -34px rgba(58,28,92,.5);
+    }
+    .field{ margin-bottom:26px; }
+    .field:last-child{ margin-bottom:0; }
+    .label{
+        font-family:'Fraunces',serif; font-weight:600; font-size:14px;
+        text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
+        margin-bottom:12px; display:flex; align-items:center; gap:8px;
+    }
+    .label .dot{ width:7px; height:7px; border-radius:50%; background:var(--rose); }
+
+    /* ===== round flag ===== */
+    .flag{
+        width:26px; height:26px; border-radius:50%; flex:none;
+        overflow:hidden; display:grid; place-items:center;
+        background:#efe8ff; box-shadow:inset 0 0 0 1px rgba(43,24,64,.10);
+    }
+    .flag span{ font-size:30px; line-height:1; }
+    .flag img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:50%; }
+
+    /* ===== custom language dropdown ===== */
+    .lang-dd{ position:relative; }
+    .lang-trigger{
+        width:100%; display:flex; align-items:center; gap:12px;
+        font-family:'Outfit',sans-serif; font-size:16px; font-weight:500;
+        color:var(--ink); background:var(--paper);
+        border:1.5px solid var(--line); border-radius:14px;
+        padding:11px 16px; cursor:pointer; transition:border-color .2s;
+        text-align:left;
+    }
+    .lang-trigger:hover{ border-color:var(--lilac); }
+    .lang-trigger .lang-name{ flex:1; }
+    .lang-trigger .chev{
+        width:20px; height:20px; flex:none; transition:transform .2s ease;
+        color:var(--plum);
+    }
+    .lang-dd.open .lang-trigger{ border-color:var(--lilac); }
+    .lang-dd.open .chev{ transform:rotate(180deg); }
+    .lang-panel{
+        position:absolute; top:calc(100% + 8px); left:0; right:0; z-index:30;
+        background:var(--card); border:1.5px solid var(--line); border-radius:14px;
+        box-shadow:0 22px 50px -22px rgba(58,28,92,.45);
+        max-height:300px; overflow-y:auto; padding:6px;
+        display:none;
+    }
+    .lang-dd.open .lang-panel{ display:block; animation:fade .18s ease; }
+    .lang-opt{
+        display:flex; align-items:center; gap:12px;
+        padding:10px 12px; border-radius:10px; cursor:pointer;
+        font-size:15.5px; font-weight:500; color:var(--ink); transition:background .15s;
+    }
+    .lang-opt:hover{ background:var(--lilac-soft); }
+    .lang-opt.sel{ background:var(--lilac-soft); color:var(--plum); font-weight:600; }
+    .lang-opt .tick{ margin-left:auto; color:var(--plum); width:16px; height:16px; opacity:0; flex:none; }
+    .lang-opt.sel .tick{ opacity:1; }
+
+    /* platform buttons */
+    .platforms{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .plat{
+        display:flex; flex-direction:column; align-items:center; gap:10px;
+        padding:22px 14px; border:1.5px solid var(--line); border-radius:16px;
+        background:var(--paper); cursor:pointer; transition:all .2s ease;
+        position:relative;
+    }
+    .plat svg{ width:38px; height:38px; }
+    .plat .name{ font-weight:600; font-size:15px; color:var(--ink); }
+    .plat .tag{ font-size:11px; color:var(--muted); font-weight:500; }
+    .plat:hover{ transform:translateY(-2px); }
+    .plat.active{
+        border-color:var(--plum); background:#fff;
+        box-shadow:0 0 0 4px rgba(156,142,255,.18);
+    }
+    .plat.active .name{ color:var(--plum); }
+    .plat .check{
+        position:absolute; top:10px; right:10px; width:18px; height:18px;
+        border-radius:50%; background:var(--plum); display:none;
+        align-items:center; justify-content:center;
+    }
+    .plat.active .check{ display:flex; }
+    .plat .check svg{ width:11px; height:11px; }
+
+    .cta{
+        width:100%; margin-top:30px;
+        font-family:'Outfit',sans-serif; font-size:17px; font-weight:600;
+        color:#fff; border:none; cursor:pointer;
+        padding:17px; border-radius:14px;
+        background:linear-gradient(135deg,var(--plum),var(--plum-deep));
+        box-shadow:0 14px 30px -14px rgba(90,45,129,.7);
+        transition:transform .15s ease, box-shadow .2s ease;
+        letter-spacing:.01em;
+    }
+    .cta:hover{ transform:translateY(-2px); box-shadow:0 18px 36px -14px rgba(90,45,129,.8); }
+    .cta:active{ transform:translateY(0); }
+
+    /* ============ MANUAL ============ */
+    #manual{ display:none; }
+    #manual.show{ display:block; animation:fade .45s ease; }
+    .m-wrap{
+        max-width:1080px; margin:0 auto;
+        padding:24px 24px 80px;
+        display:grid; grid-template-columns:240px 1fr; gap:48px;
+    }
+    .m-bar{
+        grid-column:1 / -1;
+        display:flex; align-items:center; justify-content:space-between;
+        gap:16px; flex-wrap:wrap;
+        background:var(--card); border:1px solid var(--line);
+        border-radius:16px; padding:14px 20px; margin-bottom:8px;
+    }
+    .m-bar .titleline{ display:flex; align-items:center; gap:12px; }
+    .m-bar .badge{
+        display:inline-flex; align-items:center; gap:7px;
+        background:var(--lilac-soft); color:var(--plum);
+        padding:5px 12px; border-radius:999px; font-size:13px; font-weight:600;
+    }
+    .m-bar .badge svg{ width:15px; height:15px; }
+    .m-bar .badge .flag{ width:18px; height:18px; }
+    .m-bar .badge .flag span{ font-size:21px; }
+    .m-bar h3{
+        font-family:'Fraunces',serif; margin:0; font-size:18px; color:var(--plum);
+    }
+    .back{
+        font-family:'Outfit',sans-serif; font-size:14px; font-weight:600;
+        color:var(--plum); background:none; border:1.5px solid var(--line);
+        border-radius:10px; padding:9px 16px; cursor:pointer; transition:all .2s;
+        white-space:nowrap;
+    }
+    .back:hover{ background:var(--lilac-soft); border-color:var(--lilac); }
+
+    .toc{ position:sticky; top:24px; align-self:start; font-size:15px; }
+    .toc h2{
+        font-family:'Fraunces',serif; font-size:14px; text-transform:uppercase;
+        letter-spacing:.12em; color:var(--muted); margin:0 0 14px; font-weight:600;
+    }
+    .toc ol{ list-style:none; margin:0; padding:0; }
+    .toc a{
+        display:block; text-decoration:none; padding:9px 14px; border-radius:10px;
+        color:var(--muted); font-weight:500; transition:all .2s ease;
+        border-left:2px solid transparent; font-size:14.5px;
+    }
+    .toc a:hover{
+        background:var(--lilac-soft); color:var(--plum);
+        border-left-color:var(--lilac); transform:translateX(2px);
+    }
+
+    main{ min-width:0; }
+    section{ scroll-margin-top:24px; margin-bottom:50px; }
+    .sec-num{
+        display:inline-block; font-family:'Fraunces',serif; font-size:13px;
+        font-weight:700; color:var(--rose); letter-spacing:.1em; margin-bottom:6px;
+    }
+    section h2{
+        font-family:'Fraunces',serif; font-size:28px; font-weight:700;
+        color:var(--plum); margin:0 0 18px; letter-spacing:-.01em; line-height:1.18;
+    }
+    section .lead{ margin:0 0 18px; color:var(--ink); }
+    ul.clean{ list-style:none; margin:0; padding:0; }
+    ul.clean li{
+        position:relative; padding:14px 0 14px 28px; border-bottom:1px dashed var(--line);
+    }
+    ul.clean li:last-child{ border-bottom:none; }
+    ul.clean li::before{
+        content:""; position:absolute; left:0; top:21px; width:9px; height:9px;
+        border-radius:3px; background:var(--lilac); transform:rotate(45deg);
+    }
+    ul.clean strong{ color:var(--plum-deep); }
+    .callout.privacy{
+        background:linear-gradient(135deg,#2a1147,var(--plum-deep));
+        border-radius:18px; padding:24px 26px; color:#fff;
+    }
+    .callout.privacy ul.clean li{ border-color:rgba(255,255,255,.15); }
+    .callout.privacy ul.clean li::before{ background:var(--lilac); }
+    .callout.privacy strong{ color:var(--lilac); }
+
+    .soon{
+        text-align:center; padding:60px 24px; max-width:520px; margin:30px auto;
+        background:var(--card); border:1px dashed var(--line); border-radius:22px;
+    }
+    .soon .em{ font-size:46px; margin-bottom:14px; }
+    .soon h2{ font-family:'Fraunces',serif; color:var(--plum); margin:0 0 10px; }
+    .soon p{ color:var(--muted); margin:0; }
+
+    footer{
+        grid-column:1 / -1; text-align:center; margin-top:24px; padding-top:26px;
+        border-top:1px solid var(--line); color:var(--muted); font-size:14px;
+    }
+    footer .logo{ font-family:'Fraunces',serif; font-weight:700; color:var(--plum); font-size:18px; }
+
+    [dir="rtl"] .toc a{ border-left:none; border-right:2px solid transparent; }
+    [dir="rtl"] ul.clean li{ padding:14px 28px 14px 0; }
+    [dir="rtl"] ul.clean li::before{ left:auto; right:0; }
+
+    @keyframes fade{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
+
+    /* section header with right-side 1:1 square image */
+    .sec-head{ margin-bottom:18px; }
+    .sec-head.has-media{ display:flex; gap:18px; align-items:flex-start; }
+    .sec-head .sec-text{ flex:1; min-width:0; }
+    .sec-head .sec-text .sec-num{ margin-bottom:6px; }
+    .sec-head .sec-text h2{ margin:0 0 12px; }
+    .sec-head .sec-text .lead{ margin:0; }
+    .media{ position:relative; width:200px; aspect-ratio:1/1; flex-shrink:0; margin:0; border-radius:16px; overflow:hidden; box-shadow:0 12px 30px -20px rgba(58,28,92,.4); }
+    .media img{ width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; transition:transform .25s ease; }
+    .media img:hover{ transform:scale(1.04); }
+    /* lightbox / image zoom modal */
+    .lightbox{ position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(28,12,55,.88); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); cursor:zoom-out; }
+    .lightbox.show{ display:flex; animation:fade .22s ease; }
+    .lightbox img{ max-width:96%; max-height:88vh; border-radius:14px; box-shadow:0 30px 80px rgba(0,0,0,.55); object-fit:contain; cursor:default; display:block; }
+    .lb-close{ position:absolute; top:18px; right:18px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; border:none; font-size:26px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s, transform .2s; padding:0; font-family:'Outfit',sans-serif; }
+    .lb-close:hover{ background:rgba(255,255,255,.28); transform:scale(1.06); }
+    .media-placeholder{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; background:linear-gradient(135deg, var(--lilac-soft), #fff5fb); border:1.5px dashed var(--lilac); color:var(--plum); text-align:center; padding:14px; font-family:'Outfit',sans-serif; }
+    .media-placeholder .ph-icon{ font-size:30px; opacity:.85; line-height:1; }
+    .media-placeholder .ph-name{ font-family:'Fraunces',serif; font-weight:700; font-size:15px; letter-spacing:.02em; word-break:break-word; }
+    .media-placeholder .ph-size{ font-size:11.5px; color:var(--muted); font-weight:500; }
+    /* nested sub-list within main bullet */
+    ul.clean li ul.sub{ list-style:none; margin:10px 0 0; padding:0; }
+    ul.clean li ul.sub li{ padding:8px 0 8px 22px; border-bottom:none; font-size:14.7px; }
+    ul.clean li ul.sub li::before{ left:4px; top:15px; width:6px; height:6px; background:var(--rose); border-radius:2px; }
+    ul.clean li ul.sub strong{ color:var(--plum); font-weight:600; }
+
+    /* ===== mobile-first responsive ===== */
+    @media(max-width:820px){
+        .m-wrap{ grid-template-columns:1fr; gap:26px; padding:18px 18px 80px; }
+        .toc{ position:static; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; }
+        .hero{ padding:42px 26px; }
+        .panel{ padding:24px 20px; }
+        .media{ width:170px; }
+    }
+    @media(max-width:560px){
+        #landing{ padding:28px 18px 60px; }
+        .hero{ padding:34px 22px; border-radius:22px; }
+        .hero h1{ font-size:46px; }
+        .hero p{ font-size:15.5px; }
+        .panel{ padding:22px 18px; border-radius:18px; }
+        .sec-head.has-media{ gap:14px; }
+        .media{ width:128px; border-radius:14px; }
+        .media-placeholder{ padding:10px; gap:4px; }
+        .media-placeholder .ph-icon{ font-size:24px; }
+        .media-placeholder .ph-name{ font-size:12.5px; }
+        .media-placeholder .ph-size{ font-size:10.5px; }
+        section{ margin-bottom:42px; }
+        section h2{ font-size:23px; line-height:1.22; }
+        section .lead{ font-size:15px; }
+        ul.clean li{ padding:13px 0 13px 26px; font-size:15px; }
+        ul.clean li ul.sub li{ font-size:14px; padding:7px 0 7px 22px; }
+        .m-bar{ padding:12px 16px; gap:10px; }
+        .m-bar h3{ font-size:16px; }
+        .m-bar .badge{ font-size:12px; padding:4px 10px; }
+        .platforms{ gap:10px; }
+        .plat{ padding:18px 10px; }
+        .plat svg{ width:32px; height:32px; }
+        .plat .name{ font-size:14px; }
+        .cta{ padding:15px; font-size:16px; margin-top:24px; }
+        .lang-trigger{ padding:10px 14px; font-size:15px; }
+        .lang-opt{ padding:11px 12px; font-size:15px; }
+        .flag{ width:24px; height:24px; }
+        .flag span{ font-size:28px; }
+        .label{ font-size:13px; }
+    }
+    @media(max-width:400px){
+        .hero{ padding:30px 20px; }
+        .hero h1{ font-size:40px; }
+        .sec-head.has-media{ gap:12px; }
+        .media{ width:108px; }
+        .media-placeholder .ph-icon{ font-size:20px; }
+        .media-placeholder .ph-name{ font-size:11.5px; }
+        .media-placeholder .ph-size{ font-size:10px; }
+        section h2{ font-size:21px; }
+        ul.clean li{ padding:12px 0 12px 22px; font-size:14.5px; }
+    }
+</style>
+</head>
+<body>
+
+<div id="landing">
+    <div class="hero">
+        <div class="eyebrow">Official User Manual</div>
+        <h1>Eye Care</h1>
+        <p><span class="brand">Eye Care</span> is a smart vision-protection utility by Myungjin Solution. Using on-device face detection, it monitors the viewing distance between your child's eyes and the screen in real time — gently guiding your family toward healthier, more comfortable screen habits.</p>
+    </div>
+
+    <div class="panel">
+        <div class="field">
+            <div class="label"><span class="dot"></span> Select your language</div>
+            <div class="lang-dd" id="langDD">
+                <button type="button" class="lang-trigger" onclick="toggleDD(event)">
+                    <span class="flag"><img id="trigFlag" src="images/ic_flag_us.png" alt="" style="width:100%;height:100%;display:block;border-radius:50%;"></span>
+                    <span class="lang-name" id="trigName">English</span>
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="lang-panel" id="langPanel"></div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="label"><span class="dot"></span> Choose your device</div>
+            <div class="platforms">
+                <div class="plat active" data-plat="android" onclick="pickPlat('android')">
+                    <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+                    <svg viewBox="0 0 48 48">
+                        <line x1="16" y1="7" x2="19.5" y2="13" stroke="var(--android)" stroke-width="2.4" stroke-linecap="round"/>
+                        <line x1="32" y1="7" x2="28.5" y2="13" stroke="var(--android)" stroke-width="2.4" stroke-linecap="round"/>
+                        <path d="M11 23a13 13 0 0 1 26 0z" fill="var(--android)"/>
+                        <circle cx="19" cy="17.5" r="1.7" fill="#fff"/>
+                        <circle cx="29" cy="17.5" r="1.7" fill="#fff"/>
+                        <rect x="11" y="25" width="26" height="13" rx="3" fill="var(--android)"/>
+                        <rect x="15" y="38" width="4.5" height="7" rx="2.2" fill="var(--android)"/>
+                        <rect x="28.5" y="38" width="4.5" height="7" rx="2.2" fill="var(--android)"/>
+                    </svg>
+                    <span class="name">Android</span>
+                    <span class="tag">Google Play</span>
+                </div>
+                <div class="plat" data-plat="apple" onclick="pickPlat('apple')">
+                    <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+                    <svg viewBox="0 0 48 48">
+                        <path d="M28.5 8.5c.2 2.3-1.6 4.4-3.6 4.6-.3-2.1 1.6-4.4 3.6-4.6z" fill="#555"/>
+                        <path d="M34 31.5c-.9 2.1-1.4 3-2.5 4.9-1.6 2.5-3.8 5.6-6.6 5.6-2.4 0-3.1-1.6-6.4-1.6-3.3 0-4 1.6-6.5 1.6-2.8 0-4.9-2.8-6.5-5.3-4.5-7-5-15.2-2.2-19.6 2-3.1 5.1-4.9 8-4.9 3 0 4.8 1.6 7.3 1.6 2.4 0 3.8-1.6 7.3-1.6 2.6 0 5.3 1.4 7.3 3.9-6.4 3.5-5.4 12.6.8 14.9z" fill="#555"/>
+                    </svg>
+                    <span class="name">iOS / Apple</span>
+                    <span class="tag">App Store</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="cta" onclick="goOverview()">Get Manual</button>
+    </div>
+</div>
+
+<script>
+const DATA = {
+en:{ name:"English", flag:"ic_flag_us.png", dir:"ltr",
+  ui:{ contents:"Contents", change:"← Change", reading:"Android Manual", soonT:"iOS Manual Coming Soon", soonP:"The Apple / iOS version of this guide is being prepared. For now, please use the Android manual.", overviewTitle:"Eye Care User Manual", overviewSub:"Everything you need to set up and run Eye Care, step by step.", quickNav:"Browse by section", guideEyebrow:"Getting Started", guideHeading:"Using Eye Care — from A to Z", guideIntro:"[Replace this with your uploaded intro paragraph.] Eye Care walks you through everything from your very first launch to advanced settings. Follow the steps below in order, or tap any section above to jump straight to it." },
+  secs:[
+    {n:"01",image:"welcome.gif",title:"Welcome & First Launch",lead:"When you open the app for the first time, you'll see the Welcome Screen.",items:[
+      {label:"Select Language",text:"Choose from 18 global languages so the app, settings and warnings are clear for you and your child."},
+      {label:"Get Started",text:"Tap “GET STARTED” to continue to the permissions setup."}]},
+    {n:"02",image:"permissions.gif",title:"App Permissions — What & Why",lead:"To protect your child's eyes, Eye Care needs a few permissions. All data processing happens locally on your device.",items:[
+      {label:"Camera",text:"The core of the app. Used by Google ML Kit to measure the real-time distance between face and screen. No photos or videos are ever saved or sent."},
+      {label:"Microphone",text:"Lets you record your own voice (Custom Voice) as a warning. Active only while recording."},
+      {label:"Notifications",text:"Sends eye-health alerts, daily summaries, and background-service status updates."},
+      {label:"Display Over Other Apps",text:"Crucial. Lets Eye Care show the warning screen over apps like YouTube or games when the phone is held too close."}]},
+    {n:"03",image:"setup.gif",title:"Initial Setup — Why We Ask",lead:"After granting permissions, you'll fill out the Initial Setup page. Every detail is for personalization and security.",items:[
+      {label:"Child's Name",text:"Personalizes warnings — instead of a generic alert, the app says “Wait a second, [Name]!”."},
+      {label:"Parent Password (4 digits)",text:"Locks the settings so children can't disable protection, change the rules, or uninstall the app."},
+      {label:"Security Question",text:"The only way to recover access if you forget your 4-digit password."}]},
+    {n:"04",title:"Main Dashboard & Core Features",lead:"Once setup is complete, you will reach the Main Dashboard. Eye Care features a simple, user-friendly interface. Here is a top-to-bottom guide to navigating your screen and customizing the app:",items:[
+      {label:"Settings Button (Top Right Corner)",text:"Tap the gear icon at the very top right to access advanced app settings, language preferences, uninstallation block, and your payment plan."},
+      {label:"Target Distance Slider (Top Section)",text:"Located just below the top header, this slider (Steps 1–4) sets how strict the distance rule is, allowing you to easily adjust it based on your child's arm length."},
+      {label:"Camera Test Mode (Below Slider)",text:"Tap the “CAMERA TEST” button to try your current settings. It activates the camera temporarily so you can see exactly how the distance detection and alerts trigger in real life."},
+      {label:"Dynamic Avatar (Center Screen)",text:"The 3D character in the middle of the screen changes dynamically based on the distance. It serves as a quick, fun visual cue of whether the current viewing distance is safe."},
+      {label:"Customization Cards (Lower Section)",text:"Scrolling down, you will find settings to personalize the protection alerts for your child:",sub:[
+        {label:"Voice Notifications",text:"Choose the Default Voice, or tap the microphone icon to record your own Custom Voice."},
+        {label:"Warning Delay",text:"Set a specific time delay (e.g., 10 seconds). This ensures that brief, accidental movements don't spam your child with alerts."},
+        {label:"Warning Screen",text:"Choose to use the animated default screen, or upload a Custom Photo from your phone's gallery to display when the device gets too close."}
+      ]},
+      {label:"Protection Toggle (Bottom Center)",text:"The large main button at the bottom of the screen lets you START or STOP the background protection service in one quick tap."},
+      {label:"Kids Zone / Safe Browser",text:"A special built-in feature where you can add favorite URLs (like YouTube). When websites are opened through the Kids Zone, the app forces fullscreen viewing and strictly monitors the distance without distractions."}
+    ]},
+    {n:"05",image:"settings.jpg",title:"Settings Menu Guide",lead:"Tap the Settings Icon (⚙️) at the top right of the dashboard.",items:[
+      {label:"🌐 Language",text:"Change the display language anytime — 18 languages supported."},
+      {label:"🔐 Reset Parent Password",text:"Change your 4-digit PIN. Requires your current password or correct security answer."},
+      {label:"🛡️ Enable / Disable Uninstall Block",text:"Prevents your child from deleting the app. The parent password is required to uninstall."},
+      {label:"💳 Payment Plan",text:"Shows status (Free / Active / Expired). Upgrade to Premium — 1-Month, 6-Month, 1-Year, Lifetime — or restore purchases."},
+      {label:"✉️ Contact (Support)",text:"Opens your email app with a message to Mjosc.app@mjosc.co.kr for bugs, billing, or suggestions."},
+      {label:"⭐ Rate Us",text:"Opens the store so you can leave a 5-star review."}]},
+    {n:"06",title:"Privacy & Security Guarantee",privacy:true,lead:"At Myungjin Solution, your family's safety is our highest priority.",items:[
+      {label:"100% On-Device Processing",text:"All face-detection algorithms run locally on the phone."},
+      {label:"No Data Logging",text:"We never collect, transmit, or store biometric data, camera feeds, or usage history."}]}
+  ]},
+
+ko:{ name:"한국어", flag:"ic_flag_korea.png", dir:"ltr",
+  ui:{ contents:"목차", change:"← 변경", reading:"Android 설명서", soonT:"iOS 설명서 준비 중", soonP:"Apple / iOS 버전 설명서를 준비하고 있습니다. 지금은 Android 설명서를 이용해 주세요.", overviewTitle:"Eye Care 사용 설명서", overviewSub:"Eye Care 설정부터 실행까지, 단계별로 안내합니다.", quickNav:"섹션 둘러보기", guideEyebrow:"시작하기", guideHeading:"Eye Care 사용법 — 처음부터 끝까지", guideIntro:"[여기에 업로드하신 소개 문단을 넣어 주세요.] Eye Care는 첫 실행부터 고급 설정까지 모든 과정을 안내합니다. 아래 단계를 순서대로 따라가거나, 위의 섹션을 눌러 바로 이동하세요." },
+  secs:[
+    {n:"01",title:"환영 및 첫 실행",lead:"앱을 처음 실행하면 환영 화면이 나타납니다.",items:[
+      {label:"언어 선택",text:"전 세계 18개 언어 중에서 선택할 수 있어 앱, 설정, 경고가 부모와 자녀 모두에게 명확합니다."},
+      {label:"시작하기",text:"“시작하기”를 눌러 권한 설정으로 이동합니다."}]},
+    {n:"02",title:"앱 권한 — 무엇을, 왜",lead:"자녀의 눈을 보호하기 위해 Eye Care에는 몇 가지 권한이 필요합니다. 모든 데이터 처리는 기기 내에서 이루어집니다.",items:[
+      {label:"카메라",text:"앱의 핵심입니다. Google ML Kit이 얼굴과 화면 사이의 거리를 실시간으로 측정합니다. 사진이나 영상은 저장하거나 전송하지 않습니다."},
+      {label:"마이크",text:"부모의 목소리(맞춤 음성)를 경고로 녹음할 수 있습니다. 녹음할 때만 사용됩니다."},
+      {label:"알림",text:"눈 건강 알림, 일일 요약, 백그라운드 서비스 상태를 전송합니다."},
+      {label:"다른 앱 위에 표시",text:"중요합니다. 자녀가 휴대폰을 너무 가까이 들 때 YouTube나 게임 위에 경고 화면을 표시합니다."}]},
+    {n:"03",title:"초기 설정 — 정보를 요청하는 이유",lead:"권한을 허용한 후 초기 설정 페이지를 작성합니다. 모든 항목은 개인화와 보안을 위한 것입니다.",items:[
+      {label:"자녀 이름",text:"경고 화면을 개인화합니다 — “잠깐만, [이름]!”처럼 표시됩니다."},
+      {label:"부모 비밀번호 (4자리)",text:"설정을 잠가 자녀가 보호 기능을 끄거나 규칙을 변경하거나 앱을 삭제하지 못하게 합니다."},
+      {label:"보안 질문",text:"4자리 비밀번호를 잊었을 때 접근 권한을 복구할 수 있는 유일한 방법입니다."}]},
+    {n:"04",title:"대시보드 사용하기",lead:"설정이 끝나면 메인 대시보드에 들어갑니다.",items:[
+      {label:"동적 아바타",text:"거리에 따라 캐릭터가 바뀌어 현재 거리가 안전한지 시각적으로 알려줍니다."},
+      {label:"목표 거리 슬라이더",text:"자녀의 팔 길이에 맞춰 1~4단계로 규칙의 엄격함을 설정합니다."},
+      {label:"보호 켜기/끄기",text:"하단의 버튼으로 백그라운드 보호를 한 번에 시작/중지합니다."}]},
+    {n:"05",title:"핵심 기능 및 맞춤 설정",items:[
+      {label:"경고 지연",text:"지연 시간(예: 10초)을 설정해 잠깐의 움직임으로 알림이 과도하게 울리지 않게 합니다."},
+      {label:"카메라 테스트 모드",text:"“카메라 테스트”를 눌러 설정을 시험하고 경고가 어떻게 작동하는지 확인합니다."},
+      {label:"음성 알림",text:"기본 음성 또는 직접 녹음한 맞춤 음성을 선택합니다."},
+      {label:"경고 화면",text:"기본 애니메이션 화면을 사용하거나 갤러리에서 맞춤 사진을 업로드합니다."},
+      {label:"키즈 존 (안전 브라우저)",text:"즐겨찾는 URL(예: YouTube)을 추가합니다. 여기서 열면 전체 화면으로 재생되며 거리를 감시합니다."}]},
+    {n:"06",title:"설정 메뉴 안내",lead:"대시보드 오른쪽 상단의 설정 아이콘(⚙️)을 누르세요.",items:[
+      {label:"🌐 언어",text:"언제든지 표시 언어를 변경할 수 있습니다 — 18개 언어 지원."},
+      {label:"🔐 부모 비밀번호 재설정",text:"4자리 PIN을 변경합니다. 현재 비밀번호 또는 올바른 보안 답변이 필요합니다."},
+      {label:"🛡️ 삭제 차단 켜기/끄기",text:"자녀가 앱을 삭제하지 못하게 합니다. 삭제하려면 부모 비밀번호가 필요합니다."},
+      {label:"💳 결제 플랜",text:"상태(무료/활성/만료)를 표시합니다. 프리미엄(1개월, 6개월, 1년, 평생)으로 업그레이드하거나 구매를 복원합니다."},
+      {label:"✉️ 문의 (지원)",text:"버그, 결제, 제안을 위해 Mjosc.app@mjosc.co.kr로 메일을 보냅니다."},
+      {label:"⭐ 평가하기",text:"스토어를 열어 별 5개 리뷰를 남길 수 있습니다."}]},
+    {n:"07",title:"개인정보 및 보안 보장",privacy:true,lead:"Myungjin Solution은 가족의 안전을 최우선으로 합니다.",items:[
+      {label:"100% 기기 내 처리",text:"모든 얼굴 인식 알고리즘이 휴대폰에서 로컬로 실행됩니다."},
+      {label:"데이터 기록 없음",text:"생체 데이터, 카메라 영상, 사용 기록을 수집·전송·저장하지 않습니다."}]}
+  ]},
+
+zh:{ name:"简体中文", flag:"ic_flag_china.png", dir:"ltr",
+  ui:{ contents:"目录", change:"← 更改", reading:"Android 手册", soonT:"iOS 手册即将推出", soonP:"本指南的 Apple / iOS 版本正在准备中。目前请使用 Android 手册。" },
+  secs:[
+    {n:"01",title:"欢迎与首次启动",lead:"首次打开应用时，您将看到欢迎界面。",items:[
+      {label:"选择语言",text:"可从 18 种全球语言中选择，让应用、设置和警告对您和孩子都清晰易懂。"},
+      {label:"开始使用",text:"点按“开始使用”进入权限设置。"}]},
+    {n:"02",title:"应用权限——是什么、为什么",lead:"为保护孩子的眼睛，Eye Care 需要一些权限。所有数据处理都在本机进行。",items:[
+      {label:"相机",text:"应用的核心。Google ML Kit 用它实时测量面部与屏幕的距离。绝不保存或上传任何照片或视频。"},
+      {label:"麦克风",text:"允许家长录制自己的声音（自定义语音）作为警告。仅在录制时使用。"},
+      {label:"通知",text:"发送护眼提醒、每日摘要和后台服务状态。"},
+      {label:"显示在其他应用上层",text:"非常重要。当孩子把手机拿得太近时，可在 YouTube 或游戏上层显示警告界面。"}]},
+    {n:"03",title:"初始设置——我们为何询问",lead:"授予权限后，您将填写初始设置页面。每一项都用于个性化和安全。",items:[
+      {label:"孩子的名字",text:"使警告更个性化——会显示“等一下，[名字]！”。"},
+      {label:"家长密码（4 位）",text:"锁定设置，防止孩子关闭保护、更改规则或卸载应用。"},
+      {label:"安全问题",text:"若忘记 4 位密码，这是恢复访问的唯一方法。"}]},
+    {n:"04",title:"使用主面板",lead:"设置完成后，您将进入主面板。",items:[
+      {label:"动态头像",text:"角色随距离变化——直观提示当前距离是否安全。"},
+      {label:"目标距离滑块",text:"根据孩子的手臂长度，用 1–4 级设置规则的严格程度。"},
+      {label:"保护开关",text:"用底部按钮一键启动/停止后台保护。"}]},
+    {n:"05",title:"核心功能与个性化",items:[
+      {label:"警告延迟",text:"设置延迟（如 10 秒），避免短暂移动导致频繁提醒。"},
+      {label:"相机测试模式",text:"点按“相机测试”试用设置，查看警告如何触发。"},
+      {label:"语音通知",text:"可选择默认语音或录制自己的自定义语音。"},
+      {label:"警告界面",text:"使用动画默认界面，或从相册上传自定义照片。"},
+      {label:"儿童专区（安全浏览器）",text:"添加常用网址（如 YouTube）。在此打开时强制全屏播放并监测距离。"}]},
+    {n:"06",title:"设置菜单指南",lead:"点按面板右上角的设置图标（⚙️）。",items:[
+      {label:"🌐 语言",text:"随时更改显示语言——支持 18 种语言。"},
+      {label:"🔐 重置家长密码",text:"更改 4 位 PIN，需要当前密码或正确的安全答案。"},
+      {label:"🛡️ 启用/停用卸载保护",text:"防止孩子删除应用。卸载需要家长密码。"},
+      {label:"💳 付费计划",text:"显示状态（免费/有效/已过期）。可升级至高级版（1 个月、6 个月、1 年、终身）或恢复购买。"},
+      {label:"✉️ 联系（支持）",text:"打开邮件应用，向 Mjosc.app@mjosc.co.kr 反馈错误、账单或建议。"},
+      {label:"⭐ 评价我们",text:"打开商店，留下五星好评。"}]},
+    {n:"07",title:"隐私与安全保证",privacy:true,lead:"在 Myungjin Solution，您家人的安全是我们的最高优先。",items:[
+      {label:"100% 本机处理",text:"所有人脸检测算法都在手机本地运行。"},
+      {label:"不记录数据",text:"我们绝不收集、传输或存储任何生物特征数据、相机画面或使用记录。"}]}
+  ]},
+
+ja:{ name:"日本語", flag:"ic_flag_japan.png", dir:"ltr",
+  ui:{ contents:"目次", change:"← 変更", reading:"Android マニュアル", soonT:"iOS マニュアルは近日公開", soonP:"本ガイドの Apple / iOS 版を準備中です。現在は Android マニュアルをご利用ください。" },
+  secs:[
+    {n:"01",title:"ようこそ／初回起動",lead:"アプリを初めて開くと、ようこそ画面が表示されます。",items:[
+      {label:"言語を選択",text:"18 の言語から選べるため、アプリ・設定・警告が保護者とお子さま双方に分かりやすくなります。"},
+      {label:"はじめる",text:"「GET STARTED」をタップして権限設定に進みます。"}]},
+    {n:"02",title:"アプリの権限 — 何を・なぜ",lead:"お子さまの目を守るため、Eye Care にはいくつかの権限が必要です。すべてのデータ処理は端末内で行われます。",items:[
+      {label:"カメラ",text:"アプリの中核。Google ML Kit が顔と画面の距離をリアルタイムで測定します。写真や動画が保存・送信されることはありません。"},
+      {label:"マイク",text:"保護者の声（カスタム音声）を警告として録音できます。録音中のみ使用します。"},
+      {label:"通知",text:"目の健康アラート、毎日のまとめ、バックグラウンドサービスの状態を送信します。"},
+      {label:"他のアプリの上に表示",text:"重要です。お子さまが端末を近づけすぎたとき、YouTube やゲームの上に警告画面を表示します。"}]},
+    {n:"03",title:"初期設定 — なぜ入力が必要か",lead:"権限を許可した後、初期設定ページを入力します。すべての項目は個別化と安全のためです。",items:[
+      {label:"お子さまの名前",text:"警告を個別化します — 「ちょっと待って、[名前]！」と表示されます。"},
+      {label:"保護者パスワード（4 桁）",text:"設定をロックし、お子さまが保護を解除・ルール変更・アンインストールできないようにします。"},
+      {label:"秘密の質問",text:"4 桁のパスワードを忘れた場合に、アクセスを回復する唯一の方法です。"}]},
+    {n:"04",title:"ダッシュボードの使い方",lead:"設定が完了すると、メインダッシュボードに入ります。",items:[
+      {label:"ダイナミックアバター",text:"距離に応じてキャラクターが変化し、現在の距離が安全かを視覚的に示します。"},
+      {label:"目標距離スライダー",text:"お子さまの腕の長さに合わせ、ルールの厳しさを 1〜4 段階で設定します。"},
+      {label:"保護トグル",text:"下部のボタンで、バックグラウンド保護をワンタップで開始／停止します。"}]},
+    {n:"05",title:"主な機能とカスタマイズ",items:[
+      {label:"警告の遅延",text:"遅延（例：10 秒）を設定し、一瞬の動きで警告が連発しないようにします。"},
+      {label:"カメラテストモード",text:"「CAMERA TEST」をタップして設定を試し、警告の動作を確認します。"},
+      {label:"音声通知",text:"デフォルト音声か、自分で録音したカスタム音声を選べます。"},
+      {label:"警告画面",text:"アニメーションのデフォルト画面、またはギャラリーからのカスタム写真を使用します。"},
+      {label:"キッズゾーン（安全ブラウザ）",text:"お気に入りの URL（YouTube など）を追加。ここで開くと全画面再生になり距離を監視します。"}]},
+    {n:"06",title:"設定メニューガイド",lead:"ダッシュボード右上の設定アイコン（⚙️）をタップします。",items:[
+      {label:"🌐 言語",text:"いつでも表示言語を変更できます — 18 言語に対応。"},
+      {label:"🔐 保護者パスワードの再設定",text:"4 桁の PIN を変更します。現在のパスワードまたは正しい秘密の答えが必要です。"},
+      {label:"🛡️ アンインストール防止の有効／無効",text:"お子さまがアプリを削除できないようにします。削除には保護者パスワードが必要です。"},
+      {label:"💳 料金プラン",text:"状態（無料／有効／期限切れ）を表示。プレミアム（1か月・6か月・1年・買い切り）へのアップグレードや購入の復元ができます。"},
+      {label:"✉️ お問い合わせ（サポート）",text:"不具合・請求・ご提案について Mjosc.app@mjosc.co.kr へメールします。"},
+      {label:"⭐ 評価する",text:"ストアを開き、星 5 のレビューを残せます。"}]},
+    {n:"07",title:"プライバシーとセキュリティの保証",privacy:true,lead:"Myungjin Solution では、ご家族の安全を最優先しています。",items:[
+      {label:"100% 端末内処理",text:"すべての顔検出アルゴリズムは端末内でローカルに動作します。"},
+      {label:"データ記録なし",text:"生体データ、カメラ映像、利用履歴を収集・送信・保存することはありません。"}]}
+  ]},
+
+fr:{ name:"Français", flag:"ic_flag_france.png", dir:"ltr",
+  ui:{ contents:"Sommaire", change:"← Modifier", reading:"Manuel Android", soonT:"Manuel iOS bientôt disponible", soonP:"La version Apple / iOS de ce guide est en préparation. Pour l'instant, veuillez utiliser le manuel Android." },
+  secs:[
+    {n:"01",title:"Bienvenue et premier lancement",lead:"Au premier lancement, l'écran de bienvenue s'affiche.",items:[
+      {label:"Choisir la langue",text:"Choisissez parmi 18 langues pour que l'app, les réglages et les alertes soient clairs pour vous et votre enfant."},
+      {label:"Commencer",text:"Touchez « GET STARTED » pour passer à la configuration des autorisations."}]},
+    {n:"02",title:"Autorisations — quoi et pourquoi",lead:"Pour protéger les yeux de votre enfant, Eye Care a besoin de quelques autorisations. Tout le traitement se fait localement sur l'appareil.",items:[
+      {label:"Caméra",text:"Le cœur de l'app. Google ML Kit mesure en temps réel la distance entre le visage et l'écran. Aucune photo ni vidéo n'est enregistrée ou envoyée."},
+      {label:"Microphone",text:"Permet d'enregistrer votre propre voix (voix personnalisée) comme avertissement. Actif uniquement pendant l'enregistrement."},
+      {label:"Notifications",text:"Envoie des alertes de santé visuelle, des résumés quotidiens et l'état du service en arrière-plan."},
+      {label:"Afficher par-dessus les autres apps",text:"Essentiel. Affiche l'écran d'avertissement par-dessus YouTube ou les jeux lorsque le téléphone est trop proche."}]},
+    {n:"03",title:"Configuration initiale — pourquoi ces infos",lead:"Après les autorisations, vous remplissez la page de configuration. Chaque détail sert à la personnalisation et à la sécurité.",items:[
+      {label:"Nom de l'enfant",text:"Personnalise les avertissements — affiche « Un instant, [nom] ! »."},
+      {label:"Mot de passe parental (4 chiffres)",text:"Verrouille les réglages pour empêcher l'enfant de désactiver la protection, modifier les règles ou désinstaller l'app."},
+      {label:"Question de sécurité",text:"Le seul moyen de récupérer l'accès si vous oubliez le mot de passe à 4 chiffres."}]},
+    {n:"04",title:"Naviguer dans le tableau de bord",lead:"Une fois la configuration terminée, vous accédez au tableau de bord principal.",items:[
+      {label:"Avatar dynamique",text:"Le personnage change selon la distance — un repère visuel indiquant si la distance est sûre."},
+      {label:"Curseur de distance cible",text:"Les niveaux 1–4 règlent la sévérité de la règle, selon la longueur de bras de l'enfant."},
+      {label:"Bouton de protection",text:"Le bouton principal démarre ou arrête la protection en arrière-plan d'un seul toucher."}]},
+    {n:"05",title:"Fonctions principales et personnalisation",items:[
+      {label:"Délai d'avertissement",text:"Définissez un délai (ex. 10 s) pour éviter les alertes répétées lors de mouvements brefs."},
+      {label:"Mode test caméra",text:"Touchez « CAMERA TEST » pour tester vos réglages et voir comment les alertes se déclenchent."},
+      {label:"Notifications vocales",text:"Choisissez la voix par défaut ou enregistrez votre propre voix personnalisée."},
+      {label:"Écran d'avertissement",text:"Utilisez l'écran animé par défaut ou importez une photo personnalisée depuis votre galerie."},
+      {label:"Espace enfants (navigateur sûr)",text:"Ajoutez vos URL favorites (comme YouTube). Ouvertes ici, elles passent en plein écran et la distance est surveillée."}]},
+    {n:"06",title:"Guide du menu Réglages",lead:"Touchez l'icône Réglages (⚙️) en haut à droite du tableau de bord.",items:[
+      {label:"🌐 Langue",text:"Changez la langue d'affichage à tout moment — 18 langues prises en charge."},
+      {label:"🔐 Réinitialiser le mot de passe",text:"Changez votre code à 4 chiffres. Requiert le mot de passe actuel ou la bonne réponse de sécurité."},
+      {label:"🛡️ Activer/désactiver le blocage de désinstallation",text:"Empêche l'enfant de supprimer l'app. La désinstallation requiert le mot de passe parental."},
+      {label:"💳 Forfait",text:"Affiche le statut (Gratuit / Actif / Expiré). Passez à Premium (1 mois, 6 mois, 1 an, à vie) ou restaurez vos achats."},
+      {label:"✉️ Contact (Assistance)",text:"Ouvre votre messagerie pour écrire à Mjosc.app@mjosc.co.kr (bugs, facturation, suggestions)."},
+      {label:"⭐ Évaluez-nous",text:"Ouvre la boutique pour laisser un avis 5 étoiles."}]},
+    {n:"07",title:"Garantie de confidentialité et de sécurité",privacy:true,lead:"Chez Myungjin Solution, la sécurité de votre famille est notre priorité absolue.",items:[
+      {label:"Traitement 100 % sur l'appareil",text:"Tous les algorithmes de détection de visage s'exécutent localement sur le téléphone."},
+      {label:"Aucune journalisation de données",text:"Nous ne collectons, ne transmettons ni ne stockons aucune donnée biométrique, flux caméra ou historique d'utilisation."}]}
+  ]},
+
+de:{ name:"Deutsch", flag:"ic_flag_germany.png", dir:"ltr",
+  ui:{ contents:"Inhalt", change:"← Ändern", reading:"Android-Handbuch", soonT:"iOS-Handbuch folgt bald", soonP:"Die Apple-/iOS-Version dieser Anleitung wird vorbereitet. Bitte nutzen Sie vorerst das Android-Handbuch." },
+  secs:[
+    {n:"01",title:"Willkommen & Erststart",lead:"Beim ersten Öffnen der App sehen Sie den Willkommensbildschirm.",items:[
+      {label:"Sprache wählen",text:"Wählen Sie aus 18 Sprachen, damit App, Einstellungen und Warnungen für Sie und Ihr Kind verständlich sind."},
+      {label:"Loslegen",text:"Tippen Sie auf „GET STARTED“, um zu den Berechtigungen zu gelangen."}]},
+    {n:"02",title:"App-Berechtigungen — was & warum",lead:"Zum Schutz der Augen Ihres Kindes benötigt Eye Care einige Berechtigungen. Alle Daten werden lokal auf dem Gerät verarbeitet.",items:[
+      {label:"Kamera",text:"Das Herzstück der App. Google ML Kit misst in Echtzeit den Abstand zwischen Gesicht und Bildschirm. Es werden nie Fotos oder Videos gespeichert oder gesendet."},
+      {label:"Mikrofon",text:"Ermöglicht das Aufnehmen Ihrer eigenen Stimme (Custom Voice) als Warnung. Nur während der Aufnahme aktiv."},
+      {label:"Benachrichtigungen",text:"Sendet Augengesundheits-Hinweise, Tageszusammenfassungen und den Status des Hintergrunddienstes."},
+      {label:"Über anderen Apps anzeigen",text:"Entscheidend. Zeigt den Warnbildschirm über YouTube oder Spielen an, wenn das Telefon zu nah gehalten wird."}]},
+    {n:"03",title:"Ersteinrichtung — warum wir fragen",lead:"Nach den Berechtigungen füllen Sie die Einrichtungsseite aus. Jede Angabe dient der Personalisierung und Sicherheit.",items:[
+      {label:"Name des Kindes",text:"Personalisiert die Warnungen — zeigt „Einen Moment, [Name]!“."},
+      {label:"Eltern-Passwort (4 Ziffern)",text:"Sperrt die Einstellungen, damit Kinder den Schutz nicht ausschalten, Regeln ändern oder die App löschen können."},
+      {label:"Sicherheitsfrage",text:"Die einzige Möglichkeit, den Zugang wiederherzustellen, falls Sie das 4-stellige Passwort vergessen."}]},
+    {n:"04",title:"Das Dashboard nutzen",lead:"Nach der Einrichtung gelangen Sie zum Haupt-Dashboard.",items:[
+      {label:"Dynamischer Avatar",text:"Die Figur ändert sich mit dem Abstand — ein visueller Hinweis, ob der Abstand sicher ist."},
+      {label:"Zieldistanz-Regler",text:"Die Stufen 1–4 legen die Strenge der Regel je nach Armlänge des Kindes fest."},
+      {label:"Schutzschalter",text:"Die Haupttaste startet oder stoppt den Hintergrundschutz mit einem Tippen."}]},
+    {n:"05",title:"Kernfunktionen & Anpassung",items:[
+      {label:"Warnverzögerung",text:"Legen Sie eine Verzögerung (z. B. 10 s) fest, damit kurze Bewegungen keine Warnflut auslösen."},
+      {label:"Kamera-Testmodus",text:"Tippen Sie auf „CAMERA TEST“, um Einstellungen zu prüfen und das Auslösen der Warnungen zu sehen."},
+      {label:"Sprachhinweise",text:"Wählen Sie die Standardstimme oder nehmen Sie Ihre eigene Stimme auf."},
+      {label:"Warnbildschirm",text:"Nutzen Sie den animierten Standard oder laden Sie ein eigenes Foto aus der Galerie hoch."},
+      {label:"Kinderzone (sicherer Browser)",text:"Fügen Sie bevorzugte URLs (wie YouTube) hinzu. Hier geöffnet, läuft alles im Vollbild und der Abstand wird überwacht."}]},
+    {n:"06",title:"Anleitung zum Einstellungsmenü",lead:"Tippen Sie oben rechts im Dashboard auf das Einstellungssymbol (⚙️).",items:[
+      {label:"🌐 Sprache",text:"Ändern Sie die Anzeigesprache jederzeit — 18 Sprachen unterstützt."},
+      {label:"🔐 Eltern-Passwort zurücksetzen",text:"Ändern Sie Ihre 4-stellige PIN. Erfordert das aktuelle Passwort oder die richtige Sicherheitsantwort."},
+      {label:"🛡️ Deinstallationssperre ein/aus",text:"Verhindert, dass das Kind die App löscht. Zum Deinstallieren ist das Eltern-Passwort nötig."},
+      {label:"💳 Zahlungsplan",text:"Zeigt den Status (Gratis / Aktiv / Abgelaufen). Upgrade auf Premium (1 Monat, 6 Monate, 1 Jahr, lebenslang) oder Käufe wiederherstellen."},
+      {label:"✉️ Kontakt (Support)",text:"Öffnet Ihre E-Mail an Mjosc.app@mjosc.co.kr für Fehler, Abrechnung oder Vorschläge."},
+      {label:"⭐ Bewerten Sie uns",text:"Öffnet den Store für eine 5-Sterne-Bewertung."}]},
+    {n:"07",title:"Datenschutz- & Sicherheitsgarantie",privacy:true,lead:"Bei Myungjin Solution hat die Sicherheit Ihrer Familie höchste Priorität.",items:[
+      {label:"100 % Verarbeitung auf dem Gerät",text:"Alle Gesichtserkennungs-Algorithmen laufen lokal auf dem Telefon."},
+      {label:"Keine Datenprotokollierung",text:"Wir erfassen, übertragen oder speichern keine biometrischen Daten, Kamerabilder oder Nutzungsverläufe."}]}
+  ]},
+
+es:{ name:"Español", flag:"ic_flag_spain.png", dir:"ltr",
+  ui:{ contents:"Contenido", change:"← Cambiar", reading:"Manual de Android", soonT:"Manual de iOS muy pronto", soonP:"La versión para Apple / iOS de esta guía está en preparación. Por ahora, utilice el manual de Android." },
+  secs:[
+    {n:"01",title:"Bienvenida y primer inicio",lead:"Al abrir la app por primera vez, verá la pantalla de bienvenida.",items:[
+      {label:"Seleccionar idioma",text:"Elija entre 18 idiomas para que la app, los ajustes y las alertas sean claros para usted y su hijo."},
+      {label:"Comenzar",text:"Toque “GET STARTED” para pasar a la configuración de permisos."}]},
+    {n:"02",title:"Permisos de la app — qué y por qué",lead:"Para proteger los ojos de su hijo, Eye Care necesita algunos permisos. Todo el procesamiento ocurre localmente en el dispositivo.",items:[
+      {label:"Cámara",text:"El núcleo de la app. Google ML Kit mide en tiempo real la distancia entre el rostro y la pantalla. Nunca se guardan ni se envían fotos o videos."},
+      {label:"Micrófono",text:"Permite grabar su propia voz (voz personalizada) como advertencia. Solo se activa al grabar."},
+      {label:"Notificaciones",text:"Envía alertas de salud visual, resúmenes diarios y el estado del servicio en segundo plano."},
+      {label:"Mostrar sobre otras apps",text:"Fundamental. Permite mostrar la advertencia sobre YouTube o juegos cuando el teléfono está demasiado cerca."}]},
+    {n:"03",title:"Configuración inicial — por qué la pedimos",lead:"Tras conceder los permisos, completará la página de configuración inicial. Todo es para personalización y seguridad.",items:[
+      {label:"Nombre del niño",text:"Personaliza las advertencias — muestra “¡Un momento, [nombre]!”."},
+      {label:"Contraseña de los padres (4 dígitos)",text:"Bloquea los ajustes para que los niños no desactiven la protección, cambien las reglas o desinstalen la app."},
+      {label:"Pregunta de seguridad",text:"La única forma de recuperar el acceso si olvida la contraseña de 4 dígitos."}]},
+    {n:"04",title:"Navegar por el panel",lead:"Una vez completada la configuración, accederá al panel principal.",items:[
+      {label:"Avatar dinámico",text:"El personaje cambia con la distancia, indicando visualmente si la distancia actual es segura."},
+      {label:"Control de distancia objetivo",text:"Los pasos 1–4 definen cuán estricta es la regla, según la longitud del brazo del niño."},
+      {label:"Interruptor de protección",text:"El botón principal inicia o detiene la protección en segundo plano con un toque."}]},
+    {n:"05",title:"Funciones principales y personalización",items:[
+      {label:"Retardo de advertencia",text:"Defina un retardo (p. ej. 10 s) para que los movimientos breves no generen alertas excesivas."},
+      {label:"Modo de prueba de cámara",text:"Toque “CAMERA TEST” para probar los ajustes y ver cómo se activan las alertas."},
+      {label:"Notificaciones de voz",text:"Elija la voz predeterminada o grabe su propia voz personalizada."},
+      {label:"Pantalla de advertencia",text:"Use la pantalla animada por defecto o suba una foto personalizada de su galería."},
+      {label:"Zona infantil (navegador seguro)",text:"Añada URLs favoritas (como YouTube). Al abrirlas aquí, reproduce en pantalla completa y vigila la distancia."}]},
+    {n:"06",title:"Guía del menú de ajustes",lead:"Toque el ícono de Ajustes (⚙️) en la parte superior derecha del panel.",items:[
+      {label:"🌐 Idioma",text:"Cambie el idioma en cualquier momento — 18 idiomas admitidos."},
+      {label:"🔐 Restablecer contraseña",text:"Cambie su PIN de 4 dígitos. Requiere la contraseña actual o la respuesta de seguridad correcta."},
+      {label:"🛡️ Activar/desactivar bloqueo de desinstalación",text:"Impide que el niño borre la app. Para desinstalarla se requiere la contraseña de los padres."},
+      {label:"💳 Plan de pago",text:"Muestra el estado (Gratis / Activo / Vencido). Mejore a Premium (1 mes, 6 meses, 1 año, de por vida) o restaure compras."},
+      {label:"✉️ Contacto (Soporte)",text:"Abre su correo para escribir a Mjosc.app@mjosc.co.kr por errores, facturación o sugerencias."},
+      {label:"⭐ Califícanos",text:"Abre la tienda para dejar una reseña de 5 estrellas."}]},
+    {n:"07",title:"Garantía de privacidad y seguridad",privacy:true,lead:"En Myungjin Solution, la seguridad de su familia es nuestra máxima prioridad.",items:[
+      {label:"Procesamiento 100% en el dispositivo",text:"Todos los algoritmos de detección facial se ejecutan localmente en el teléfono."},
+      {label:"Sin registro de datos",text:"Nunca recopilamos, transmitimos ni almacenamos datos biométricos, imágenes de cámara ni historial de uso."}]}
+  ]},
+
+pt:{ name:"Português", flag:"ic_flag_portugal.png", dir:"ltr",
+  ui:{ contents:"Conteúdo", change:"← Alterar", reading:"Manual do Android", soonT:"Manual do iOS em breve", soonP:"A versão Apple / iOS deste guia está em preparação. Por agora, use o manual do Android." },
+  secs:[
+    {n:"01",title:"Bem-vindo e primeiro acesso",lead:"Ao abrir o app pela primeira vez, verá a tela de boas-vindas.",items:[
+      {label:"Selecionar idioma",text:"Escolha entre 18 idiomas para que o app, as configurações e os avisos fiquem claros para você e seu filho."},
+      {label:"Começar",text:"Toque em “GET STARTED” para ir à configuração de permissões."}]},
+    {n:"02",title:"Permissões — o quê e por quê",lead:"Para proteger os olhos do seu filho, o Eye Care precisa de algumas permissões. Todo o processamento ocorre localmente no dispositivo.",items:[
+      {label:"Câmera",text:"O núcleo do app. O Google ML Kit mede em tempo real a distância entre o rosto e a tela. Nenhuma foto ou vídeo é salvo ou enviado."},
+      {label:"Microfone",text:"Permite gravar sua própria voz (Voz personalizada) como aviso. Ativo apenas durante a gravação."},
+      {label:"Notificações",text:"Envia alertas de saúde ocular, resumos diários e o status do serviço em segundo plano."},
+      {label:"Exibir sobre outros apps",text:"Essencial. Exibe a tela de aviso sobre o YouTube ou jogos quando o telefone está muito perto."}]},
+    {n:"03",title:"Configuração inicial — por que pedimos",lead:"Após conceder as permissões, você preenche a página de configuração. Cada detalhe é para personalização e segurança.",items:[
+      {label:"Nome da criança",text:"Personaliza os avisos — mostra “Espere um momento, [nome]!”."},
+      {label:"Senha dos pais (4 dígitos)",text:"Bloqueia as configurações para que as crianças não desativem a proteção, alterem as regras ou desinstalem o app."},
+      {label:"Pergunta de segurança",text:"A única forma de recuperar o acesso se esquecer a senha de 4 dígitos."}]},
+    {n:"04",title:"Navegando no painel",lead:"Concluída a configuração, você entra no painel principal.",items:[
+      {label:"Avatar dinâmico",text:"O personagem muda com a distância — um indicador visual de que a distância atual é segura."},
+      {label:"Controle de distância alvo",text:"Os níveis 1–4 definem o rigor da regra, conforme o comprimento do braço da criança."},
+      {label:"Botão de proteção",text:"O botão principal inicia ou para a proteção em segundo plano com um toque."}]},
+    {n:"05",title:"Recursos principais e personalização",items:[
+      {label:"Atraso de aviso",text:"Defina um atraso (ex.: 10 s) para que movimentos breves não gerem alertas em excesso."},
+      {label:"Modo de teste da câmera",text:"Toque em “CAMERA TEST” para testar as configurações e ver como os alertas são acionados."},
+      {label:"Notificações de voz",text:"Escolha a voz padrão ou grave sua própria voz personalizada."},
+      {label:"Tela de aviso",text:"Use a tela animada padrão ou envie uma foto personalizada da galeria."},
+      {label:"Zona Kids (navegador seguro)",text:"Adicione URLs favoritas (como YouTube). Abertas aqui, reproduzem em tela cheia e monitoram a distância."}]},
+    {n:"06",title:"Guia do menu de configurações",lead:"Toque no ícone de Configurações (⚙️) no canto superior direito do painel.",items:[
+      {label:"🌐 Idioma",text:"Altere o idioma a qualquer momento — 18 idiomas suportados."},
+      {label:"🔐 Redefinir senha dos pais",text:"Altere seu PIN de 4 dígitos. Requer a senha atual ou a resposta de segurança correta."},
+      {label:"🛡️ Ativar/desativar bloqueio de desinstalação",text:"Impede que a criança apague o app. A desinstalação exige a senha dos pais."},
+      {label:"💳 Plano de pagamento",text:"Mostra o status (Grátis / Ativo / Expirado). Faça upgrade para Premium (1 mês, 6 meses, 1 ano, vitalício) ou restaure compras."},
+      {label:"✉️ Contato (Suporte)",text:"Abre seu e-mail para escrever a Mjosc.app@mjosc.co.kr sobre erros, cobrança ou sugestões."},
+      {label:"⭐ Avalie-nos",text:"Abre a loja para deixar uma avaliação de 5 estrelas."}]},
+    {n:"07",title:"Garantia de privacidade e segurança",privacy:true,lead:"Na Myungjin Solution, a segurança da sua família é nossa maior prioridade.",items:[
+      {label:"Processamento 100% no dispositivo",text:"Todos os algoritmos de detecção facial são executados localmente no telefone."},
+      {label:"Sem registro de dados",text:"Nunca coletamos, transmitimos ou armazenamos dados biométricos, imagens da câmera ou histórico de uso."}]}
+  ]},
+
+ru:{ name:"Русский", flag:"ic_flag_russia.png", dir:"ltr",
+  ui:{ contents:"Содержание", change:"← Изменить", reading:"Руководство Android", soonT:"Руководство iOS скоро", soonP:"Версия этого руководства для Apple / iOS готовится. Пока используйте руководство для Android." },
+  secs:[
+    {n:"01",title:"Добро пожаловать и первый запуск",lead:"При первом открытии приложения появится экран приветствия.",items:[
+      {label:"Выбор языка",text:"Выберите один из 18 языков, чтобы приложение, настройки и предупреждения были понятны вам и вашему ребёнку."},
+      {label:"Начать",text:"Нажмите «GET STARTED», чтобы перейти к настройке разрешений."}]},
+    {n:"02",title:"Разрешения — что и зачем",lead:"Для защиты глаз ребёнка приложению Eye Care нужны некоторые разрешения. Все данные обрабатываются локально на устройстве.",items:[
+      {label:"Камера",text:"Основа приложения. Google ML Kit в реальном времени измеряет расстояние между лицом и экраном. Фото и видео не сохраняются и не отправляются."},
+      {label:"Микрофон",text:"Позволяет записать ваш голос (свой голос) как предупреждение. Активен только во время записи."},
+      {label:"Уведомления",text:"Отправляет напоминания о здоровье глаз, ежедневные сводки и статус фоновой службы."},
+      {label:"Поверх других приложений",text:"Очень важно. Показывает экран предупреждения поверх YouTube или игр, когда телефон держат слишком близко."}]},
+    {n:"03",title:"Первичная настройка — зачем мы спрашиваем",lead:"После выдачи разрешений вы заполните страницу настройки. Все данные нужны для персонализации и безопасности.",items:[
+      {label:"Имя ребёнка",text:"Персонализирует предупреждения — показывает «Подожди, [имя]!»."},
+      {label:"Родительский пароль (4 цифры)",text:"Блокирует настройки, чтобы дети не отключили защиту, не изменили правила и не удалили приложение."},
+      {label:"Секретный вопрос",text:"Единственный способ восстановить доступ, если вы забыли 4-значный пароль."}]},
+    {n:"04",title:"Работа с панелью",lead:"После настройки вы попадёте на главную панель.",items:[
+      {label:"Динамический аватар",text:"Персонаж меняется в зависимости от расстояния — наглядно показывает, безопасно ли текущее расстояние."},
+      {label:"Ползунок целевого расстояния",text:"Уровни 1–4 задают строгость правила в зависимости от длины руки ребёнка."},
+      {label:"Переключатель защиты",text:"Главная кнопка запускает или останавливает фоновую защиту одним касанием."}]},
+    {n:"05",title:"Основные функции и настройка",items:[
+      {label:"Задержка предупреждения",text:"Задайте задержку (например, 10 с), чтобы краткие движения не вызывали лишних оповещений."},
+      {label:"Режим теста камеры",text:"Нажмите «CAMERA TEST», чтобы проверить настройки и увидеть, как срабатывают оповещения."},
+      {label:"Голосовые уведомления",text:"Выберите голос по умолчанию или запишите свой собственный."},
+      {label:"Экран предупреждения",text:"Используйте анимированный экран по умолчанию или загрузите своё фото из галереи."},
+      {label:"Детская зона (безопасный браузер)",text:"Добавьте любимые URL (например, YouTube). При открытии здесь видео идёт во весь экран, а расстояние отслеживается."}]},
+    {n:"06",title:"Меню настроек",lead:"Нажмите значок настроек (⚙️) в правом верхнем углу панели.",items:[
+      {label:"🌐 Язык",text:"Меняйте язык в любое время — поддерживается 18 языков."},
+      {label:"🔐 Сброс родительского пароля",text:"Измените 4-значный PIN. Нужен текущий пароль или правильный ответ на секретный вопрос."},
+      {label:"🛡️ Вкл./выкл. защиту от удаления",text:"Не даёт ребёнку удалить приложение. Для удаления нужен родительский пароль."},
+      {label:"💳 Тарифный план",text:"Показывает статус (Бесплатно / Активно / Истёк). Перейдите на Premium (1 мес., 6 мес., 1 год, навсегда) или восстановите покупки."},
+      {label:"✉️ Контакт (Поддержка)",text:"Открывает почту для письма на Mjosc.app@mjosc.co.kr об ошибках, оплате или предложениях."},
+      {label:"⭐ Оцените нас",text:"Открывает магазин, чтобы оставить отзыв на 5 звёзд."}]},
+    {n:"07",title:"Гарантия конфиденциальности и безопасности",privacy:true,lead:"В Myungjin Solution безопасность вашей семьи — наш главный приоритет.",items:[
+      {label:"100% обработка на устройстве",text:"Все алгоритмы распознавания лица работают локально на телефоне."},
+      {label:"Нет журналирования данных",text:"Мы не собираем, не передаём и не храним биометрические данные, видео с камеры или историю использования."}]}
+  ]},
+
+ar:{ name:"العربية", flag:"ic_flag_saudi.png", dir:"rtl",
+  ui:{ contents:"المحتويات", change:"← تغيير", reading:"دليل أندرويد", soonT:"دليل iOS قريبًا", soonP:"يجري إعداد نسخة Apple / iOS من هذا الدليل. يُرجى استخدام دليل أندرويد حاليًا." },
+  secs:[
+    {n:"01",title:"الترحيب والتشغيل الأول",lead:"عند فتح التطبيق لأول مرة ستظهر شاشة الترحيب.",items:[
+      {label:"اختر اللغة",text:"اختر من بين 18 لغة عالمية لتكون التطبيق والإعدادات والتنبيهات واضحة لك ولطفلك."},
+      {label:"ابدأ",text:"اضغط على «GET STARTED» للانتقال إلى إعداد الأذونات."}]},
+    {n:"02",title:"أذونات التطبيق — ماذا ولماذا",lead:"لحماية عيني طفلك يحتاج Eye Care إلى بعض الأذونات. تتم معالجة جميع البيانات محليًا على جهازك.",items:[
+      {label:"الكاميرا",text:"جوهر التطبيق. يستخدمها Google ML Kit لقياس المسافة بين الوجه والشاشة في الوقت الفعلي. لا تُحفظ أو تُرسل أي صور أو فيديو إطلاقًا."},
+      {label:"الميكروفون",text:"يتيح تسجيل صوتك الخاص (صوت مخصص) كتحذير. يعمل فقط أثناء التسجيل."},
+      {label:"الإشعارات",text:"يرسل تنبيهات صحة العين والملخصات اليومية وحالة الخدمة في الخلفية."},
+      {label:"العرض فوق التطبيقات الأخرى",text:"مهم جدًا. يعرض شاشة التحذير فوق YouTube أو الألعاب عندما يمسك الطفل الهاتف قريبًا جدًا."}]},
+    {n:"03",title:"الإعداد الأولي — لماذا نسأل",lead:"بعد منح الأذونات تملأ صفحة الإعداد الأولي. كل تفصيل للتخصيص والأمان.",items:[
+      {label:"اسم الطفل",text:"يخصص التحذيرات — يعرض «انتظر لحظة يا [الاسم]!»."},
+      {label:"كلمة مرور الوالدين (4 أرقام)",text:"تقفل الإعدادات حتى لا يتمكن الأطفال من إيقاف الحماية أو تغيير القواعد أو إلغاء تثبيت التطبيق."},
+      {label:"سؤال الأمان",text:"الطريقة الوحيدة لاستعادة الوصول إذا نسيت كلمة المرور المكوّنة من 4 أرقام."}]},
+    {n:"04",title:"التنقل في لوحة التحكم",lead:"بعد اكتمال الإعداد تدخل إلى لوحة التحكم الرئيسية.",items:[
+      {label:"الصورة الرمزية المتحركة",text:"تتغير الشخصية حسب المسافة — مؤشر بصري لما إذا كانت المسافة الحالية آمنة."},
+      {label:"شريط المسافة المستهدفة",text:"تحدد المستويات 1–4 صرامة القاعدة بحسب طول ذراع الطفل."},
+      {label:"مفتاح الحماية",text:"يبدأ الزر الرئيسي الحماية في الخلفية أو يوقفها بلمسة واحدة."}]},
+    {n:"05",title:"الميزات الأساسية والتخصيص",items:[
+      {label:"تأخير التحذير",text:"اضبط تأخيرًا (مثلاً 10 ثوانٍ) حتى لا تسبب الحركات القصيرة تنبيهات متكررة."},
+      {label:"وضع اختبار الكاميرا",text:"اضغط «CAMERA TEST» لتجربة الإعدادات ومعرفة كيفية تشغيل التنبيهات."},
+      {label:"التنبيهات الصوتية",text:"اختر الصوت الافتراضي أو سجّل صوتك المخصص."},
+      {label:"شاشة التحذير",text:"استخدم الشاشة الافتراضية المتحركة أو ارفع صورة مخصصة من معرضك."},
+      {label:"منطقة الأطفال (متصفح آمن)",text:"أضف الروابط المفضلة (مثل YouTube). عند فتحها هنا تعمل بملء الشاشة وتراقب المسافة."}]},
+    {n:"06",title:"دليل قائمة الإعدادات",lead:"اضغط أيقونة الإعدادات (⚙️) أعلى يمين لوحة التحكم.",items:[
+      {label:"🌐 اللغة",text:"غيّر لغة العرض في أي وقت — مدعومة 18 لغة."},
+      {label:"🔐 إعادة تعيين كلمة مرور الوالدين",text:"غيّر رمز PIN المكوّن من 4 أرقام. يتطلب كلمة المرور الحالية أو إجابة الأمان الصحيحة."},
+      {label:"🛡️ تفعيل/تعطيل حظر إلغاء التثبيت",text:"يمنع الطفل من حذف التطبيق. إلغاء التثبيت يتطلب كلمة مرور الوالدين."},
+      {label:"💳 خطة الدفع",text:"تعرض الحالة (مجاني / نشط / منتهٍ). الترقية إلى Premium (شهر، 6 أشهر، سنة، مدى الحياة) أو استعادة المشتريات."},
+      {label:"✉️ تواصل (الدعم)",text:"يفتح بريدك للكتابة إلى Mjosc.app@mjosc.co.kr للأخطاء أو الفوترة أو الاقتراحات."},
+      {label:"⭐ قيّمنا",text:"يفتح المتجر لترك تقييم بخمس نجوم."}]},
+    {n:"07",title:"ضمان الخصوصية والأمان",privacy:true,lead:"في Myungjin Solution، سلامة عائلتك أولويتنا القصوى.",items:[
+      {label:"معالجة 100% على الجهاز",text:"تعمل جميع خوارزميات اكتشاف الوجه محليًا على الهاتف."},
+      {label:"لا تسجيل للبيانات",text:"لا نجمع أو ننقل أو نخزّن أي بيانات حيوية أو لقطات كاميرا أو سجل استخدام."}]}
+  ]},
+
+vi:{ name:"Tiếng Việt", flag:"vi.png", dir:"ltr",
+  ui:{ contents:"Mục lục", change:"← Đổi", reading:"Hướng dẫn Android", soonT:"Hướng dẫn iOS sắp ra mắt", soonP:"Phiên bản Apple / iOS của hướng dẫn này đang được chuẩn bị. Hiện tại vui lòng dùng hướng dẫn Android." },
+  secs:[
+    {n:"01",title:"Chào mừng & Khởi chạy lần đầu",lead:"Khi mở ứng dụng lần đầu, bạn sẽ thấy màn hình chào mừng.",items:[
+      {label:"Chọn ngôn ngữ",text:"Chọn trong 18 ngôn ngữ để ứng dụng, cài đặt và cảnh báo rõ ràng với bạn và con."},
+      {label:"Bắt đầu",text:"Chạm “GET STARTED” để chuyển sang thiết lập quyền."}]},
+    {n:"02",title:"Quyền ứng dụng — Là gì & Vì sao",lead:"Để bảo vệ mắt con bạn, Eye Care cần một số quyền. Mọi xử lý dữ liệu diễn ra cục bộ trên thiết bị.",items:[
+      {label:"Máy ảnh",text:"Cốt lõi của ứng dụng. Google ML Kit đo khoảng cách giữa khuôn mặt và màn hình theo thời gian thực. Không lưu hay gửi bất kỳ ảnh/video nào."},
+      {label:"Micrô",text:"Cho phép ghi giọng của bạn (Giọng tùy chỉnh) làm cảnh báo. Chỉ hoạt động khi ghi."},
+      {label:"Thông báo",text:"Gửi cảnh báo sức khỏe mắt, tóm tắt hằng ngày và trạng thái dịch vụ nền."},
+      {label:"Hiển thị trên ứng dụng khác",text:"Rất quan trọng. Hiển thị màn hình cảnh báo trên YouTube hoặc trò chơi khi điện thoại bị cầm quá gần."}]},
+    {n:"03",title:"Thiết lập ban đầu — Vì sao chúng tôi hỏi",lead:"Sau khi cấp quyền, bạn điền trang thiết lập ban đầu. Mọi chi tiết đều để cá nhân hóa và bảo mật.",items:[
+      {label:"Tên của bé",text:"Cá nhân hóa cảnh báo — hiển thị “Chờ chút nào, [Tên]!”."},
+      {label:"Mật khẩu phụ huynh (4 chữ số)",text:"Khóa cài đặt để trẻ không thể tắt bảo vệ, đổi quy tắc hay gỡ ứng dụng."},
+      {label:"Câu hỏi bảo mật",text:"Cách duy nhất khôi phục truy cập nếu bạn quên mật khẩu 4 chữ số."}]},
+    {n:"04",title:"Điều hướng Bảng điều khiển",lead:"Khi thiết lập xong, bạn vào Bảng điều khiển chính.",items:[
+      {label:"Hình đại diện động",text:"Nhân vật thay đổi theo khoảng cách — gợi ý trực quan khoảng cách hiện tại có an toàn không."},
+      {label:"Thanh trượt khoảng cách mục tiêu",text:"Bước 1–4 đặt mức nghiêm ngặt của quy tắc theo chiều dài cánh tay của trẻ."},
+      {label:"Công tắc bảo vệ",text:"Nút chính để BẬT/TẮT bảo vệ nền chỉ bằng một chạm."}]},
+    {n:"05",title:"Tính năng chính & Tùy chỉnh",items:[
+      {label:"Độ trễ cảnh báo",text:"Đặt độ trễ (vd. 10 giây) để cử động ngắn không gây cảnh báo liên tục."},
+      {label:"Chế độ thử máy ảnh",text:"Chạm “CAMERA TEST” để thử cài đặt và xem cảnh báo kích hoạt ra sao."},
+      {label:"Thông báo bằng giọng nói",text:"Chọn giọng mặc định hoặc tự ghi Giọng tùy chỉnh."},
+      {label:"Màn hình cảnh báo",text:"Dùng màn hình động mặc định hoặc tải Ảnh tùy chỉnh từ thư viện."},
+      {label:"Khu vực trẻ em (trình duyệt an toàn)",text:"Thêm URL yêu thích (như YouTube). Mở tại đây sẽ phát toàn màn hình và giám sát khoảng cách."}]},
+    {n:"06",title:"Hướng dẫn Menu Cài đặt",lead:"Chạm Biểu tượng Cài đặt (⚙️) ở góc trên bên phải bảng điều khiển.",items:[
+      {label:"🌐 Ngôn ngữ",text:"Đổi ngôn ngữ hiển thị bất cứ lúc nào — hỗ trợ 18 ngôn ngữ."},
+      {label:"🔐 Đặt lại mật khẩu phụ huynh",text:"Đổi mã PIN 4 chữ số. Cần mật khẩu hiện tại hoặc câu trả lời bảo mật đúng."},
+      {label:"🛡️ Bật/Tắt chặn gỡ cài đặt",text:"Ngăn trẻ xóa ứng dụng. Gỡ cài đặt cần mật khẩu phụ huynh."},
+      {label:"💳 Gói thanh toán",text:"Hiển thị trạng thái (Miễn phí / Hoạt động / Hết hạn). Nâng cấp Premium (1 tháng, 6 tháng, 1 năm, trọn đời) hoặc khôi phục mua hàng."},
+      {label:"✉️ Liên hệ (Hỗ trợ)",text:"Mở email gửi tới Mjosc.app@mjosc.co.kr về lỗi, thanh toán hoặc góp ý."},
+      {label:"⭐ Đánh giá",text:"Mở cửa hàng để để lại đánh giá 5 sao."}]},
+    {n:"07",title:"Cam kết Quyền riêng tư & Bảo mật",privacy:true,lead:"Tại Myungjin Solution, an toàn của gia đình bạn là ưu tiên cao nhất.",items:[
+      {label:"Xử lý 100% trên thiết bị",text:"Mọi thuật toán nhận diện khuôn mặt chạy cục bộ trên điện thoại."},
+      {label:"Không ghi nhật ký dữ liệu",text:"Chúng tôi không thu thập, truyền hay lưu dữ liệu sinh trắc, hình ảnh camera hoặc lịch sử sử dụng."}]}
+  ]},
+
+th:{ name:"ไทย", flag:"th.png", dir:"ltr",
+  ui:{ contents:"สารบัญ", change:"← เปลี่ยน", reading:"คู่มือ Android", soonT:"คู่มือ iOS เร็วๆ นี้", soonP:"กำลังเตรียมคู่มือเวอร์ชัน Apple / iOS อยู่ ขณะนี้โปรดใช้คู่มือ Android ไปก่อน" },
+  secs:[
+    {n:"01",title:"ยินดีต้อนรับและการเปิดครั้งแรก",lead:"เมื่อเปิดแอปครั้งแรก คุณจะเห็นหน้าจอต้อนรับ",items:[
+      {label:"เลือกภาษา",text:"เลือกได้จาก 18 ภาษา เพื่อให้แอป การตั้งค่า และคำเตือนชัดเจนสำหรับคุณและบุตรหลาน"},
+      {label:"เริ่มต้น",text:"แตะ “GET STARTED” เพื่อไปยังการตั้งค่าสิทธิ์"}]},
+    {n:"02",title:"สิทธิ์ของแอป — คืออะไรและทำไม",lead:"เพื่อปกป้องดวงตาของบุตรหลาน Eye Care ต้องการสิทธิ์บางอย่าง การประมวลผลข้อมูลทั้งหมดเกิดขึ้นในเครื่อง",items:[
+      {label:"กล้อง",text:"หัวใจของแอป Google ML Kit ใช้วัดระยะระหว่างใบหน้ากับหน้าจอแบบเรียลไทม์ ไม่มีการบันทึกหรือส่งรูปหรือวิดีโอใดๆ"},
+      {label:"ไมโครโฟน",text:"ให้คุณบันทึกเสียงของตัวเอง (เสียงกำหนดเอง) เป็นคำเตือน ใช้งานเฉพาะตอนบันทึกเท่านั้น"},
+      {label:"การแจ้งเตือน",text:"ส่งการแจ้งเตือนสุขภาพตา สรุปรายวัน และสถานะบริการเบื้องหลัง"},
+      {label:"แสดงทับแอปอื่น",text:"สำคัญมาก แสดงหน้าจอคำเตือนทับ YouTube หรือเกมเมื่อเด็กถือโทรศัพท์ใกล้เกินไป"}]},
+    {n:"03",title:"การตั้งค่าเริ่มต้น — ทำไมเราถาม",lead:"หลังให้สิทธิ์ คุณจะกรอกหน้าตั้งค่าเริ่มต้น ทุกรายละเอียดมีไว้เพื่อการปรับแต่งและความปลอดภัย",items:[
+      {label:"ชื่อของเด็ก",text:"ปรับคำเตือนให้เป็นส่วนตัว — แสดง “รอแป๊บนะ [ชื่อ]!”"},
+      {label:"รหัสผ่านผู้ปกครอง (4 หลัก)",text:"ล็อกการตั้งค่าเพื่อไม่ให้เด็กปิดการป้องกัน เปลี่ยนกฎ หรือถอนการติดตั้งแอป"},
+      {label:"คำถามความปลอดภัย",text:"วิธีเดียวในการกู้คืนการเข้าถึงหากลืมรหัสผ่าน 4 หลัก"}]},
+    {n:"04",title:"การใช้แดชบอร์ด",lead:"เมื่อตั้งค่าเสร็จ คุณจะเข้าสู่แดชบอร์ดหลัก",items:[
+      {label:"อวตารแบบไดนามิก",text:"ตัวละครเปลี่ยนตามระยะ — บอกด้วยภาพว่าระยะปัจจุบันปลอดภัยหรือไม่"},
+      {label:"แถบเลื่อนระยะเป้าหมาย",text:"ระดับ 1–4 กำหนดความเข้มงวดของกฎตามความยาวแขนของเด็ก"},
+      {label:"สวิตช์การป้องกัน",text:"ปุ่มหลักใช้เริ่ม/หยุดการป้องกันเบื้องหลังด้วยการแตะครั้งเดียว"}]},
+    {n:"05",title:"คุณสมบัติหลักและการปรับแต่ง",items:[
+      {label:"การหน่วงคำเตือน",text:"ตั้งเวลาหน่วง (เช่น 10 วินาที) เพื่อไม่ให้การขยับชั่วครู่ทำให้เตือนถี่เกินไป"},
+      {label:"โหมดทดสอบกล้อง",text:"แตะ “CAMERA TEST” เพื่อลองการตั้งค่าและดูว่าคำเตือนทำงานอย่างไร"},
+      {label:"การแจ้งเตือนด้วยเสียง",text:"เลือกเสียงเริ่มต้นหรือบันทึกเสียงกำหนดเองของคุณ"},
+      {label:"หน้าจอคำเตือน",text:"ใช้หน้าจอแอนิเมชันเริ่มต้นหรืออัปโหลดรูปกำหนดเองจากแกลเลอรี"},
+      {label:"โซนเด็ก (เบราว์เซอร์ปลอดภัย)",text:"เพิ่ม URL โปรด (เช่น YouTube) เมื่อเปิดที่นี่จะเล่นเต็มจอและตรวจสอบระยะ"}]},
+    {n:"06",title:"คู่มือเมนูการตั้งค่า",lead:"แตะไอคอนการตั้งค่า (⚙️) ที่มุมขวาบนของแดชบอร์ด",items:[
+      {label:"🌐 ภาษา",text:"เปลี่ยนภาษาที่แสดงได้ทุกเมื่อ — รองรับ 18 ภาษา"},
+      {label:"🔐 รีเซ็ตรหัสผ่านผู้ปกครอง",text:"เปลี่ยน PIN 4 หลัก ต้องใช้รหัสผ่านปัจจุบันหรือคำตอบความปลอดภัยที่ถูกต้อง"},
+      {label:"🛡️ เปิด/ปิดการบล็อกถอนการติดตั้ง",text:"ป้องกันไม่ให้เด็กลบแอป การถอนการติดตั้งต้องใช้รหัสผ่านผู้ปกครอง"},
+      {label:"💳 แผนการชำระเงิน",text:"แสดงสถานะ (ฟรี / ใช้งาน / หมดอายุ) อัปเกรดเป็น Premium (1 เดือน, 6 เดือน, 1 ปี, ตลอดชีพ) หรือกู้คืนการซื้อ"},
+      {label:"✉️ ติดต่อ (ฝ่ายสนับสนุน)",text:"เปิดอีเมลเพื่อส่งถึง Mjosc.app@mjosc.co.kr สำหรับข้อผิดพลาด การเรียกเก็บเงิน หรือข้อเสนอแนะ"},
+      {label:"⭐ ให้คะแนนเรา",text:"เปิดสโตร์เพื่อรีวิว 5 ดาว"}]},
+    {n:"07",title:"การรับประกันความเป็นส่วนตัวและความปลอดภัย",privacy:true,lead:"ที่ Myungjin Solution ความปลอดภัยของครอบครัวคุณคือสิ่งสำคัญที่สุดของเรา",items:[
+      {label:"ประมวลผลในเครื่อง 100%",text:"อัลกอริทึมตรวจจับใบหน้าทั้งหมดทำงานในเครื่องโทรศัพท์"},
+      {label:"ไม่มีการบันทึกข้อมูล",text:"เราไม่เก็บ ส่ง หรือจัดเก็บข้อมูลชีวมาตร ภาพจากกล้อง หรือประวัติการใช้งานใดๆ"}]}
+  ]},
+
+id:{ name:"Bahasa Indonesia", flag:"id.png", dir:"ltr",
+  ui:{ contents:"Daftar Isi", change:"← Ubah", reading:"Manual Android", soonT:"Manual iOS segera hadir", soonP:"Versi Apple / iOS dari panduan ini sedang disiapkan. Untuk saat ini, gunakan manual Android." },
+  secs:[
+    {n:"01",title:"Selamat Datang & Peluncuran Pertama",lead:"Saat pertama membuka aplikasi, Anda akan melihat layar selamat datang.",items:[
+      {label:"Pilih Bahasa",text:"Pilih dari 18 bahasa global agar aplikasi, pengaturan, dan peringatan jelas bagi Anda dan anak."},
+      {label:"Mulai",text:"Ketuk “GET STARTED” untuk lanjut ke pengaturan izin."}]},
+    {n:"02",title:"Izin Aplikasi — Apa & Mengapa",lead:"Untuk melindungi mata anak, Eye Care memerlukan beberapa izin. Semua pemrosesan data terjadi secara lokal di perangkat.",items:[
+      {label:"Kamera",text:"Inti aplikasi. Google ML Kit mengukur jarak antara wajah dan layar secara real-time. Tidak ada foto atau video yang disimpan atau dikirim."},
+      {label:"Mikrofon",text:"Memungkinkan Anda merekam suara sendiri (Suara Kustom) sebagai peringatan. Aktif hanya saat merekam."},
+      {label:"Notifikasi",text:"Mengirim peringatan kesehatan mata, ringkasan harian, dan status layanan latar belakang."},
+      {label:"Tampilkan di Atas Aplikasi Lain",text:"Penting. Menampilkan layar peringatan di atas YouTube atau game saat ponsel dipegang terlalu dekat."}]},
+    {n:"03",title:"Pengaturan Awal — Mengapa Kami Bertanya",lead:"Setelah memberi izin, Anda mengisi halaman pengaturan awal. Setiap detail untuk personalisasi dan keamanan.",items:[
+      {label:"Nama Anak",text:"Mempersonalisasi peringatan — menampilkan “Tunggu sebentar, [Nama]!”."},
+      {label:"Kata Sandi Orang Tua (4 digit)",text:"Mengunci pengaturan agar anak tidak bisa mematikan perlindungan, mengubah aturan, atau menghapus aplikasi."},
+      {label:"Pertanyaan Keamanan",text:"Satu-satunya cara memulihkan akses jika Anda lupa kata sandi 4 digit."}]},
+    {n:"04",title:"Menjelajahi Dasbor",lead:"Setelah pengaturan selesai, Anda masuk ke Dasbor Utama.",items:[
+      {label:"Avatar Dinamis",text:"Karakter berubah sesuai jarak — petunjuk visual apakah jarak saat ini aman."},
+      {label:"Slider Jarak Target",text:"Langkah 1–4 mengatur ketegasan aturan berdasarkan panjang lengan anak."},
+      {label:"Sakelar Perlindungan",text:"Tombol utama untuk MULAI/BERHENTI perlindungan latar belakang dengan satu ketukan."}]},
+    {n:"05",title:"Fitur Inti & Penyesuaian",items:[
+      {label:"Penundaan Peringatan",text:"Atur penundaan (mis. 10 dtk) agar gerakan singkat tidak memicu peringatan berlebihan."},
+      {label:"Mode Uji Kamera",text:"Ketuk “CAMERA TEST” untuk menguji pengaturan dan melihat cara peringatan terpicu."},
+      {label:"Notifikasi Suara",text:"Pilih Suara Default atau rekam Suara Kustom Anda sendiri."},
+      {label:"Layar Peringatan",text:"Gunakan layar animasi default atau unggah Foto Kustom dari galeri."},
+      {label:"Zona Anak (Browser Aman)",text:"Tambahkan URL favorit (seperti YouTube). Dibuka di sini, akan layar penuh dan jarak dipantau."}]},
+    {n:"06",title:"Panduan Menu Pengaturan",lead:"Ketuk Ikon Pengaturan (⚙️) di kanan atas dasbor.",items:[
+      {label:"🌐 Bahasa",text:"Ubah bahasa tampilan kapan saja — 18 bahasa didukung."},
+      {label:"🔐 Atur Ulang Kata Sandi Orang Tua",text:"Ubah PIN 4 digit. Memerlukan kata sandi saat ini atau jawaban keamanan yang benar."},
+      {label:"🛡️ Aktif/Nonaktifkan Blokir Hapus",text:"Mencegah anak menghapus aplikasi. Penghapusan memerlukan kata sandi orang tua."},
+      {label:"💳 Paket Pembayaran",text:"Menampilkan status (Gratis / Aktif / Kedaluwarsa). Tingkatkan ke Premium (1 Bulan, 6 Bulan, 1 Tahun, Seumur Hidup) atau pulihkan pembelian."},
+      {label:"✉️ Kontak (Dukungan)",text:"Membuka email ke Mjosc.app@mjosc.co.kr untuk bug, tagihan, atau saran."},
+      {label:"⭐ Beri Nilai",text:"Membuka toko untuk memberi ulasan 5 bintang."}]},
+    {n:"07",title:"Jaminan Privasi & Keamanan",privacy:true,lead:"Di Myungjin Solution, keselamatan keluarga Anda adalah prioritas tertinggi kami.",items:[
+      {label:"Pemrosesan 100% di Perangkat",text:"Semua algoritma deteksi wajah berjalan secara lokal di ponsel."},
+      {label:"Tanpa Pencatatan Data",text:"Kami tidak pernah mengumpulkan, mengirim, atau menyimpan data biometrik, umpan kamera, atau riwayat penggunaan."}]}
+  ]},
+
+hi:{ name:"हिन्दी", flag:"in.png", dir:"ltr",
+  ui:{ contents:"विषय-सूची", change:"← बदलें", reading:"Android मैनुअल", soonT:"iOS मैनुअल जल्द आ रहा है", soonP:"इस गाइड का Apple / iOS संस्करण तैयार किया जा रहा है। फ़िलहाल कृपया Android मैनुअल का उपयोग करें।" },
+  secs:[
+    {n:"01",title:"स्वागत और पहला लॉन्च",lead:"ऐप को पहली बार खोलने पर आपको स्वागत स्क्रीन दिखेगी।",items:[
+      {label:"भाषा चुनें",text:"18 वैश्विक भाषाओं में से चुनें ताकि ऐप, सेटिंग्स और चेतावनियाँ आपके और आपके बच्चे के लिए स्पष्ट हों।"},
+      {label:"शुरू करें",text:"अनुमति सेटअप पर जाने के लिए “GET STARTED” टैप करें।"}]},
+    {n:"02",title:"ऐप अनुमतियाँ — क्या और क्यों",lead:"आपके बच्चे की आँखों की सुरक्षा के लिए Eye Care को कुछ अनुमतियाँ चाहिए। सारा डेटा प्रोसेसिंग आपके डिवाइस पर ही होती है।",items:[
+      {label:"कैमरा",text:"ऐप का मुख्य भाग। चेहरे और स्क्रीन के बीच की दूरी Google ML Kit द्वारा रियल-टाइम में मापी जाती है। कोई फ़ोटो या वीडियो कभी सहेजा या भेजा नहीं जाता।"},
+      {label:"माइक्रोफ़ोन",text:"आपको अपनी आवाज़ (Custom Voice) चेतावनी के रूप में रिकॉर्ड करने देता है। केवल रिकॉर्ड करते समय सक्रिय।"},
+      {label:"सूचनाएँ",text:"आँखों के स्वास्थ्य की चेतावनियाँ, दैनिक सारांश और बैकग्राउंड सेवा की स्थिति भेजता है।"},
+      {label:"अन्य ऐप्स के ऊपर दिखाएँ",text:"महत्वपूर्ण। जब बच्चा फ़ोन बहुत पास रखता है, तो YouTube या गेम्स के ऊपर चेतावनी स्क्रीन दिखाता है।"}]},
+    {n:"03",title:"प्रारंभिक सेटअप — हम क्यों पूछते हैं",lead:"अनुमतियाँ देने के बाद आप प्रारंभिक सेटअप पृष्ठ भरते हैं। हर विवरण निजीकरण और सुरक्षा के लिए है।",items:[
+      {label:"बच्चे का नाम",text:"चेतावनियों को निजी बनाता है — “एक मिनट रुको, [नाम]!” दिखाता है।"},
+      {label:"अभिभावक पासवर्ड (4 अंक)",text:"सेटिंग्स को लॉक करता है ताकि बच्चे सुरक्षा बंद न कर सकें, नियम न बदलें या ऐप अनइंस्टॉल न करें।"},
+      {label:"सुरक्षा प्रश्न",text:"यदि आप 4-अंकीय पासवर्ड भूल जाते हैं, तो पहुँच पुनर्प्राप्त करने का यही एकमात्र तरीका है।"}]},
+    {n:"04",title:"डैशबोर्ड नेविगेट करना",lead:"सेटअप पूरा होने पर आप मुख्य डैशबोर्ड में प्रवेश करते हैं।",items:[
+      {label:"डायनामिक अवतार",text:"दूरी के अनुसार किरदार बदलता है — बताता है कि वर्तमान दूरी सुरक्षित है या नहीं।"},
+      {label:"लक्ष्य दूरी स्लाइडर",text:"बच्चे की बाँह की लंबाई के अनुसार नियम की सख़्ती 1–4 चरणों में सेट करें।"},
+      {label:"सुरक्षा टॉगल",text:"नीचे के बटन से बैकग्राउंड सुरक्षा एक टैप में START/STOP करें।"}]},
+    {n:"05",title:"मुख्य विशेषताएँ और अनुकूलन",items:[
+      {label:"चेतावनी विलंब",text:"विलंब (जैसे 10 सेकंड) सेट करें ताकि क्षणिक हलचल पर बार-बार अलर्ट न आएँ।"},
+      {label:"कैमरा टेस्ट मोड",text:"सेटिंग्स आज़माने और अलर्ट कैसे चलते हैं देखने के लिए “CAMERA TEST” टैप करें।"},
+      {label:"वॉइस सूचनाएँ",text:"डिफ़ॉल्ट आवाज़ या अपनी Custom आवाज़ चुनें।"},
+      {label:"चेतावनी स्क्रीन",text:"एनिमेटेड डिफ़ॉल्ट या गैलरी से Custom फ़ोटो अपलोड करें।"},
+      {label:"Kids Zone (सुरक्षित ब्राउज़र)",text:"पसंदीदा URL (जैसे YouTube) जोड़ें। यहाँ खोलने पर फ़ुलस्क्रीन चलता है और दूरी की निगरानी करता है।"}]},
+    {n:"06",title:"सेटिंग्स मेनू गाइड",lead:"डैशबोर्ड के ऊपर दाईं ओर सेटिंग्स आइकन (⚙️) टैप करें।",items:[
+      {label:"🌐 भाषा",text:"कभी भी प्रदर्शन भाषा बदलें — 18 भाषाएँ समर्थित।"},
+      {label:"🔐 अभिभावक पासवर्ड रीसेट",text:"4-अंकीय PIN बदलें। वर्तमान पासवर्ड या सही सुरक्षा उत्तर आवश्यक।"},
+      {label:"🛡️ अनइंस्टॉल ब्लॉक चालू/बंद",text:"बच्चे को ऐप हटाने से रोकता है। अनइंस्टॉल के लिए अभिभावक पासवर्ड आवश्यक।"},
+      {label:"💳 भुगतान योजना",text:"स्थिति (मुफ़्त / सक्रिय / समाप्त) दिखाता है। Premium (1-माह, 6-माह, 1-वर्ष, आजीवन) में अपग्रेड करें या खरीद बहाल करें।"},
+      {label:"✉️ संपर्क (सहायता)",text:"बग, बिलिंग या सुझाव के लिए Mjosc.app@mjosc.co.kr पर ईमेल भेजता है।"},
+      {label:"⭐ हमें रेट करें",text:"5-स्टार समीक्षा देने के लिए स्टोर खोलता है।"}]},
+    {n:"07",title:"गोपनीयता और सुरक्षा गारंटी",privacy:true,lead:"Myungjin Solution में, आपके परिवार की सुरक्षा हमारी सर्वोच्च प्राथमिकता है।",items:[
+      {label:"100% डिवाइस पर प्रोसेसिंग",text:"सभी चेहरा-पहचान एल्गोरिदम फ़ोन पर ही चलते हैं।"},
+      {label:"कोई डेटा लॉगिंग नहीं",text:"हम बायोमेट्रिक डेटा, कैमरा फ़ीड या उपयोग इतिहास न तो एकत्र करते हैं, न भेजते हैं, न संग्रहीत करते हैं।"}]}
+  ]},
+
+ne:{ name:"नेपाली", flag:"ne.png", dir:"ltr",
+  ui:{ contents:"विषयसूची", change:"← परिवर्तन", reading:"Android म्यानुअल", soonT:"iOS म्यानुअल चाँडै आउँदैछ", soonP:"यस गाइडको Apple / iOS संस्करण तयारी भइरहेको छ। अहिलेलाई कृपया Android म्यानुअल प्रयोग गर्नुहोस्।",
+       overviewTitle:"Eye Care प्रयोगकर्ता म्यानुअल", overviewSub:"Eye Care सेटअप र सञ्चालनका लागि आवश्यक सबै कुरा, चरणबद्ध रूपमा।", quickNav:"खण्डद्वारा ब्राउज गर्नुहोस्", guideEyebrow:"सुरु गर्नुहोस्", guideHeading:"Eye Care प्रयोग गर्ने तरिका — A देखि Z सम्म", guideIntro:"Eye Care ले तपाईंलाई पहिलो लन्चदेखि उन्नत सेटिङसम्म सबैमा मार्गदर्शन गर्छ। तलका चरणहरू क्रमैसँग पालना गर्नुहोस्, वा माथिको खण्ड ट्याप गरी सिधै जानुहोस्।" },
+  secs:[
+    {n:"01",image:"welcome.gif",title:"स्वागत र पहिलो लन्च",lead:"एप पहिलोपटक खोल्दा, तपाईंले स्वागत स्क्रिन देख्नुहुनेछ।",items:[
+      {label:"भाषा चयन",text:"१८ वैश्विक भाषाहरूबाट छान्नुहोस् ताकि एप, सेटिङ र चेतावनीहरू तपाईं र तपाईंको बच्चाका लागि स्पष्ट होस्।"},
+      {label:"सुरु गर्नुहोस्",text:"अनुमति सेटअपमा जान \"GET STARTED\" ट्याप गर्नुहोस्।"}]},
+    {n:"02",image:"permissions.gif",title:"एप अनुमतिहरू — के र किन",lead:"तपाईंको बच्चाको आँखा सुरक्षा गर्न Eye Care लाई केही अनुमतिहरू चाहिन्छ। सबै डेटा प्रशोधन तपाईंको उपकरणमा स्थानीय रूपमा हुन्छ।",items:[
+      {label:"क्यामेरा",text:"एपको मुख्य भाग। Google ML Kit ले अनुहार र स्क्रिनबीचको दूरी रियल-टाइममा नाप्छ। कुनै फोटो वा भिडियो सुरक्षित वा पठाइँदैन।"},
+      {label:"माइक्रोफोन",text:"तपाईंलाई आफ्नै आवाज (Custom Voice) चेतावनीको रूपमा रेकर्ड गर्न दिन्छ। रेकर्डिङको समयमा मात्र सक्रिय।"},
+      {label:"सूचनाहरू",text:"आँखा स्वास्थ्य अलर्टहरू, दैनिक सारांश र पृष्ठभूमि सेवा स्थिति अपडेट पठाउँछ।"},
+      {label:"अन्य एपहरूमाथि देखाउनुहोस्",text:"महत्त्वपूर्ण। फोन धेरै नजिक राख्दा YouTube वा गेमहरूमाथि चेतावनी स्क्रिन देखाउन दिन्छ।"}]},
+    {n:"03",image:"setup.gif",title:"प्रारम्भिक सेटअप — हामी किन सोध्छौँ",lead:"अनुमतिहरू दिएपछि, तपाईंले प्रारम्भिक सेटअप पृष्ठ भर्नुहुनेछ। हरेक विवरण व्यक्तिगतकरण र सुरक्षाको लागि हो।",items:[
+      {label:"बच्चाको नाम",text:"चेतावनीहरूलाई व्यक्तिगत बनाउँछ — \"एक मिनेट रुनुहोस्, [नाम]!\" भन्छ।"},
+      {label:"अभिभावक पासवर्ड (४ अंक)",text:"सेटिङहरू लक गर्छ ताकि बच्चाहरूले सुरक्षा अक्षम गर्न, नियम परिवर्तन गर्न वा एप अनइन्स्टल गर्न नसकुन।"},
+      {label:"सुरक्षा प्रश्न",text:"४-अंकको पासवर्ड बिर्सनुभयो भने पहुँच पुनः प्राप्त गर्ने एकमात्र तरिका।"}]},
+    {n:"04",title:"मुख्य ड्यासबोर्ड र मुख्य सुविधाहरू",lead:"सेटअप पूरा भएपछि, तपाईं मुख्य ड्यासबोर्डमा पुग्नुहुनेछ। Eye Care को सरल इन्टरफेस यहाँ छ:",items:[
+      {label:"सेटिङ बटन (माथि दायाँ)",text:"उन्नत सेटिङ, भाषा प्राथमिकता र भुक्तानी योजना पहुँच गर्न गियर आइकन ट्याप गर्नुहोस्।"},
+      {label:"लक्ष्य दूरी स्लाइडर",text:"यो स्लाइडर (चरण १–४) दूरी नियम कति कडा छ भन्ने तपाईंको बच्चाको हात लम्बाइ अनुसार निर्धारण गर्दछ।"},
+      {label:"क्यामेरा टेस्ट मोड",text:"वर्तमान सेटिङहरू परीक्षण गर्न \"CAMERA TEST\" ट्याप गर्नुहोस्।"},
+      {label:"डाइनामिक अवतार",text:"स्क्रिनको बीचमा ३डी क्यारेक्टर दूरीको आधारमा परिवर्तन हुन्छ।"},
+      {label:"अनुकूलन कार्डहरू",text:"तल स्क्रोल गर्दा सुरक्षा अलर्टहरू व्यक्तिगत बनाउने सेटिङहरू पाउनुहुनेछ:",sub:[
+        {label:"भ्वाइस सूचनाहरू",text:"डिफल्ट भ्वाइस छान्नुहोस् वा आफ्नै Custom Voice रेकर्ड गर्नुहोस्।"},
+        {label:"चेतावनी ढिलाइ",text:"एक निश्चित समय ढिलाइ (जस्तै, १० सेकेन्ड) सेट गर्नुहोस्।"},
+        {label:"चेतावनी स्क्रिन",text:"एनिमेटेड डिफल्ट स्क्रिन प्रयोग गर्नुहोस् वा गेलेरीबाट Custom फोटो अपलोड गर्नुहोस्।"}
+      ]},
+      {label:"सुरक्षा टगल",text:"स्क्रिनको तल्लो भागमा मुख्य बटनले पृष्ठभूमि सुरक्षा सेवा START वा STOP गर्न दिन्छ।"},
+      {label:"Kids Zone / सुरक्षित ब्राउजर",text:"मनपर्ने URL हरू (YouTube जस्तै) थप्न सकिने विशेष सुविधा।"}]},
+    {n:"05",image:"settings.jpg",title:"सेटिङ मेनु गाइड",lead:"ड्यासबोर्डको माथि दायाँमा सेटिङ आइकन (⚙️) ट्याप गर्नुहोस्।",items:[
+      {label:"🌐 भाषा",text:"जुनसुकै बेला प्रदर्शन भाषा परिवर्तन गर्नुहोस् — १८ भाषाहरू समर्थित।"},
+      {label:"🔐 अभिभावक पासवर्ड रिसेट",text:"४-अंकको PIN परिवर्तन गर्नुहोस्। वर्तमान पासवर्ड वा सही सुरक्षा उत्तर आवश्यक।"},
+      {label:"🛡️ अनइन्स्टल ब्लक सक्षम/अक्षम",text:"बच्चालाई एप मेटाउनबाट रोक्छ। अनइन्स्टल गर्न अभिभावक पासवर्ड आवश्यक।"},
+      {label:"💳 भुक्तानी योजना",text:"स्थिति देखाउँछ (नि:शुल्क / सक्रिय / म्याद सकिएको)। Premium मा अपग्रेड — १ महिना, ६ महिना, १ वर्ष, आजीवन।"},
+      {label:"✉️ सम्पर्क (सहायता)",text:"बग, बिलिङ वा सुझावका लागि Mjosc.app@mjosc.co.kr मा इमेल खोल्छ।"},
+      {label:"⭐ हामीलाई मूल्याङ्कन",text:"५-स्टार समीक्षा छोड्न स्टोर खोल्छ।"}]},
+    {n:"06",title:"गोपनीयता र सुरक्षा ग्यारेन्टी",privacy:true,lead:"Myungjin Solution मा, तपाईंको परिवारको सुरक्षा हाम्रो सर्वोच्च प्राथमिकता हो।",items:[
+      {label:"१००% उपकरणमा प्रशोधन",text:"सबै अनुहार-पहिचान एल्गोरिदमहरू फोनमा स्थानीय रूपमा चल्छन्।"},
+      {label:"कुनै डेटा लगिङ छैन",text:"हामी कहिल्यै बायोमेट्रिक डेटा, क्यामेरा फिड वा प्रयोग इतिहास संकलन, प्रसारण वा भण्डारण गर्दैनौँ।"}]}
+  ]},
+
+uz:{ name:"O'zbek", flag:"uz.png", dir:"ltr",
+  ui:{ contents:"Mundarija", change:"← O'zgartirish", reading:"Android Qo'llanma", soonT:"iOS Qo'llanma tez kunda", soonP:"Bu qo'llanmaning Apple / iOS versiyasi tayyorlanmoqda. Hozircha Android qo'llanmasidan foydalaning.",
+       overviewTitle:"Eye Care Foydalanuvchi Qo'llanmasi", overviewSub:"Eye Care-ni sozlash va ishga tushirish uchun zarur hamma narsa, qadam-baqadam.", quickNav:"Bo'lim bo'yicha ko'rish", guideEyebrow:"Boshlash", guideHeading:"Eye Care-dan foydalanish — A dan Z gacha", guideIntro:"Eye Care sizni birinchi ishga tushirishdan tortib ilg'or sozlamalargacha hamma narsada yo'llaydi. Quyidagi bosqichlarni ketma-ket bajaring yoki yuqoridagi istalgan bo'limga o'ting." },
+  secs:[
+    {n:"01",image:"welcome.gif",title:"Xush kelibsiz va birinchi ishga tushirish",lead:"Ilovani birinchi marta ochganingizda, Xush kelibsiz ekranini ko'rasiz.",items:[
+      {label:"Til tanlash",text:"Ilova, sozlamalar va ogohlantirishlar siz va farzandingiz uchun aniq bo'lishi uchun 18 ta jahon tilidan birini tanlang."},
+      {label:"Boshlash",text:"Ruxsat sozlamasiga o'tish uchun \"GET STARTED\" tugmasini bosing."}]},
+    {n:"02",image:"permissions.gif",title:"Ilova ruxsatlari — nima va nima uchun",lead:"Farzandingizning ko'zlarini himoya qilish uchun Eye Care bir nechta ruxsatlarga muhtoj. Barcha ma'lumotlar qurilmada mahalliy ravishda qayta ishlanadi.",items:[
+      {label:"Kamera",text:"Ilovaning asosi. Google ML Kit yuz va ekran orasidagi masofani real vaqtda o'lchaydi. Hech qachon fotosuratlar yoki videolar saqlanmaydi yoki yuborilmaydi."},
+      {label:"Mikrofon",text:"O'z ovozingizni (Maxsus Ovoz) ogohlantirish sifatida yozib olish imkonini beradi. Faqat yozib olish vaqtida faol."},
+      {label:"Bildirishnomalar",text:"Ko'z salomatligi ogohlantirishlarini, kunlik xulosalarni va fon xizmati holat yangilanishlarini yuboradi."},
+      {label:"Boshqa ilovalar ustida ko'rsatish",text:"Muhim. Telefon juda yaqin ushlab turilganda YouTube yoki o'yinlar ustida ogohlantirish ekranini ko'rsatadi."}]},
+    {n:"03",image:"setup.gif",title:"Dastlabki sozlash — nima uchun so'raymiz",lead:"Ruxsatlarni bergandan so'ng, Dastlabki Sozlash sahifasini to'ldirasiz. Har bir ma'lumot shaxsiylashtirish va xavfsizlik uchun.",items:[
+      {label:"Bolaning ismi",text:"Ogohlantirishlarni shaxsiylashtiradi — \"Bir daqiqa, [Ism]!\" deydi."},
+      {label:"Ota-ona paroli (4 raqam)",text:"Sozlamalarni bloklaydi, shunda bolalar himoyani o'chirib qo'ya olmaydi, qoidalarni o'zgartira olmaydi yoki ilovani o'chira olmaydi."},
+      {label:"Xavfsizlik savoli",text:"4 raqamli parolingizni unutsangiz, kirishni tiklashning yagona usuli."}]},
+    {n:"04",title:"Asosiy boshqaruv paneli va asosiy xususiyatlar",lead:"Sozlash tugagach, Asosiy Boshqaruv Paneliga o'tasiz. Eye Care sodda va qulay interfeysga ega:",items:[
+      {label:"Sozlamalar tugmasi (yuqori o'ng burchak)",text:"Ilg'or ilova sozlamalari, til sozlamalari va to'lov rejangizga kirish uchun tishli belgini bosing."},
+      {label:"Maqsad masofa slayderi",text:"Bu slayder (1–4-bosqichlar) masofa qoidasi qanchalik qattiqligini, farzandingizning qo'l uzunligiga qarab belgilaydi."},
+      {label:"Kamera sinovchi rejimi",text:"Joriy sozlamalarni sinab ko'rish uchun \"CAMERA TEST\" tugmasini bosing."},
+      {label:"Dinamik avatar",text:"Ekranning o'rtasidagi 3D belgi masofaga qarab dinamik ravishda o'zgaradi."},
+      {label:"Moslash kartalari",text:"Pastga aylantirganingizda, farzandingiz uchun himoya ogohlantirishlarini shaxsiylashtirish sozlamalarini topasiz:",sub:[
+        {label:"Ovozli bildirishnomalar",text:"Standart Ovozni tanlang yoki o'z Maxsus Ovozingizni yozib oling."},
+        {label:"Ogohlantirish kechikishi",text:"Qisqa tasodifiy harakatlar tufayli haddan ziyod ogohlantirishlarga yo'l qo'ymaslik uchun vaqt kechikishini (mas., 10 soniya) belgilang."},
+        {label:"Ogohlantirish ekrani",text:"Animatsiyalangan standart ekrandan foydalaning yoki galereyadan Maxsus Fotosuratni yuklang."}
+      ]},
+      {label:"Himoya tugmasi",text:"Ekranning pastki qismidagi asosiy tugma bitta tez bosganda fon himoya xizmatini BOSHLASH yoki TO'XTATISH imkonini beradi."},
+      {label:"Bolalar zonasi / Xavfsiz brauzer",text:"Sevimli URL'larni (YouTube kabi) qo'shish mumkin bo'lgan maxsus o'rnatilgan xususiyat."}]},
+    {n:"05",image:"settings.jpg",title:"Sozlamalar menyusi bo'yicha qo'llanma",lead:"Boshqaruv panelining yuqori o'ng tomonidagi Sozlamalar belgisini (⚙️) bosing.",items:[
+      {label:"🌐 Til",text:"Istalgan vaqtda ko'rsatish tilini o'zgartiring — 18 ta til qo'llab-quvvatlanadi."},
+      {label:"🔐 Ota-ona parolini tiklash",text:"4 raqamli PINingizni o'zgartiring. Joriy parol yoki to'g'ri xavfsizlik javobi talab qilinadi."},
+      {label:"🛡️ O'rnatilishni bloklashni yoqish/o'chirish",text:"Farzandingizning ilovani o'chirishining oldini oladi. O'chirish uchun ota-ona paroli talab qilinadi."},
+      {label:"💳 To'lov rejasi",text:"Holat ko'rsatiladi (Bepul / Faol / Muddati o'tgan). Premium ga yangilang — 1 oy, 6 oy, 1 yil, umrbod."},
+      {label:"✉️ Murojaat (Yordam)",text:"Xatolar, hisob-kitob yoki takliflar uchun Mjosc.app@mjosc.co.kr ga xat ochadi."},
+      {label:"⭐ Bizni baholang",text:"5 yulduz sharh qoldirish uchun do'konni ochadi."}]},
+    {n:"06",title:"Maxfiylik va xavfsizlik kafolati",privacy:true,lead:"Myungjin Solution da, oilangizning xavfsizligi bizning eng yuqori ustuvorligimizdir.",items:[
+      {label:"100% qurilmada qayta ishlash",text:"Barcha yuz aniqlash algoritmlari telefonning o'zida mahalliy ravishda ishlaydi."},
+      {label:"Ma'lumotlarni qayd etmaslik",text:"Biz hech qachon biometrik ma'lumotlar, kamera oqimlari yoki foydalanish tarixini to'plamaymiz, uzatmaymiz yoki saqlamaymiz."}]}
+  ]},
+
+mn:{ name:"Монгол", flag:"mn.png", dir:"ltr",
+  ui:{ contents:"Агуулга", change:"← Өөрчлөх", reading:"Android гарын авлага", soonT:"iOS гарын авлага удахгүй", soonP:"Энэхүү гарын авлагын Apple / iOS хувилбарыг бэлтгэж байна. Одоохондоо Android гарын авлагыг ашиглана уу.",
+       overviewTitle:"Eye Care хэрэглэгчийн гарын авлага", overviewSub:"Eye Care-г тохируулах, ажиллуулахад хэрэгтэй бүх зүйл, алхам алхмаар.", quickNav:"Хэсгээр харах", guideEyebrow:"Эхлэх", guideHeading:"Eye Care ашиглах заавар — эхнээс эцэс хүртэл", guideIntro:"Eye Care таныг анхны ажиллуулалтаас эхлэн дэвшилтэт тохиргоо хүртэл бүх зүйлд чиглүүлнэ. Доорх алхмуудыг дарааллаар дага, эсвэл дурын хэсэгт шилжихийн тулд дээрхийг дар." },
+  secs:[
+    {n:"01",image:"welcome.gif",title:"Тавтай морилно уу ба анхны ажиллуулалт",lead:"Аппыг анх удаа нээхэд Тавтай морилно уу дэлгэц харагдана.",items:[
+      {label:"Хэл сонгох",text:"Аппликейшн, тохиргоо болон анхааруулга нь тан болон хүүхдэд тодорхой байхын тулд 18 дэлхийн хэлнээс сонгоно уу."},
+      {label:"Эхлэх",text:"Зөвшөөрлийн тохиргоонд очихын тулд \"GET STARTED\" товчийг дарна уу."}]},
+    {n:"02",image:"permissions.gif",title:"Аппын зөвшөөрлүүд — юу болон яагаад",lead:"Хүүхдийнхээ нүдийг хамгаалахын тулд Eye Care хэд хэдэн зөвшөөрөл шаарддаг. Бүх өгөгдлийн боловсруулалт таны төхөөрөмж дээр локалаар хийгддэг.",items:[
+      {label:"Камер",text:"Аппын гол хэсэг. Google ML Kit нүүр болон дэлгэцийн хоорондох зайг бодит цаг хугацаанд хэмждэг. Зураг эсвэл видео хэзээ ч хадгалагдах, илгээгдэх боломжгүй."},
+      {label:"Микрофон",text:"Та өөрийн дуу хоолойг (Захиалгат дуу) анхааруулга болгон бичих боломжийг олгодог. Зөвхөн бичих үед идэвхтэй."},
+      {label:"Мэдэгдэлүүд",text:"Нүдний эрүүл мэндийн сэрэмжлүүлэг, өдөр тутмын хураангуй, арын суурь үйлчилгээний статусын шинэчлэлтийг илгээдэг."},
+      {label:"Бусад аппуудын дээгүүр харуулах",text:"Маш чухал. Утасыг хэт ойртуулахад YouTube эсвэл тоглоомуудын дээгүүр анхааруулгын дэлгэц харуулдаг."}]},
+    {n:"03",image:"setup.gif",title:"Анхны тохиргоо — яагаад асуудаг вэ",lead:"Зөвшөөрлийг олгосны дараа Анхны тохиргоо хуудсыг бөглөнө. Бүх дэлгэрэнгүй мэдээлэл хувийн болгох болон аюулгүй байдлын тулд.",items:[
+      {label:"Хүүхдийн нэр",text:"Анхааруулгыг хувийн болгодог — \"Нэг минут, [Нэр]!\" гэж харуулдаг."},
+      {label:"Эцэг эхийн нууц үг (4 оронтой)",text:"Тохиргоог түгждэг, хүүхэд хамгаалалтыг унтраах, дүрэм өөрчлөх эсвэл аппыг устгаж чадахгүй болно."},
+      {label:"Аюулгүйн асуулт",text:"4 оронтой нууц үгээ мартсан тохиолдолд хандалтыг сэргээх цорын ганц арга."}]},
+    {n:"04",title:"Үндсэн хяналтын самбар болон үндсэн функцүүд",lead:"Тохиргоо дуусмагц та Үндсэн хяналтын самбарт очно. Eye Care энгийн, хэрэглэхэд хялбар интерфэйстэй:",items:[
+      {label:"Тохиргооны товч (дээд баруун буланд)",text:"Дэвшилтэт аппын тохиргоо, хэлний тохиргоо болон төлбөрийн төлөвлөгөөнд хандахын тулд шүдэн тэмдэгийг дарна уу."},
+      {label:"Зорилтот зайн гулгуур",text:"Энэ гулгуур (1–4 алхам) зайны дүрэм хэр чанд байхыг хүүхдийн гарын уртаас хамааран тохируулдаг."},
+      {label:"Камерын туршилтын горим",text:"Одоогийн тохиргоог туршихын тулд \"CAMERA TEST\" товчийг дарна уу."},
+      {label:"Динамик аватар",text:"Дэлгэцийн голд байрлах 3D дүр зайд тулгуурлан динамикаар өөрчлөгддөг."},
+      {label:"Тохиргооны картнууд",text:"Доош гүйлгэхэд хүүхдэд зориулсан хамгаалалтын анхааруулгыг хувийн болгох тохиргоог олно:",sub:[
+        {label:"Дуут мэдэгдэлүүд",text:"Анхдагч дуу хоолойг сонгох эсвэл өөрийн захиалгат дуу хоолойг бично."},
+        {label:"Анхааруулгын хоцролт",text:"Тодорхой хоцролт (жишээ нь, 10 секунд) тохируулах ба богино санамсаргүй хөдөлгөөнүүд давтагдсан анхааруулга үүсгэхгүй."},
+        {label:"Анхааруулгын дэлгэц",text:"Хөдөлгөөнт анхдагч дэлгэцийг ашиглах эсвэл утасны галлерейгаас захиалгат зураг байршуулах."}
+      ]},
+      {label:"Хамгаалалтын унтраалга",text:"Дэлгэцийн доод хэсэгт байрлах том товч нэг дарснаар арын суурь хамгаалалтын үйлчилгээг ЭХЛҮҮЛЭХ эсвэл ЗОГСООХ боломжийг олгодог."},
+      {label:"Хүүхдийн бүс / Аюулгүй хөтөч",text:"Дуртай URL-уудаа (YouTube гэх мэт) нэмж болох онцгой суурилагдсан функц."}]},
+    {n:"05",image:"settings.jpg",title:"Тохиргооны цэсийн гарын авлага",lead:"Хяналтын самбарын баруун дээд хэсэгт байрлах Тохиргооны дүрсийг (⚙️) дарна уу.",items:[
+      {label:"🌐 Хэл",text:"Дэлгэцийн хэлийг хэдийд ч өөрчилнө үү — 18 хэл дэмждэг."},
+      {label:"🔐 Эцэг эхийн нууц үг дахин тохируулах",text:"4 оронтой PIN-ээ өөрчилнө үү. Одоогийн нууц үг эсвэл зөв хариулт шаардагдана."},
+      {label:"🛡️ Устгахаас хамгаалалтыг идэвхжүүлэх/идэвхгүй болгох",text:"Хүүхдийн аппыг устгахаас сэргийлдэг. Устгахад эцэг эхийн нууц үг шаардагдана."},
+      {label:"💳 Төлбөрийн төлөвлөгөө",text:"Статусыг харуулдаг (Үнэгүй / Идэвхтэй / Хугацаа дууссан). Premium-д шинэчлэгдэнэ — 1 сар, 6 сар, 1 жил, мөнхийн."},
+      {label:"✉️ Холбоо барих (Дэмжлэг)",text:"Алдаа, тооцоо эсвэл санал хүсэлтийн тулд Mjosc.app@mjosc.co.kr рүү имэйл нээдэг."},
+      {label:"⭐ Биднийг үнэлэх",text:"5 одтой үнэлгээ үлдээхийн тулд дэлгүүрийг нээдэг."}]},
+    {n:"06",title:"Нууцлал ба аюулгүй байдлын баталгаа",privacy:true,lead:"Myungjin Solution-д таны гэр бүлийн аюулгүй байдал бидний хамгийн дээд тэргүүлэх чиглэл юм.",items:[
+      {label:"100% төхөөрөмж дээрх боловсруулалт",text:"Бүх нүүр илрүүлэлтийн алгоритм нь утасан дээр локалаар ажилладаг."},
+      {label:"Өгөгдөл бүртгэл байхгүй",text:"Бид биометрийн өгөгдөл, камерын дамжуулалт эсвэл хэрэглээний түүхийг хэзээ ч цуглуулдаггүй, дамжуулдаггүй, хадгалдаггүй."}]}
+  ]},
+
+si:{ name:"සිංහල", flag:"lk.png", dir:"ltr",
+  ui:{ contents:"පටුන", change:"← වෙනස් කරන්න", reading:"Android අත්පොත", soonT:"iOS අත්පොත ළඟදීම", soonP:"මෙම මාර්ගෝපදේශයේ Apple / iOS අනුවාදය සකස් වෙමින් පවතී. දැනට කරුණාකර Android අත්පොත භාවිතා කරන්න." },
+  secs:[
+    {n:"01",title:"සාදරයෙන් පිළිගනිමු සහ පළමු ආරම්භය",lead:"ඇප් එක මුල්වරට විවෘත කරන විට, ඔබට පිළිගැනීමේ තිරය පෙනේ.",items:[
+      {label:"භාෂාව තෝරන්න",text:"ගෝලීය භාෂා 18න් තෝරාගත හැක. එමඟින් ඇප් එක, සැකසුම් සහ අනතුරු ඇඟවීම් ඔබට සහ ඔබේ දරුවාට පැහැදිලිව තේරුම් යයි."},
+      {label:"ආරම්භ කරන්න",text:"අවසර සැකසුම වෙත යාමට “GET STARTED” තට්ටු කරන්න."}]},
+    {n:"02",title:"ඇප් අවසර — මොනවාද සහ ඇයි",lead:"ඔබේ දරුවාගේ ඇස් ආරක්ෂා කිරීමට Eye Care ට අවසර කිහිපයක් අවශ්‍යයි. සියලු දත්ත සැකසීම ඔබේ උපකරණය තුළම සිදුවේ.",items:[
+      {label:"කැමරාව",text:"ඇප් එකේ හදවත. මුහුණ සහ තිරය අතර දුර තත්පරයෙන් මැනීමට Google ML Kit භාවිතා කරයි. ඡායාරූප හෝ වීඩියෝ කිසිවිටෙක සුරැකෙන්නේ හෝ යවන්නේ නැත."},
+      {label:"මයික්‍රෆෝනය",text:"අනතුරු ඇඟවීමක් ලෙස ඔබේම හඬ (Custom Voice) පටිගත කිරීමට ඉඩ දෙයි. පටිගත කරන විට පමණක් ක්‍රියාත්මක වේ."},
+      {label:"දැනුම්දීම්",text:"ඇස් සෞඛ්‍ය අනතුරු ඇඟවීම්, දෛනික සාරාංශ සහ පසුබිම් සේවා තත්ත්වය යවයි."},
+      {label:"වෙනත් ඇප් මත පෙන්වීම",text:"ඉතා වැදගත්. දරුවා දුරකථනය ඉතා ළඟින් අල්ලන විට YouTube හෝ ක්‍රීඩා මත අනතුරු ඇඟවීමේ තිරය පෙන්වයි."}]},
+    {n:"03",title:"මූලික සැකසුම — විස්තර ඉල්ලන්නේ ඇයි",lead:"අවසර දීමෙන් පසු, මූලික සැකසුම් පිටුව පුරවන්න. සෑම විස්තරයක්ම පුද්ගලීකරණය සහ ආරක්ෂාව සඳහාය.",items:[
+      {label:"දරුවාගේ නම",text:"අනතුරු ඇඟවීම් පුද්ගලීකරණය කරයි — “ඉන්න ටිකක්, [නම]!” ලෙස දිස්වේ."},
+      {label:"මව්පිය මුරපදය (අංක 4)",text:"සැකසුම් අගුළු දමයි. දරුවන්ට ආරක්ෂාව ක්‍රියා විරහිත කිරීම, නීති වෙනස් කිරීම හෝ ඇප් එක ඉවත් කිරීම වළක්වයි."},
+      {label:"ආරක්ෂක ප්‍රශ්නය",text:"අංක 4 මුරපදය අමතක වුවහොත් ප්‍රවේශය නැවත ලබා ගැනීමට ඇති එකම ක්‍රමයයි."}]},
+    {n:"04",title:"ප්‍රධාන Dashboard එක භාවිතය",lead:"සැකසුම අවසන් වූ පසු, ඔබ ප්‍රධාන Dashboard එකට ඇතුළු වේ.",items:[
+      {label:"ගතික Avatar",text:"දුර අනුව චරිතය වෙනස් වේ — දැනට දුර ආරක්ෂිතද යන්න දෘශ්‍යමය ලෙස පෙන්වයි."},
+      {label:"ඉලක්ක දුර Slider",text:"දරුවාගේ අත් දිග අනුව නීතිය කෙතරම් දැඩිද යන්න පියවර 1–4න් සකසන්න."},
+      {label:"ආරක්ෂණ Toggle",text:"පහළ ඇති ප්‍රධාන බොත්තමෙන් පසුබිම් ආරක්ෂාව එක් තැටීමකින් START/STOP කරන්න."}]},
+    {n:"05",title:"මූලික විශේෂාංග සහ අභිරුචිකරණය",items:[
+      {label:"අනතුරු ඇඟවීම් ප්‍රමාදය",text:"ප්‍රමාදයක් (උදා: තත්පර 10) සකසන්න. එවිට ක්ෂණික චලනවලට අනතුරු ඇඟවීම් වැඩිපුර නෑවිත."},
+      {label:"කැමරා පරීක්ෂණ ආකාරය",text:"සැකසුම් පරීක්ෂා කර අනතුරු ඇඟවීම් ක්‍රියාත්මක වන ආකාරය බැලීමට “CAMERA TEST” තට්ටු කරන්න."},
+      {label:"හඬ දැනුම්දීම්",text:"සම්මත හඬ හෝ ඔබේම Custom හඬ තෝරන්න."},
+      {label:"අනතුරු ඇඟවීමේ තිරය",text:"සජීවිකරණ සම්මත තිරය හෝ ගැලරියෙන් Custom ඡායාරූපයක් උඩුගත කරන්න."},
+      {label:"Kids Zone (ආරක්ෂිත බ්‍රවුසරය)",text:"ප්‍රියතම URL (YouTube වැනි) එක් කරන්න. මෙතැනින් විවෘත කළ විට පූර්ණ තිරයෙන් ධාවනය වී දුර අධීක්ෂණය කරයි."}]},
+    {n:"06",title:"සැකසුම් මෙනුව මඟපෙන්වීම",lead:"Dashboard එකේ ඉහළ දකුණේ ඇති සැකසුම් අයිකනය (⚙️) තට්ටු කරන්න.",items:[
+      {label:"🌐 භාෂාව",text:"ඕනෑම විටෙක දර්ශන භාෂාව වෙනස් කරන්න — භාෂා 18ක් සහාය දක්වයි."},
+      {label:"🔐 මව්පිය මුරපදය නැවත සැකසීම",text:"අංක 4 PIN එක වෙනස් කරන්න. දැනට පවතින මුරපදය හෝ නිවැරදි ආරක්ෂක පිළිතුර අවශ්‍යයි."},
+      {label:"🛡️ ඉවත් කිරීම අවහිරය සක්‍රීය/අක්‍රීය",text:"දරුවා ඇප් එක මැකීම වළක්වයි. ඉවත් කිරීමට මව්පිය මුරපදය අවශ්‍යයි."},
+      {label:"💳 ගෙවීම් සැලැස්ම",text:"තත්ත්වය (නොමිලේ / ක්‍රියාත්මක / කල් ඉකුත්) පෙන්වයි. Premium (මාස 1, මාස 6, වසර 1, ජීවිත කාලය) වෙත උත්ශ්‍රේණි කරන්න හෝ මිලදී ගැනීම් යළි ලබාගන්න."},
+      {label:"✉️ සම්බන්ධ වන්න (සහාය)",text:"දෝෂ, බිල්පත් හෝ යෝජනා සඳහා Mjosc.app@mjosc.co.kr වෙත ඊමේල් යවයි."},
+      {label:"⭐ අපව ශ්‍රේණිගත කරන්න",text:"තරු 5 සමාලෝචනයක් තැබීමට Store එක විවෘත කරයි."}]},
+    {n:"07",title:"පෞද්ගලිකත්වය සහ ආරක්ෂාව සහතිකය",privacy:true,lead:"Myungjin Solution හිදී, ඔබේ පවුලේ ආරක්ෂාව අපගේ ඉහළම ප්‍රමුඛතාවයයි.",items:[
+      {label:"100% උපකරණය තුළම සැකසීම",text:"සියලුම මුහුණු හඳුනාගැනීමේ ඇල්ගොරිතම දුරකථනය තුළම ක්‍රියාත්මක වේ."},
+      {label:"දත්ත සටහන් කිරීමක් නැත",text:"ජෛවමිතික දත්ත, කැමරා දර්ශන හෝ භාවිත ඉතිහාසය එකතු, යැවීම හෝ ගබඩා නොකරයි."}]}
+  ]}
+}
+
+
+const ORDER = ["en", "ko", "zh", "ja", "fr", "de", "es", "pt", "ru", "ar", "vi", "th", "id", "hi", "ne", "uz", "mn", "si"];
+function _ls(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function _lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function _qp(k){ try{ return new URLSearchParams(window.location.search).get(k); }catch(e){ return null; } }
+function getLang(){     return _qp('lang') || _ls('eyecare.lang')     || 'en'; }
+function getPlatform(){ return _qp('plat') || _ls('eyecare.platform') || 'android'; }
+function setLang(c){     _lsSet('eyecare.lang', c); }
+function setPlatform(p){ _lsSet('eyecare.platform', p); }
+function withState(url){
+    var sep = url.indexOf('?') >= 0 ? '&' : '?';
+    return url + sep + 'lang=' + encodeURIComponent(getLang()) +
+                       '&plat=' + encodeURIComponent(getPlatform());
+}
+function withStateHash(url, hash){ return withState(url) + '#' + hash; }
+function t(key){
+    var code = getLang();
+    var u = DATA[code] && DATA[code].ui;
+    if(u && u[key] != null) return u[key];
+    return DATA.en.ui[key];
+}
+function buildBadge(d, isAndroid){
+    var andSvg = '<svg viewBox="0 0 48 48"><path d="M11 23a13 13 0 0 1 26 0z" fill="#3DDC84"/><circle cx="19" cy="17.5" r="1.7" fill="#fff"/><circle cx="29" cy="17.5" r="1.7" fill="#fff"/><rect x="11" y="25" width="26" height="13" rx="3" fill="#3DDC84"/></svg>';
+    var appSvg = '<svg viewBox="0 0 48 48"><path d="M34 31.5c-.9 2.1-1.4 3-2.5 4.9-1.6 2.5-3.8 5.6-6.6 5.6-2.4 0-3.1-1.6-6.4-1.6-3.3 0-4 1.6-6.5 1.6-2.8 0-4.9-2.8-6.5-5.3-4.5-7-5-15.2-2.2-19.6 2-3.1 5.1-4.9 8-4.9 3 0 4.8 1.6 7.3 1.6 2.4 0 3.8-1.6 7.3-1.6 2.6 0 5.3 1.4 7.3 3.9-6.4 3.5-5.4 12.6.8 14.9z" fill="#777"/></svg>';
+    var flagHtml = '<span class="flag"><img src="images/'+d.flag+'" alt=""></span>';
+    var label = isAndroid ? d.ui.reading : d.ui.reading.replace(/Android/gi,'iOS');
+    return (isAndroid?andSvg:appSvg) + flagHtml + '<span>'+ label +'</span>';
+}
+function appendFooter(host){
+    host.insertAdjacentHTML('beforeend',
+      '<footer><div class="logo">Eye Care</div><p>&copy; 2026 Myungjin Solution (Pvt) Ltd. All rights reserved.</p></footer>');
+}
+
+var currentLang = getLang();
+var currentPlat = getPlatform();
+
+if(DATA[currentLang]){
+    document.getElementById('trigFlag').src = 'images/'+DATA[currentLang].flag;
+    document.getElementById('trigName').textContent = DATA[currentLang].name;
+}
+document.querySelectorAll('.plat').forEach(function(el){
+    el.classList.toggle('active', el.dataset.plat === currentPlat);
+});
+
+var panel = document.getElementById('langPanel');
+var tickSvg = '<svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+ORDER.forEach(function(code){
+    var d = DATA[code];
+    var row = document.createElement('div');
+    row.className = 'lang-opt' + (code===currentLang?' sel':'');
+    row.setAttribute('data-code', code);
+    row.innerHTML = '<span class="flag"><img src="images/'+d.flag+'" alt=""></span><span>'+d.name+'</span>'+tickSvg;
+    row.onclick = function(e){ e.stopPropagation(); selectLang(code); };
+    panel.appendChild(row);
+});
+
+function toggleDD(e){
+    if(e) e.stopPropagation();
+    document.getElementById('langDD').classList.toggle('open');
+}
+function selectLang(code){
+    currentLang = code;
+    setLang(code);
+    var d = DATA[code];
+    document.getElementById('trigFlag').src = 'images/'+d.flag;
+    document.getElementById('trigName').textContent = d.name;
+    document.querySelectorAll('.lang-opt').forEach(function(o){
+        o.classList.toggle('sel', o.getAttribute('data-code')===code);
+    });
+    document.getElementById('langDD').classList.remove('open');
+}
+document.addEventListener('click', function(){
+    document.getElementById('langDD').classList.remove('open');
+});
+function pickPlat(p){
+    currentPlat = p;
+    setPlatform(p);
+    document.querySelectorAll('.plat').forEach(function(el){
+        el.classList.toggle('active', el.dataset.plat===p);
+    });
+}
+function goOverview(){
+    window.location.href = 'overview.html?lang=' + encodeURIComponent(currentLang)
+                         + '&plat=' + encodeURIComponent(currentPlat);
+}
+</script>
+
+</body>
+</html>
