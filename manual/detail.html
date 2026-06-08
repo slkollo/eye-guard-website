@@ -1339,7 +1339,7 @@ if(!isAndroid){
                 }
             }
             if(_ic){
-                var _lb=it.label.replace(/^[\s\S]{1,3}\s*/,'');
+                var _lb=it.label.replace(/^[^\x20-\x7E]+\s*/,'');
                 html+='<li class="settings-item">'
                     +'<img class="settings-item-icon" src="'+_ic+'" alt="">'
                     +'<div class="settings-item-body"><strong>'+_lb+'</strong>'+(it.text?' — '+it.text:'');
