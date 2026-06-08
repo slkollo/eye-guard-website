@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eye Care — User Manual</title>
+<title>Eye Care — Contents</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -348,61 +348,126 @@
         section h2{ font-size:21px; }
         ul.clean li{ padding:12px 0 12px 22px; font-size:14.5px; }
     }
+    /* ============ OVERVIEW ============ */
+    #overview{ display:block; animation:fade .45s ease; }
+    .ov-wrap{ max-width:880px; margin:0 auto; padding:24px 24px 80px; }
+
+    .ov-seclabel{
+        font-family:'Fraunces',serif; font-weight:600; font-size:13px;
+        text-transform:uppercase; letter-spacing:.14em; color:var(--muted);
+        margin:6px 0 16px;
+    }
+    .ov-secs{
+        display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:48px;
+    }
+    .ov-sec{
+        position:relative; display:flex; align-items:center; gap:13px;
+        text-align:left; cursor:pointer; width:100%; text-decoration:none;
+        background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+        padding:16px 15px; font-family:'Outfit',sans-serif;
+        box-shadow:0 14px 34px -28px rgba(58,28,92,.5);
+        transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .ov-sec:hover{
+        transform:translateY(-3px); border-color:var(--lilac);
+        box-shadow:0 22px 42px -26px rgba(90,45,129,.5);
+    }
+    .ov-sec-num{
+        flex:none; width:40px; height:40px; border-radius:12px;
+        display:grid; place-items:center;
+        font-family:'Fraunces',serif; font-weight:700; font-size:15px;
+        color:#fff; background:linear-gradient(135deg,var(--plum),var(--plum-deep));
+    }
+    .ov-sec-title{ flex:1; font-weight:600; font-size:15px; color:var(--ink); line-height:1.3; }
+    .ov-sec-arrow{ flex:none; color:var(--lilac); font-size:18px; transition:transform .18s ease; }
+    .ov-sec:hover .ov-sec-arrow{ transform:translateX(3px); color:var(--plum); }
+
+    .ov-title{
+        font-family:'Fraunces',serif; font-weight:900;
+        font-size:clamp(34px,6vw,54px); line-height:1.04; letter-spacing:-.02em;
+        color:var(--plum); margin:0 0 6px;
+    }
+    .ov-sub{ color:var(--muted); font-size:16px; margin:0 0 4px; max-width:640px; }
+
+    .ov-guide{
+        background:var(--card); border:1px solid var(--line); border-radius:22px;
+        padding:34px 32px; box-shadow:0 18px 50px -34px rgba(58,28,92,.5); margin-top:30px;
+    }
+    .ov-eyebrow{
+        font-size:12px; letter-spacing:.26em; text-transform:uppercase;
+        color:var(--rose); font-weight:600; margin-bottom:10px;
+    }
+    .ov-guide-h{
+        font-family:'Fraunces',serif; font-weight:700; font-size:27px;
+        color:var(--plum); margin:0 0 14px; letter-spacing:-.01em; line-height:1.2;
+    }
+    .ov-guide-p{ margin:0 0 28px; color:var(--ink); }
+
+    .ov-steps{ list-style:none; margin:0; padding:0; position:relative; }
+    .ov-steps::before{
+        content:""; position:absolute; left:19px; top:18px; bottom:18px; width:2px;
+        background:linear-gradient(var(--lilac),var(--line));
+    }
+    .ov-step{
+        position:relative; display:flex; gap:16px; align-items:flex-start;
+        padding:10px 12px 10px 0; cursor:pointer; border-radius:12px;
+        transition:background .15s ease; text-decoration:none; color:inherit;
+    }
+    .ov-step:hover{ background:var(--lilac-soft); }
+    .ov-step-num{
+        position:relative; z-index:1; flex:none;
+        width:40px; height:40px; border-radius:50%;
+        display:grid; place-items:center;
+        font-family:'Fraunces',serif; font-weight:700; font-size:14px;
+        color:var(--plum); background:#fff; border:2px solid var(--lilac);
+        box-shadow:0 0 0 5px var(--card);
+        transition:all .18s ease;
+    }
+    .ov-step:hover .ov-step-num{
+        color:#fff; background:linear-gradient(135deg,var(--plum),var(--plum-deep)); border-color:var(--plum);
+    }
+    .ov-step-body{ display:flex; flex-direction:column; gap:3px; padding-top:3px; min-width:0; }
+    .ov-step-title{ font-family:'Fraunces',serif; font-weight:600; font-size:16px; color:var(--plum-deep); }
+    .ov-step-text{ font-size:14px; color:var(--muted); line-height:1.55; }
+
+    [dir="rtl"] .ov-sec{ text-align:right; }
+    [dir="rtl"] .ov-sec-arrow{ transform:scaleX(-1); }
+    [dir="rtl"] .ov-sec:hover .ov-sec-arrow{ transform:scaleX(-1) translateX(3px); }
+    [dir="rtl"] .ov-steps::before{ left:auto; right:19px; }
+
+    @media(max-width:760px){
+        .ov-secs{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:560px){
+        .ov-wrap{ padding:18px 16px 70px; }
+        .ov-secs{ grid-template-columns:1fr 1fr; gap:10px; margin-bottom:38px; }
+        .ov-sec{ flex-direction:column; align-items:flex-start; gap:9px; padding:14px 13px; }
+        .ov-sec-arrow{ display:none; }
+        .ov-title{ font-size:33px; }
+        .ov-sub{ font-size:15px; }
+        .ov-guide{ padding:26px 20px; border-radius:18px; }
+        .ov-guide-h{ font-size:22px; }
+        .ov-step-title{ font-size:15px; }
+        .ov-step-text{ font-size:13.5px; }
+    }
+    @media(max-width:400px){
+        .ov-secs{ grid-template-columns:1fr; }
+    }
+
 </style>
 </head>
 <body>
 
-<div id="landing">
-    <div class="hero">
-        <div class="eyebrow">Official User Manual</div>
-        <h1>Eye Care</h1>
-        <p><span class="brand">Eye Care</span> is a smart vision-protection utility by Myungjin Solution. Using on-device face detection, it monitors the viewing distance between your child's eyes and the screen in real time — gently guiding your family toward healthier, more comfortable screen habits.</p>
-    </div>
-
-    <div class="panel">
-        <div class="field">
-            <div class="label"><span class="dot"></span> Select your language</div>
-            <div class="lang-dd" id="langDD">
-                <button type="button" class="lang-trigger" onclick="toggleDD(event)">
-                    <span class="flag"><img id="trigFlag" src="images/ic_flag_us.png" alt="" style="width:100%;height:100%;display:block;border-radius:50%;"></span>
-                    <span class="lang-name" id="trigName">English</span>
-                    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="lang-panel" id="langPanel"></div>
+<div id="overview">
+    <div class="ov-wrap" id="ovWrap">
+        <div class="m-bar">
+            <div class="titleline">
+                <h3>Eye Care</h3>
+                <span class="badge" id="ovBadge"></span>
             </div>
+            <button class="back" id="ovBack" onclick="goLanding()">← Change</button>
         </div>
-
-        <div class="field">
-            <div class="label"><span class="dot"></span> Choose your device</div>
-            <div class="platforms">
-                <div class="plat active" data-plat="android" onclick="pickPlat('android')">
-                    <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
-                    <svg viewBox="0 0 48 48">
-                        <line x1="16" y1="7" x2="19.5" y2="13" stroke="var(--android)" stroke-width="2.4" stroke-linecap="round"/>
-                        <line x1="32" y1="7" x2="28.5" y2="13" stroke="var(--android)" stroke-width="2.4" stroke-linecap="round"/>
-                        <path d="M11 23a13 13 0 0 1 26 0z" fill="var(--android)"/>
-                        <circle cx="19" cy="17.5" r="1.7" fill="#fff"/>
-                        <circle cx="29" cy="17.5" r="1.7" fill="#fff"/>
-                        <rect x="11" y="25" width="26" height="13" rx="3" fill="var(--android)"/>
-                        <rect x="15" y="38" width="4.5" height="7" rx="2.2" fill="var(--android)"/>
-                        <rect x="28.5" y="38" width="4.5" height="7" rx="2.2" fill="var(--android)"/>
-                    </svg>
-                    <span class="name">Android</span>
-                    <span class="tag">Google Play</span>
-                </div>
-                <div class="plat" data-plat="apple" onclick="pickPlat('apple')">
-                    <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
-                    <svg viewBox="0 0 48 48">
-                        <path d="M28.5 8.5c.2 2.3-1.6 4.4-3.6 4.6-.3-2.1 1.6-4.4 3.6-4.6z" fill="#555"/>
-                        <path d="M34 31.5c-.9 2.1-1.4 3-2.5 4.9-1.6 2.5-3.8 5.6-6.6 5.6-2.4 0-3.1-1.6-6.4-1.6-3.3 0-4 1.6-6.5 1.6-2.8 0-4.9-2.8-6.5-5.3-4.5-7-5-15.2-2.2-19.6 2-3.1 5.1-4.9 8-4.9 3 0 4.8 1.6 7.3 1.6 2.4 0 3.8-1.6 7.3-1.6 2.6 0 5.3 1.4 7.3 3.9-6.4 3.5-5.4 12.6.8 14.9z" fill="#555"/>
-                    </svg>
-                    <span class="name">iOS / Apple</span>
-                    <span class="tag">App Store</span>
-                </div>
-            </div>
-        </div>
-
-        <button class="cta" onclick="goOverview()">Get Manual</button>
+        <div id="ovBody"></div>
     </div>
 </div>
 
@@ -1120,58 +1185,60 @@ function appendFooter(host){
       '<footer><div class="logo">Eye Care</div><p>&copy; 2026 Myungjin Solution (Pvt) Ltd. All rights reserved.</p></footer>');
 }
 
-var currentLang = getLang();
-var currentPlat = getPlatform();
+var d = DATA[getLang()] || DATA.en;
+var plat = getPlatform();
+var isAndroid = (plat === 'android');
 
-if(DATA[currentLang]){
-    document.getElementById('trigFlag').src = 'images/'+DATA[currentLang].flag;
-    document.getElementById('trigName').textContent = DATA[currentLang].name;
-}
-document.querySelectorAll('.plat').forEach(function(el){
-    el.classList.toggle('active', el.dataset.plat === currentPlat);
-});
+document.getElementById('ovWrap').setAttribute('dir', d.dir);
+document.getElementById('ovBadge').innerHTML = buildBadge(d, isAndroid);
+document.getElementById('ovBack').textContent = d.ui.change;
 
-var panel = document.getElementById('langPanel');
-var tickSvg = '<svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
-ORDER.forEach(function(code){
-    var d = DATA[code];
-    var row = document.createElement('div');
-    row.className = 'lang-opt' + (code===currentLang?' sel':'');
-    row.setAttribute('data-code', code);
-    row.innerHTML = '<span class="flag"><img src="images/'+d.flag+'" alt=""></span><span>'+d.name+'</span>'+tickSvg;
-    row.onclick = function(e){ e.stopPropagation(); selectLang(code); };
-    panel.appendChild(row);
-});
+var host = document.getElementById('ovBody');
 
-function toggleDD(e){
-    if(e) e.stopPropagation();
-    document.getElementById('langDD').classList.toggle('open');
-}
-function selectLang(code){
-    currentLang = code;
-    setLang(code);
-    var d = DATA[code];
-    document.getElementById('trigFlag').src = 'images/'+d.flag;
-    document.getElementById('trigName').textContent = d.name;
-    document.querySelectorAll('.lang-opt').forEach(function(o){
-        o.classList.toggle('sel', o.getAttribute('data-code')===code);
+if(!isAndroid){
+    host.innerHTML = '<div class="soon"><div class="em">🍎</div><h2>'+d.ui.soonT+'</h2><p>'+d.ui.soonP+'</p></div>';
+    appendFooter(host);
+} else {
+    var html = '';
+
+    /* 1) six section buttons */
+    html += '<div class="ov-seclabel">' + t('quickNav') + '</div>';
+    html += '<div class="ov-secs">';
+    d.secs.forEach(function(s, i){
+        html += '<a class="ov-sec" href="' + withStateHash('detail.html', 'sec'+i) + '">'
+              + '<span class="ov-sec-num">' + s.n + '</span>'
+              + '<span class="ov-sec-title">' + s.title + '</span>'
+              + '<span class="ov-sec-arrow">&rarr;</span>'
+              + '</a>';
     });
-    document.getElementById('langDD').classList.remove('open');
-}
-document.addEventListener('click', function(){
-    document.getElementById('langDD').classList.remove('open');
-});
-function pickPlat(p){
-    currentPlat = p;
-    setPlatform(p);
-    document.querySelectorAll('.plat').forEach(function(el){
-        el.classList.toggle('active', el.dataset.plat===p);
+    html += '</div>';
+
+    /* 2) bigger title + subtitle */
+    html += '<h1 class="ov-title">' + t('overviewTitle') + '</h1>';
+    html += '<p class="ov-sub">' + t('overviewSub') + '</p>';
+
+    /* 3) A-to-Z guide */
+    html += '<div class="ov-guide">';
+    html += '<div class="ov-eyebrow">' + t('guideEyebrow') + '</div>';
+    html += '<h2 class="ov-guide-h">' + t('guideHeading') + '</h2>';
+    html += '<p class="ov-guide-p">' + t('guideIntro') + '</p>';
+    html += '<ol class="ov-steps">';
+    d.secs.forEach(function(s, i){
+        html += '<li><a class="ov-step" href="' + withStateHash('detail.html', 'sec'+i) + '">'
+              + '<span class="ov-step-num">' + s.n + '</span>'
+              + '<span class="ov-step-body">'
+              + '<span class="ov-step-title">' + s.title + '</span>'
+              + (s.lead ? '<span class="ov-step-text">' + s.lead + '</span>' : '')
+              + '</span></a></li>';
     });
+    html += '</ol>';
+    html += '</div>';
+
+    host.innerHTML = html;
+    appendFooter(host);
 }
-function goOverview(){
-    window.location.href = 'overview.html?lang=' + encodeURIComponent(currentLang)
-                         + '&plat=' + encodeURIComponent(currentPlat);
-}
+
+function goLanding(){ window.location.href = withState('manual.html'); }
 </script>
 
 </body>
