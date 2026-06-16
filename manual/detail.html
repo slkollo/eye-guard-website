@@ -293,7 +293,7 @@
     .sec-head .sec-text .sec-num{ margin-bottom:6px; }
     .sec-head .sec-text h2{ margin:0 0 12px; }
     .sec-head .sec-text .lead{ margin:0; }
-    .media{ position:relative; width:200px; aspect-ratio:1/1; flex-shrink:0; margin:0; border-radius:16px; overflow:hidden; box-shadow:0 12px 30px -20px rgba(58,28,92,.4); }
+    .media{ position:relative; width:100%; max-width:420px; aspect-ratio:auto; flex-shrink:0; margin:0 auto; border-radius:16px; overflow:hidden; box-shadow:0 12px 30px -20px rgba(58,28,92,.4); }
     .media img{ width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; transition:transform .25s ease; }
     .media img:hover{ transform:scale(1.04); }
     /* lightbox / image zoom modal */
@@ -466,14 +466,11 @@
 
 
     .media-row{display:flex;gap:12px;width:100%;}
-    .media-row .media{flex:1;min-width:0;}
-    @media(max-width:600px){.media-row{flex-direction:column;}}
+    .media-row .media{flex:1;min-width:0;max-width:none;}
+    @media(max-width:600px){.media-row{flex-direction:column;} .media{max-width:100%!important;}}
 
 
-    /* Hide Google Translate top bar */
-    .goog-te-banner-frame{ display:none !important; }
-    body{ top:0 !important; }
-    .skiptranslate{ display:none !important; }
+    
 
 </style>
 </head>
@@ -1140,10 +1137,7 @@ function detectBrowserLang(){
     return 'en';
 }
 function getLang(){ return _qp('lang') || _ls('eyecare.lang') || detectBrowserLang(); }
-function getContentLang(){ 
-    var l = getLang(); 
-    return (l === 'ko') ? 'ko' : 'en'; 
-}
+function getContentLang(){ return getLang(); }
 function getPlatform(){ return _qp('plat') || _ls('eyecare.platform') || 'android'; }
 function setLang(c){     _lsSet('eyecare.lang', c); }
 function setPlatform(p){ _lsSet('eyecare.platform', p); }
@@ -1174,7 +1168,6 @@ function appendFooter(host){
 function renderPage(){
 document.body.style.overflow="";
 var d = DATA[getLang()] || DATA.en;
-var cd = DATA[getContentLang()] || DATA.en;
 var plat = getPlatform();
 var isAndroid = (plat === 'android');
 
@@ -1200,7 +1193,7 @@ if(!isAndroid){
     );
 } else {
     document.getElementById('tocBox').style.display = '';
-    cd.secs.forEach(function(s, i){
+    d.secs.forEach(function(s, i){
         var id = 'sec' + i;
         var li = document.createElement('li');
         li.innerHTML = '<a href="#'+id+'">'+s.n+' · '+s.title+'</a>';
@@ -1413,32 +1406,6 @@ function goOverview(){ window.location.href = withState('overview.html'); }
 </div>
 
 
-<!-- Google Translate auto-translation -->
-<script>
-// Auto-translate page content based on selected language
-(function(){
-    var lang = (new URLSearchParams(window.location.search).get('lang')) 
-               || localStorage.getItem('eyecare.lang') 
-               || 'en';
-    document.documentElement.setAttribute('lang', lang);
-    
-    // For non-English/non-Korean: use Google Translate
-    if(lang !== 'en' && lang !== 'ko'){
-        // Set cookie for Google Translate
-        document.cookie = 'googtrans=/en/' + lang + ';path=/';
-        document.cookie = 'googtrans=/en/' + lang + ';path=/;domain=' + location.hostname;
-    }
-})();
-function googleTranslateElementInit(){
-    new google.translate.TranslateElement({
-        pageLanguage:'en',
-        autoDisplay:false,
-        layout: google.translate.TranslateElement.InlineLayout.NONE
-    },'_gtrans');
-}
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<div id="_gtrans" style="display:none;"></div>
 
 </body>
 </html>
