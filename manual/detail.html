@@ -510,6 +510,10 @@
 .ios-example figure.media video{width:100%;height:100%;object-fit:contain}
 .ios-example figure.media:has(video) .media-placeholder{display:none!important}
 .ios-example .media-expand-btn{bottom:10px;right:10px}
+.ios-example.plans-example{max-width:760px;padding:0;border:0;background:transparent;box-shadow:none;margin:18px 0 12px}
+.ios-example.plans-example .ios-example-label{display:none}
+.ios-example.plans-example figure.media:has(img){width:min(420px,100%);aspect-ratio:1/1;box-shadow:0 18px 42px -26px rgba(75,38,112,.45)}
+@media(max-width:580px){.ios-example.plans-example figure.media:has(img){width:min(320px,100%)}}
 @media(max-width:580px){.ios-example{padding:12px 12px 16px}.ios-example figure.media:has(video){width:min(220px,80%)} }
 
 </style>
@@ -910,6 +914,38 @@ function buildBadge(d, isAndroid){
     var label = isAndroid ? d.ui.reading : d.ui.reading.replace(/Android/gi,'iOS');
     return (isAndroid?andSvg:appSvg) + flagHtml + '<span>'+ label +'</span>';
 }
+
+function localizeMixedText(text, lang){
+    if(!text) return text;
+    if(!lang || lang === 'en') return text;
+    var maps = {
+        ko:{'Kids Zone':'키즈존','Premium':'프리미엄','Plans':'요금제','YouTube':'유튜브','Safe Fullscreen':'안전 전체화면','Guided Access':'유도 접근'},
+        zh:{'Kids Zone':'儿童专区','Premium':'高级版','Plans':'方案','YouTube':'YouTube','Safe Fullscreen':'安全全屏','Guided Access':'引导式访问'},
+        ja:{'Kids Zone':'キッズゾーン','Premium':'プレミアム','Plans':'プラン','YouTube':'YouTube','Safe Fullscreen':'安全フルスクリーン','Guided Access':'アクセスガイド'},
+        fr:{'Kids Zone':'Espace Enfants','Premium':'Premium','Plans':'Forfaits','YouTube':'YouTube','Safe Fullscreen':'Plein écran sécurisé','Guided Access':'Accès guidé'},
+        de:{'Kids Zone':'Kinderbereich','Premium':'Premium','Plans':'Tarife','YouTube':'YouTube','Safe Fullscreen':'Sicherer Vollbildmodus','Guided Access':'Geführter Zugriff'},
+        es:{'Kids Zone':'Zona Infantil','Premium':'Premium','Plans':'Planes','YouTube':'YouTube','Safe Fullscreen':'Pantalla completa segura','Guided Access':'Acceso guiado'},
+        pt:{'Kids Zone':'Zona Infantil','Premium':'Premium','Plans':'Planos','YouTube':'YouTube','Safe Fullscreen':'Tela cheia segura','Guided Access':'Acesso Guiado'},
+        ru:{'Kids Zone':'Детская зона','Premium':'Премиум','Plans':'Тарифы','YouTube':'YouTube','Safe Fullscreen':'Безопасный полный экран','Guided Access':'Гид-доступ'},
+        ar:{'Kids Zone':'منطقة الأطفال','Premium':'بريميوم','Plans':'الخطط','YouTube':'يوتيوب','Safe Fullscreen':'ملء الشاشة الآمن','Guided Access':'الوصول الموجّه'},
+        vi:{'Kids Zone':'Khu vực Trẻ em','Premium':'Cao cấp','Plans':'Gói','YouTube':'YouTube','Safe Fullscreen':'Toàn màn hình an toàn','Guided Access':'Truy cập được hướng dẫn'},
+        th:{'Kids Zone':'โซนเด็ก','Premium':'พรีเมียม','Plans':'แผน','YouTube':'YouTube','Safe Fullscreen':'เต็มหน้าจอแบบปลอดภัย','Guided Access':'การเข้าถึงแบบมีคำแนะนำ'},
+        id:{'Kids Zone':'Zona Anak','Premium':'Premium','Plans':'Paket','YouTube':'YouTube','Safe Fullscreen':'Layar penuh aman','Guided Access':'Akses Terpandu'},
+        hi:{'Kids Zone':'किड्स ज़ोन','Premium':'प्रीमियम','Plans':'योजनाएँ','YouTube':'यूट्यूब','Safe Fullscreen':'सुरक्षित फुलस्क्रीन','Guided Access':'गाइडेड एक्सेस'},
+        ne:{'Kids Zone':'किड्स जोन','Premium':'प्रिमियम','Plans':'योजनाहरू','YouTube':'युट्युब','Safe Fullscreen':'सुरक्षित फुलस्क्रिन','Guided Access':'गाइडेड एक्सेस'},
+        uz:{'Kids Zone':'Bolalar zonasi','Premium':'Premium','Plans':'Tariflar','YouTube':'YouTube','Safe Fullscreen':'Xavfsiz to‘liq ekran','Guided Access':'Yo‘naltirilgan kirish'},
+        mn:{'Kids Zone':'Хүүхдийн бүс','Premium':'Премиум','Plans':'Багцууд','YouTube':'YouTube','Safe Fullscreen':'Аюулгүй бүтэн дэлгэц','Guided Access':'Хөтлүүлсэн хандалт'},
+        si:{'Kids Zone':'කිඩ්ස් සෝන්','Premium':'ප්‍රිමියම්','Plans':'සැලසුම්','YouTube':'යූටියුබ්','Safe Fullscreen':'ආරක්ෂිත පූර්ණ තිරය','Guided Access':'ගයිඩඩ් ඇක්සස්'}
+    };
+    var map = maps[lang] || {};
+    Object.keys(map).sort(function(a,b){ return b.length-a.length; }).forEach(function(key){
+        text = text.split(key).join(map[key]);
+    });
+    return text;
+}
+function secTitleText(s, isAndroid){ return isAndroid ? s.title : localizeMixedText(s.title, getLang()); }
+function secLeadText(s, isAndroid){ return isAndroid ? (s.lead || '') : localizeMixedText(s.lead || '', getLang()); }
+
 function appendFooter(host){
     host.insertAdjacentHTML('beforeend',
       '<footer><div class="logo">Eye Care</div><p>&copy; 2026 Myungjin Solution Co., Ltd. All rights reserved.</p></footer>');
@@ -954,18 +990,18 @@ if (!isAndroid) body.insertAdjacentHTML('beforeend',iosTopExplainer(d));
     d.secs.forEach(function(s, i){
         var id = 'sec' + i;
         var li = document.createElement('li');
-        li.innerHTML = '<a href="#'+id+'">'+s.n+' · '+s.title+'</a>';
+        li.innerHTML = '<a href="#'+id+'">'+s.n+' · '+secTitleText(s, isAndroid)+'</a>';
         tocList.appendChild(li);
 
         var html = '<section id="'+id+'"'+(!isAndroid && s.special?' class="ios-special-section"':'')+'>';
-        html += '<span class="sec-num">'+s.n+'</span><h2>'+s.title+'</h2>';
+        html += '<span class="sec-num">'+s.n+'</span><h2>'+secTitleText(s, isAndroid)+'</h2>';
         var iosMediaStart=html.length;
         if(s.image || s.video){
             var isImg = s.image && !/\.(mp4|webm|mov)$/i.test(s.image);
             var isMp4 = s.image && /\.(mp4|webm|mov)$/i.test(s.image);
             var _xpand = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>';
             function _imgFig(srcv){ return '<figure class="media"><img src="'+srcv+'" alt="" onclick="openLightbox(this.src)" onload="this.parentElement.querySelector(\'.media-placeholder\').style.display=\'none\'" onerror="this.style.display=\'none\'"><div class="media-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">'+srcv+'</div><div class="ph-size">JPG</div></div></figure>'; }
-            function _vidFig(srcv){ return '<figure class="media"><video src="'+srcv+'" '+(isAndroid?'autoplay loop muted playsinline preload="auto"':'controls playsinline preload="metadata"')+' style="width:100%;height:100%;object-fit:'+(isAndroid?'cover':'contain')+';display:block;border-radius:0;"></video><button class="media-expand-btn" type="button" data-vsrc="'+srcv+'" aria-label="Fullscreen">'+_xpand+'</button><div class="media-placeholder"><div class="ph-icon">&#127916;</div><div class="ph-name">'+srcv+'</div><div class="ph-size">MP4</div></div></figure>'; }
+            function _vidFig(srcv){ return '<figure class="media"><video src="'+srcv+'" autoplay loop muted controls playsinline preload="auto" style="width:100%;height:100%;object-fit:'+(isAndroid?'cover':'contain')+';display:block;border-radius:0;"></video><button class="media-expand-btn" type="button" data-vsrc="'+srcv+'" aria-label="Fullscreen">'+_xpand+'</button><div class="media-placeholder"><div class="ph-icon">&#127916;</div><div class="ph-name">'+srcv+'</div><div class="ph-size">MP4</div></div></figure>'; }
             /* MEDIA next (image and/or video, side-by-side if both) */
             if(isImg && s.video){
                 html += '<div class="media-row">'+_imgFig(s.image)+_vidFig(s.video)+'</div>';
@@ -979,7 +1015,7 @@ if (!isAndroid) body.insertAdjacentHTML('beforeend',iosTopExplainer(d));
         }
         var iosMedia='';
         if (!isAndroid) { iosMedia=html.slice(iosMediaStart); html=html.slice(0,iosMediaStart); }
-        if(s.lead) html += '<p class="lead">'+s.lead+'</p>';
+        if(s.lead) html += '<p class="lead">'+secLeadText(s, isAndroid)+'</p>';
         if(s.privacy) html += '<div class="callout privacy">';
         html += '<ul class="clean">';
         s.items.forEach(function(it){
@@ -1026,7 +1062,7 @@ if (!isAndroid) body.insertAdjacentHTML('beforeend',iosTopExplainer(d));
         html += '</ul>';
         if(s.policyUrl) html += '<div style="margin-top:16px;"><a href="'+s.policyUrl+'" target="_blank" rel="noopener noreferrer" class="policy-link-btn">'+(isAndroid?'Read Full Privacy &amp; Security Policy':(d.ui.policyLink||'Privacy Policy'))+' <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>';
     if(s.privacy) html += '</div>';
-        if(!isAndroid && iosMedia) html += '<div class="ios-example"><div class="ios-example-label">'+(d.ui.exampleLabel||'Example')+'</div>'+iosMedia+'</div>';
+        if(!isAndroid && iosMedia){ var _exClass=(s.image==='ios/plans.jpg'||s.image==='plans.jpg')?'ios-example plans-example':'ios-example'; html += '<div class="'+_exClass+'"><div class="ios-example-label">'+(d.ui.exampleLabel||'Example')+'</div>'+iosMedia+'</div>'; }
         if (!isAndroid && s.special) html += '<a class="ios-apple-link" href="https://support.apple.com/en-us/111795" target="_blank" rel="noopener noreferrer">Apple Support · Guided Access ↗</a>';
         html += '</section>';
         body.insertAdjacentHTML('beforeend', html);
@@ -1131,6 +1167,7 @@ function openVideoModal(src){
     var modal = document.getElementById('vidModal');
     var player = document.getElementById('vidModalPlayer');
     player.src = src;
+    player.loop = true;
     player.play().catch(function(){});
     modal.classList.add('show');
     document.body.style.overflow = 'hidden';
@@ -1144,12 +1181,27 @@ function closeVideoModal(){
     document.body.style.overflow = '';
 }
 function initVideos(){
-    document.querySelectorAll('.media video').forEach(function(v){
+    var vids = document.querySelectorAll('.media video');
+    vids.forEach(function(v){
+        v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
         v.addEventListener('canplay', function(){
             var ph = v.parentElement.querySelector('.media-placeholder');
             if(ph) ph.style.display = 'none';
         }, {once:true});
+        var tryPlay = function(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); };
+        v.addEventListener('loadeddata', tryPlay, {once:true});
+        tryPlay();
     });
+    if('IntersectionObserver' in window){
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+                var v = entry.target;
+                if(entry.isIntersecting && entry.intersectionRatio > 0.4){ var p=v.play(); if(p && p.catch) p.catch(function(){}); }
+                else { v.pause(); }
+            });
+        }, {threshold:[0.4,0.75]});
+        vids.forEach(function(v){ io.observe(v); });
+    }
     document.querySelectorAll('.media-expand-btn').forEach(function(btn){
         btn.addEventListener('click', function(e){
             e.stopPropagation();

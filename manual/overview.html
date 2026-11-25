@@ -1300,6 +1300,38 @@ function buildBadge(d, isAndroid){
     var label = isAndroid ? d.ui.reading : d.ui.reading.replace(/Android/gi,'iOS');
     return (isAndroid?andSvg:appSvg) + flagHtml + '<span>'+ label +'</span>';
 }
+
+function localizeMixedText(text, lang){
+    if(!text) return text;
+    if(!lang || lang === 'en') return text;
+    var maps = {
+        ko:{'Kids Zone':'키즈존','Premium':'프리미엄','Plans':'요금제','YouTube':'유튜브','Safe Fullscreen':'안전 전체화면','Guided Access':'유도 접근'},
+        zh:{'Kids Zone':'儿童专区','Premium':'高级版','Plans':'方案','YouTube':'YouTube','Safe Fullscreen':'安全全屏','Guided Access':'引导式访问'},
+        ja:{'Kids Zone':'キッズゾーン','Premium':'プレミアム','Plans':'プラン','YouTube':'YouTube','Safe Fullscreen':'安全フルスクリーン','Guided Access':'アクセスガイド'},
+        fr:{'Kids Zone':'Espace Enfants','Premium':'Premium','Plans':'Forfaits','YouTube':'YouTube','Safe Fullscreen':'Plein écran sécurisé','Guided Access':'Accès guidé'},
+        de:{'Kids Zone':'Kinderbereich','Premium':'Premium','Plans':'Tarife','YouTube':'YouTube','Safe Fullscreen':'Sicherer Vollbildmodus','Guided Access':'Geführter Zugriff'},
+        es:{'Kids Zone':'Zona Infantil','Premium':'Premium','Plans':'Planes','YouTube':'YouTube','Safe Fullscreen':'Pantalla completa segura','Guided Access':'Acceso guiado'},
+        pt:{'Kids Zone':'Zona Infantil','Premium':'Premium','Plans':'Planos','YouTube':'YouTube','Safe Fullscreen':'Tela cheia segura','Guided Access':'Acesso Guiado'},
+        ru:{'Kids Zone':'Детская зона','Premium':'Премиум','Plans':'Тарифы','YouTube':'YouTube','Safe Fullscreen':'Безопасный полный экран','Guided Access':'Гид-доступ'},
+        ar:{'Kids Zone':'منطقة الأطفال','Premium':'بريميوم','Plans':'الخطط','YouTube':'يوتيوب','Safe Fullscreen':'ملء الشاشة الآمن','Guided Access':'الوصول الموجّه'},
+        vi:{'Kids Zone':'Khu vực Trẻ em','Premium':'Cao cấp','Plans':'Gói','YouTube':'YouTube','Safe Fullscreen':'Toàn màn hình an toàn','Guided Access':'Truy cập được hướng dẫn'},
+        th:{'Kids Zone':'โซนเด็ก','Premium':'พรีเมียม','Plans':'แผน','YouTube':'YouTube','Safe Fullscreen':'เต็มหน้าจอแบบปลอดภัย','Guided Access':'การเข้าถึงแบบมีคำแนะนำ'},
+        id:{'Kids Zone':'Zona Anak','Premium':'Premium','Plans':'Paket','YouTube':'YouTube','Safe Fullscreen':'Layar penuh aman','Guided Access':'Akses Terpandu'},
+        hi:{'Kids Zone':'किड्स ज़ोन','Premium':'प्रीमियम','Plans':'योजनाएँ','YouTube':'यूट्यूब','Safe Fullscreen':'सुरक्षित फुलस्क्रीन','Guided Access':'गाइडेड एक्सेस'},
+        ne:{'Kids Zone':'किड्स जोन','Premium':'प्रिमियम','Plans':'योजनाहरू','YouTube':'युट्युब','Safe Fullscreen':'सुरक्षित फुलस्क्रिन','Guided Access':'गाइडेड एक्सेस'},
+        uz:{'Kids Zone':'Bolalar zonasi','Premium':'Premium','Plans':'Tariflar','YouTube':'YouTube','Safe Fullscreen':'Xavfsiz to‘liq ekran','Guided Access':'Yo‘naltirilgan kirish'},
+        mn:{'Kids Zone':'Хүүхдийн бүс','Premium':'Премиум','Plans':'Багцууд','YouTube':'YouTube','Safe Fullscreen':'Аюулгүй бүтэн дэлгэц','Guided Access':'Хөтлүүлсэн хандалт'},
+        si:{'Kids Zone':'කිඩ්ස් සෝන්','Premium':'ප්‍රිමියම්','Plans':'සැලසුම්','YouTube':'යූටියුබ්','Safe Fullscreen':'ආරක්ෂිත පූර්ණ තිරය','Guided Access':'ගයිඩඩ් ඇක්සස්'}
+    };
+    var map = maps[lang] || {};
+    Object.keys(map).sort(function(a,b){ return b.length-a.length; }).forEach(function(key){
+        text = text.split(key).join(map[key]);
+    });
+    return text;
+}
+function secTitleText(s, isAndroid){ return isAndroid ? s.title : localizeMixedText(s.title, getLang()); }
+function secLeadText(s, isAndroid){ return isAndroid ? (s.lead || '') : localizeMixedText(s.lead || '', getLang()); }
+
 function appendFooter(host){
     host.insertAdjacentHTML('beforeend',
       '<footer><div class="logo">Eye Care</div><p>&copy; 2026 Myungjin Solution Co., Ltd. All rights reserved.</p></footer>');
@@ -1346,7 +1378,7 @@ var host = document.getElementById('ovBody');
     d.secs.forEach(function(s, i){
         html += '<a class="ov-sec" href="' + withStateHash('detail.html', 'sec'+i) + '">'
               + '<span class="ov-sec-num">' + s.n + '</span>'
-              + '<span class="ov-sec-title">' + s.title + '</span>'
+              + '<span class="ov-sec-title">' + secTitleText(s, isAndroid) + '</span>'
               + '<span class="ov-sec-arrow">&rarr;</span>'
               + '</a>';
     });
@@ -1366,8 +1398,8 @@ var host = document.getElementById('ovBody');
         html += '<li><a class="ov-step" href="' + withStateHash('detail.html', 'sec'+i) + '">'
               + '<span class="ov-step-num">' + s.n + '</span>'
               + '<span class="ov-step-body">'
-              + '<span class="ov-step-title">' + s.title + '</span>'
-              + (s.lead ? '<span class="ov-step-text">' + s.lead + '</span>' : '')
+              + '<span class="ov-step-title">' + secTitleText(s, isAndroid) + '</span>'
+              + (s.lead ? '<span class="ov-step-text">' + secLeadText(s, isAndroid) + '</span>' : '')
               + '</span></a></li>';
     });
     html += '</ol>';
