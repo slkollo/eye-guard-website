@@ -519,6 +519,17 @@
 .ios-plan-note{background:#fbf5ff;border-left:4px solid #9c8eff;padding:12px 15px;border-radius:6px;margin:18px 0;color:#4a2c69;font-size:14px}
 @media(max-width:600px){.ios-why{padding:19px 18px}.ios-why h2{font-size:21px}.ios-special-section{padding:18px 15px}.ios-special-section h2{font-size:23px}}
 
+
+#ec-parent-notice { margin: 18px 0 28px; padding: 22px 24px; border: 1px solid #eeb6bf; border-inline-start: 4px solid #c93445; border-radius: 16px; background: #fff5f6; color: #a71d31; font-size: 15px; line-height: 1.7; text-align: start; overflow-wrap: anywhere; animation: ecNoticeGlow 2.5s ease-in-out 3; }
+#ec-parent-notice h2 { display:flex; align-items:center; gap:10px; color:#b52237; font-family:inherit; font-size:20px; font-weight:700; margin:0 0 12px; line-height:1.35; }
+#ec-parent-notice h2 svg { width:22px; height:22px; flex:none; }
+#ec-parent-notice p { margin:0 0 10px; color:inherit; }
+#ec-parent-notice p.ec-scope { font-weight:600; }
+#ec-parent-notice p.ec-note { border-top:1px solid #efcbd0; padding-top:10px; margin:12px 0 0; font-size:13px; }
+@keyframes ecNoticeGlow { 0%,100% { box-shadow:0 0 0 0 rgba(201,52,69,0); } 50% { box-shadow:0 0 0 4px rgba(201,52,69,.12),0 6px 22px rgba(201,52,69,.10); } }
+@media(max-width:560px) { #ec-parent-notice { padding:17px 16px; font-size:14px; } #ec-parent-notice h2 { font-size:18px; } }
+@media(prefers-reduced-motion:reduce) { #ec-parent-notice { animation:none; } }
+
 </style>
 </head>
 <body>
@@ -1354,6 +1365,143 @@ function iosTopExplainer(d){
      '<p class="ios-why-emphasis">'+d.ui.whyKids+'</p></aside>';
 }
 
+
+/* Localized parent notice (iOS only). */
+const IOS_PARENT_NOTICE = {
+  "en": [
+    "Important Notice",
+    "On iPhone, Eye Care's eye protection features work only within the Eye Care app.",
+    "If the apps your child uses are installed separately or website shortcuts are added to the Home Screen, your child may get used to accessing them directly without using Eye Care.",
+    "Whenever possible, encourage your child to use supported websites and app services through Eye Care Kids Zone. This can help your child reduce the habit of holding the phone too close to their eyes.",
+    "Note: Eye Care does not restrict access to other apps."
+  ],
+  "ko": [
+    "중요 안내",
+    "iPhone에서 Eye Care의 눈 보호 기능은 Eye Care 앱 내에서만 작동합니다.",
+    "자녀가 사용하는 앱을 별도로 설치하거나 홈 화면에 웹사이트 바로가기를 추가하면, 자녀가 Eye Care를 거치지 않고 직접 사용하는 습관이 생길 수 있습니다.",
+    "가능한 한 자녀가 필요한 웹사이트와 지원되는 앱 서비스를 Eye Care 키즈존을 통해 이용하도록 지도해 주세요. 휴대폰을 눈에 너무 가까이 대고 보는 습관을 줄이는 데 도움이 될 수 있습니다.",
+    "참고: Eye Care는 다른 앱의 사용을 차단하지 않습니다."
+  ],
+  "zh": [
+    "重要提示",
+    "在 iPhone 上，Eye Care 的护眼功能仅在 Eye Care 应用内有效。",
+    "如果单独安装孩子使用的应用，或将网站快捷方式添加到主屏幕，孩子可能习惯绕过 Eye Care 直接使用它们。",
+    "请尽量引导孩子通过 Eye Care 儿童专区使用所需且受支持的网站和应用服务。这有助于减少孩子将手机拿得离眼睛过近的习惯。",
+    "注意：Eye Care 不会限制其他应用的使用。"
+  ],
+  "ja": [
+    "重要なお知らせ",
+    "iPhone では、Eye Care の目を守る機能は Eye Care アプリ内でのみ動作します。",
+    "お子さまが使うアプリを別途インストールしたり、ホーム画面にウェブサイトのショートカットを追加したりすると、Eye Care を経由せず直接利用する習慣がつく可能性があります。",
+    "できる限り、必要な対応ウェブサイトやアプリサービスを Eye Care のキッズゾーンから利用するよう促してください。スマートフォンを目に近づけすぎる習慣を減らす助けになります。",
+    "注：Eye Care は他のアプリの利用を制限しません。"
+  ],
+  "fr": [
+    "Avis important",
+    "Sur iPhone, les fonctions de protection des yeux d’Eye Care fonctionnent uniquement dans l’application Eye Care.",
+    "Si les applications utilisées par votre enfant sont installées séparément ou si des raccourcis de sites sont ajoutés à l’écran d’accueil, votre enfant peut prendre l’habitude d’y accéder directement sans passer par Eye Care.",
+    "Dans la mesure du possible, encouragez votre enfant à utiliser les sites et services d’applications compatibles via Kids Zone d’Eye Care. Cela peut l’aider à moins tenir le téléphone trop près de ses yeux.",
+    "Remarque : Eye Care ne bloque pas l’accès aux autres applications."
+  ],
+  "de": [
+    "Wichtiger Hinweis",
+    "Auf dem iPhone funktionieren die Augenschutzfunktionen von Eye Care nur innerhalb der Eye Care-App.",
+    "Werden die von Ihrem Kind verwendeten Apps separat installiert oder Website-Verknüpfungen zum Home-Bildschirm hinzugefügt, kann sich Ihr Kind daran gewöhnen, sie direkt ohne Eye Care zu öffnen.",
+    "Ermutigen Sie Ihr Kind nach Möglichkeit, unterstützte Websites und App-Dienste über Kids Zone in Eye Care zu nutzen. Das kann helfen, die Gewohnheit zu verringern, das Handy zu nah an die Augen zu halten.",
+    "Hinweis: Eye Care schränkt den Zugriff auf andere Apps nicht ein."
+  ],
+  "es": [
+    "Aviso importante",
+    "En iPhone, las funciones de protección ocular de Eye Care solo funcionan dentro de la aplicación Eye Care.",
+    "Si las aplicaciones que usa su hijo se instalan por separado o se añaden accesos directos a sitios web en la pantalla de inicio, puede acostumbrarse a abrirlos directamente sin usar Eye Care.",
+    "Siempre que sea posible, anime a su hijo a utilizar los sitios web y servicios de aplicaciones compatibles a través de Kids Zone de Eye Care. Esto puede ayudarle a reducir el hábito de acercar demasiado el teléfono a los ojos.",
+    "Nota: Eye Care no bloquea el acceso a otras aplicaciones."
+  ],
+  "pt": [
+    "Aviso importante",
+    "No iPhone, os recursos de proteção dos olhos do Eye Care funcionam somente dentro do próprio aplicativo.",
+    "Se os aplicativos usados pela criança forem instalados separadamente ou se atalhos de sites forem adicionados à tela de início, ela poderá se acostumar a acessá-los diretamente sem usar o Eye Care.",
+    "Sempre que possível, incentive a criança a utilizar sites e serviços de aplicativos compatíveis por meio da Kids Zone do Eye Care. Isso pode ajudar a reduzir o hábito de aproximar demais o celular dos olhos.",
+    "Observação: o Eye Care não restringe o acesso a outros aplicativos."
+  ],
+  "ru": [
+    "Важное уведомление",
+    "На iPhone функции защиты глаз Eye Care работают только внутри приложения Eye Care.",
+    "Если отдельно установить приложения, которыми пользуется ребёнок, или добавить ярлыки сайтов на экран «Домой», ребёнок может привыкнуть открывать их напрямую, не используя Eye Care.",
+    "По возможности приучайте ребёнка пользоваться поддерживаемыми сайтами и сервисами приложений через Kids Zone в Eye Care. Это может помочь уменьшить привычку держать телефон слишком близко к глазам.",
+    "Примечание: Eye Care не ограничивает доступ к другим приложениям."
+  ],
+  "ar": [
+    "تنبيه مهم",
+    "على iPhone، تعمل ميزات حماية العين في Eye Care داخل تطبيق Eye Care فقط.",
+    "إذا تم تثبيت التطبيقات التي يستخدمها طفلك بشكل منفصل أو إضافة اختصارات المواقع إلى الشاشة الرئيسية، فقد يعتاد طفلك على فتحها مباشرة دون استخدام Eye Care.",
+    "شجّع طفلك قدر الإمكان على استخدام المواقع وخدمات التطبيقات المدعومة من خلال Kids Zone في Eye Care. قد يساعد ذلك في تقليل عادة تقريب الهاتف كثيرًا من العينين.",
+    "ملاحظة: لا يمنع Eye Care الوصول إلى التطبيقات الأخرى."
+  ],
+  "vi": [
+    "Thông báo quan trọng",
+    "Trên iPhone, các tính năng bảo vệ mắt của Eye Care chỉ hoạt động bên trong ứng dụng Eye Care.",
+    "Nếu các ứng dụng trẻ sử dụng được cài riêng hoặc lối tắt trang web được thêm vào màn hình chính, trẻ có thể quen với việc truy cập trực tiếp mà không qua Eye Care.",
+    "Khi có thể, hãy khuyến khích trẻ sử dụng các trang web và dịch vụ ứng dụng được hỗ trợ qua Kids Zone của Eye Care. Điều này có thể giúp trẻ giảm thói quen đưa điện thoại quá gần mắt.",
+    "Lưu ý: Eye Care không chặn việc sử dụng các ứng dụng khác."
+  ],
+  "th": [
+    "ประกาศสำคัญ",
+    "บน iPhone ฟังก์ชันปกป้องดวงตาของ Eye Care ทำงานภายในแอป Eye Care เท่านั้น",
+    "หากติดตั้งแอปที่เด็กใช้แยกต่างหาก หรือเพิ่มทางลัดเว็บไซต์บนหน้าจอโฮม เด็กอาจเคยชินกับการเปิดใช้งานโดยตรงโดยไม่ผ่าน Eye Care",
+    "เมื่อทำได้ ควรส่งเสริมให้เด็กใช้เว็บไซต์และบริการแอปที่รองรับผ่าน Kids Zone ของ Eye Care ซึ่งอาจช่วยลดนิสัยการถือโทรศัพท์ใกล้ดวงตาเกินไป",
+    "หมายเหตุ: Eye Care ไม่ได้ปิดกั้นการเข้าถึงแอปอื่น"
+  ],
+  "id": [
+    "Pemberitahuan penting",
+    "Di iPhone, fitur perlindungan mata Eye Care hanya berfungsi di dalam aplikasi Eye Care.",
+    "Jika aplikasi yang digunakan anak dipasang secara terpisah atau pintasan situs ditambahkan ke Layar Utama, anak dapat terbiasa mengaksesnya langsung tanpa melalui Eye Care.",
+    "Jika memungkinkan, biasakan anak menggunakan situs web dan layanan aplikasi yang didukung melalui Kids Zone Eye Care. Ini dapat membantu mengurangi kebiasaan memegang ponsel terlalu dekat dengan mata.",
+    "Catatan: Eye Care tidak membatasi akses ke aplikasi lain."
+  ],
+  "hi": [
+    "महत्वपूर्ण सूचना",
+    "iPhone पर Eye Care के आँखों की सुरक्षा वाले फ़ीचर केवल Eye Care ऐप के अंदर काम करते हैं।",
+    "यदि बच्चे के उपयोग वाले ऐप अलग से इंस्टॉल किए जाएँ या वेबसाइट शॉर्टकट होम स्क्रीन पर जोड़े जाएँ, तो बच्चा Eye Care के बिना उन्हें सीधे इस्तेमाल करने का आदी हो सकता है।",
+    "जहाँ तक संभव हो, बच्चे को समर्थित वेबसाइट और ऐप सेवाएँ Eye Care Kids Zone के माध्यम से इस्तेमाल करने के लिए प्रोत्साहित करें। इससे फोन को आँखों के बहुत पास रखने की आदत कम करने में मदद मिल सकती है।",
+    "नोट: Eye Care अन्य ऐप्स तक पहुँच को नहीं रोकता है।"
+  ],
+  "ne": [
+    "महत्त्वपूर्ण सूचना",
+    "iPhone मा Eye Care का आँखा सुरक्षासम्बन्धी सुविधाहरू Eye Care एपभित्र मात्र काम गर्छन्।",
+    "बच्चाले प्रयोग गर्ने एपहरू अलग्गै स्थापना गरिएमा वा वेबसाइटका सर्टकट होम स्क्रिनमा थपिएमा, बच्चालाई Eye Care प्रयोग नगरी सीधै खोल्ने बानी पर्न सक्छ।",
+    "सम्भव भएसम्म बच्चालाई समर्थित वेबसाइट र एप सेवाहरू Eye Care Kids Zone मार्फत प्रयोग गर्न प्रोत्साहन गर्नुहोस्। यसले फोन आँखाको धेरै नजिक राख्ने बानी कम गर्न मद्दत गर्न सक्छ।",
+    "नोट: Eye Care ले अन्य एपको प्रयोग रोक्दैन।"
+  ],
+  "uz": [
+    "Muhim eslatma",
+    "iPhone’da Eye Care’ning ko‘zni himoya qilish funksiyalari faqat Eye Care ilovasi ichida ishlaydi.",
+    "Farzandingiz ishlatadigan ilovalar alohida o‘rnatilsa yoki sayt yorliqlari bosh ekranga qo‘shilsa, u Eye Care’dan foydalanmay ularni bevosita ochishga odatlanishi mumkin.",
+    "Imkon qadar farzandingizni qo‘llab-quvvatlanadigan saytlar va ilova xizmatlaridan Eye Care Kids Zone orqali foydalanishga o‘rgating. Bu telefonni ko‘zga haddan tashqari yaqin tutish odatini kamaytirishga yordam berishi mumkin.",
+    "Eslatma: Eye Care boshqa ilovalarga kirishni cheklamaydi."
+  ],
+  "mn": [
+    "Чухал мэдэгдэл",
+    "iPhone дээр Eye Care-ийн нүд хамгаалах функц зөвхөн Eye Care апп дотор ажиллана.",
+    "Хүүхдийн ашигладаг аппыг тусад нь суулгах эсвэл вэб сайтын товчлолыг нүүр дэлгэцэд нэмбэл хүүхэд Eye Care ашиглахгүйгээр шууд нээж хэвшиж болно.",
+    "Боломжтой бол хүүхдээ дэмжигдсэн вэб сайт болон аппын үйлчилгээг Eye Care Kids Zone-оор ашиглахад сургаарай. Энэ нь утсаа нүдэндээ хэт ойр барих зуршлыг багасгахад тусалж болно.",
+    "Тайлбар: Eye Care бусад аппын хэрэглээг хориглодоггүй."
+  ],
+  "si": [
+    "වැදගත් දැනුවත් කිරීමයි!",
+    "iPhone දුරකථනවල Eye Care හි ඇස් ආරක්ෂා කිරීමේ ක්‍රියාකාරීත්වය Eye Care ඇප් එක තුළට පමණක් සීමා වේ.",
+    "ඔබේ දරුවා භාවිත කරන ඇප් වෙනම දුරකථනයට ස්ථාපනය කළහොත් හෝ වෙබ් අඩවි කෙටිමං (Shortcuts) Home Screen එකට එක් කළහොත්, දරුවා Eye Care හරහා නොගොස් ඒවා කෙළින්ම භාවිත කිරීමට හුරු විය හැකිය.",
+    "එම නිසා, හැකි තරම් දරුවාට අවශ්‍ය වෙබ් සේවාවන් සහ ඇප් සේවාවන් Eye Care Kids Zone හරහා භාවිත කිරීමට හුරු කරවන්න. එමගින් දුරකථනය ඇස්වලට ළං කරගෙන බැලීමේ පුරුද්ද අඩු කර ගැනීමට දරුවාට උපකාර විය හැකිය.",
+    "සටහන: Eye Care මගින් වෙනත් ඇප් භාවිත කිරීම අවහිර නොකරයි."
+  ]
+};
+function iosParentNotice(lang){
+    const words = Object.prototype.hasOwnProperty.call(IOS_PARENT_NOTICE, lang) ? IOS_PARENT_NOTICE[lang] : IOS_PARENT_NOTICE.en;
+    const escape = value => value.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+    const icon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.8 2.5 18a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.8a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>';
+    return '<aside id="ec-parent-notice" aria-labelledby="ec-parent-notice-heading" lang="'+escape(lang)+'"><h2 id="ec-parent-notice-heading">'+icon+escape(words[0])+'</h2><p class="ec-scope">'+escape(words[1])+'</p><p>'+escape(words[2])+'</p><p>'+escape(words[3])+'</p><p class="ec-note">'+escape(words[4])+'</p></aside>';
+}
+
 function renderPage(){
 
 var d = DATA[getLang()] || DATA.en;
@@ -1370,7 +1518,7 @@ var host = document.getElementById('ovBody');
 {
     var html = '';
 
-    if (!isAndroid) html += iosTopExplainer(d);
+    if (!isAndroid) html += iosTopExplainer(d) + iosParentNotice(getLang());
 
     /* 1) six section buttons */
     html += '<div class="ov-seclabel">' + t('quickNav') + '</div>';
